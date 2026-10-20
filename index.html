@@ -67,7 +67,6 @@
       <li><a href="#pretraining" data-spy="pretraining" style="--accent: var(--txt)">Design studies</a></li>
       <li><a href="#results" data-spy="results" style="--accent: var(--img)">Scaling</a></li>
       <li><a href="#agreement" data-spy="agreement" style="--accent: var(--agree)">Joint reasoning</a></li>
-      <li><a href="#faq" data-spy="faq" style="--accent: var(--muted)">FAQ</a></li>
       <li><a href="#citation" data-spy="citation" style="--accent: var(--muted)">Cite</a></li>
     </ul>
     <div class="bar__tools">
@@ -1042,52 +1041,7 @@
   </div>
 </section>
 
-<!-- ============================================================ 11. FAQ -->
-<section class="section section--plain" id="faq" aria-labelledby="faq-h">
-  <header class="section__head">
-    <h2 id="faq-h">FAQ</h2>
-  </header>
-  <div class="faq">
-    <details class="faq__item">
-      <summary>Why frozen encoders?</summary>
-      <div class="faq__body">
-        <p>Their spaces are continuous for images and text alike, so one flow matching process can generate both with the same objective. They also carry knowledge learned at scale, which a backbone trained without a language model needs. Keeping them frozen means the same features work as generation targets and as conditioning context. In the pretraining study, semantic spaces (SigLIP2, DINO) were much better targets than VAE latents or raw pixels.</p>
-      </div>
-    </details>
-    <details class="faq__item">
-      <summary>Why continuous text, and what does it cost?</summary>
-      <div class="faq__body">
-        <p>Continuous text lets one process and one loss cover both modalities. At 668M it keeps image generation level with a text-to-image-only model at the same guidance scale (48.41 vs 47.86 GenEval), while every framework that writes text as tokens falls below that model. The cost is exact wording: CIDEr is 88.80 against 160.52 for autoregressive text, although CLIPScore is on par. Long descriptions show grammatical slips and occasional invented words.</p>
-      </div>
-    </details>
-    <details class="faq__item">
-      <summary>Isn't this UniDiffuser?</summary>
-      <div class="faq__body">
-        <p>It builds on it. Giving each modality its own timestep, and treating tasks as different settings of those timesteps, follows UniDiffuser. UniDiffuser diffuses CLIP embeddings and needs a separate autoregressive GPT-2 to decode text. JUICE keeps both modalities as frozen encoder states with one state per token (SigLIP2 or WebSSL-DINO patches, Flan-T5 tokens) and reads text out with a lightweight parallel decoder. The paper then studies which design choices make this work and what coupled sampling does for agreement between the two outputs.</p>
-      </div>
-    </details>
-    <details class="faq__item">
-      <summary>Does coupled sampling just copy one modality into the other?</summary>
-      <div class="faq__body">
-        <p>No. In the traced mazes, the output that settles later is the one that changes: the drawn route in one maze, the moves in the other. On solved mazes, coupled sampling returns the stored reference route 43.5% of the time for SigLIP2, close to the 44.1% expected from a uniform choice among shortest routes (DINO: 47.0% vs 44.4%), so it does not collapse onto one canonical answer either.</p>
-      </div>
-    </details>
-    <details class="faq__item">
-      <summary>Is coupled sampling better than generating one modality first?</summary>
-      <div class="faq__body">
-        <p>Not better than the better order: it comes close to it but does not beat it. On mazes, image first reaches 95.2% joint success and coupled sampling 93.7% for the maze-adapted SigLIP2 model; for DINO the two are 82.7% and 81.7%. The gap is significant for SigLIP2 (paired exact McNemar test, p&nbsp;=&nbsp;0.017) and not for DINO (p&nbsp;=&nbsp;0.19). Against the worse order, text first, coupled sampling is 8.4 (SigLIP2) and 21.8 (DINO) points ahead. The better order starts with the more reliable modality, which for a new task is not known in advance; coupled sampling does not need that choice.</p>
-      </div>
-    </details>
-    <details class="faq__item">
-      <summary>How does it compare with LLM-initialized models?</summary>
-      <div class="faq__body">
-        <p>On image generation it is close to the best unified models of <span class="nobr">1–3B</span> parameters (GenEval up to 0.88; DPG-Bench 85.27 for the SigLIP2 variant). On perception-style VQA the SigLIP2 variant is competitive: VQAv2 73.1 is above Show-o at 512² (69.4), Muddit (68.2) and OneFlow (67.7), and below JanusFlow (79.8). On benchmarks that need domain knowledge it trails clearly: AI2D 34.4 against <span class="nobr">58.5–71.4</span> for LLM-initialized models, and MMMU 29.6 against <span class="nobr">34.3–39.1</span> for Harmon, FUDOKI, Janus-Pro, Show-o2 and TUNA. That gap is what you would expect without a language model backbone. All JUICE numbers are at 224×224.</p>
-      </div>
-    </details>
-  </div>
-</section>
-
-<!-- ============================================================ 12. citation -->
+<!-- ============================================================ 11. citation -->
 <section class="section section--plain" id="citation" aria-labelledby="citation-h">
   <header class="section__head">
     <h2 id="citation-h">Citation</h2>
