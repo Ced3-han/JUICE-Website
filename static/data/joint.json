@@ -1,0 +1,3859 @@
+{
+ "_note": "Built by blog/_build/build_joint_vsp.py from /tmp/claude-0/-home-claude/f446da7b-9ee1-5ee5-80aa-8b3a4fc49eb9/scratchpad/webdata/web_steps_20261020/joint.",
+ "total_steps": 64,
+ "every_step": true,
+ "source": "a rerun of the paper's trajectory samples with every step saved (same checkpoints, seeds and sampler; the steps shown in the paper are identical)",
+ "decoder": "parallel text readout, cut at the first repeated sentence as in the paper",
+ "default": "siglip_s03",
+ "samples": [
+  {
+   "id": "siglip_s03",
+   "variant": "siglip",
+   "variant_label": "SigLIP2",
+   "sample": 3,
+   "alpha": 8.485,
+   "total_steps": 64,
+   "note": "The wings enter the caption at step 18, at text time 0.28, while the image time is still 0.04.",
+   "steps": [
+    {
+     "step": 0,
+     "t_image": 0.0,
+     "t_text": 0.0,
+     "caption": "The image depicts a large, patterned a showcasing a showcasing of a showcasing a variety of showcasing a variety of showcasing a different showcasing a different showcasing.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s00.webp"
+    },
+    {
+     "step": 1,
+     "t_image": 0.002,
+     "t_text": 0.016,
+     "caption": "The image depicts a portrait of a person with a carved atop a sand shaped a sand shaped amidst a sand shaped area.",
+     "changed": [
+      4,
+      7,
+      8,
+      10,
+      11,
+      13,
+      14,
+      16,
+      17,
+      18,
+      20,
+      21,
+      22
+     ],
+     "img": "static/img/widgets/joint/siglip_s03/s01.webp"
+    },
+    {
+     "step": 2,
+     "t_image": 0.004,
+     "t_text": 0.031,
+     "caption": "The image depicts a portrait of a young woman in a southwestern setting. The image depicts a large, colorful showcasing a patterned a showcasing a variety of colors.",
+     "changed": [
+      7,
+      8,
+      9,
+      11,
+      12,
+      13,
+      14,
+      15,
+      17,
+      18,
+      19,
+      21,
+      23,
+      24,
+      25,
+      26,
+      27
+     ],
+     "img": "static/img/widgets/joint/siglip_s03/s02.webp"
+    },
+    {
+     "step": 3,
+     "t_image": 0.006,
+     "t_text": 0.047,
+     "caption": "The image depicts a colorful image depicting a colorful a person with a semblable a semblable a semblable .",
+     "changed": [
+      4,
+      6,
+      10,
+      11,
+      13,
+      15,
+      16,
+      17,
+      18
+     ],
+     "img": "static/img/widgets/joint/siglip_s03/s03.webp"
+    },
+    {
+     "step": 4,
+     "t_image": 0.008,
+     "t_text": 0.062,
+     "caption": "The image depicts a colorful image depicting a colorful a man with a sleeve in a southwestern setting.",
+     "changed": [
+      10,
+      13,
+      14,
+      16,
+      17
+     ],
+     "img": "static/img/widgets/joint/siglip_s03/s04.webp"
+    },
+    {
+     "step": 5,
+     "t_image": 0.01,
+     "t_text": 0.078,
+     "caption": "The image depicts a colorful illustration of a colorful ad a person with a semblable image.",
+     "changed": [
+      5,
+      6,
+      9,
+      11,
+      14,
+      15
+     ],
+     "img": "static/img/widgets/joint/siglip_s03/s05.webp"
+    },
+    {
+     "step": 6,
+     "t_image": 0.012,
+     "t_text": 0.094,
+     "caption": "The image depicts a charming, cartoon-style image depicting a colorful a child with a colorful hat. The image depicts a colorful a scene with a colorful showcasing a variety of a different a person in a costume. The showcasing is a colorful showcasing the southwestern a showcasing a variety of colors including a sand and a striped sleeve.",
+     "changed": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      11,
+      12,
+      13,
+      15,
+      16,
+      17,
+      18,
+      20,
+      21,
+      22,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57
+     ],
+     "img": "static/img/widgets/joint/siglip_s03/s06.webp"
+    },
+    {
+     "step": 7,
+     "t_image": 0.014,
+     "t_text": 0.109,
+     "caption": "The image depicts a charming, cartoon-style illustration of a young child wearing a colorful outfit. The image depicts a colorful, colorful cartoon character with a large, colorful striped hat. The character is wearing a white hat with a white striped shirt and a white striped shirt.",
+     "changed": [
+      6,
+      7,
+      9,
+      11,
+      14,
+      19,
+      21,
+      22,
+      25,
+      27,
+      28,
+      30,
+      32,
+      34,
+      35,
+      36,
+      38,
+      39,
+      40,
+      43,
+      45
+     ],
+     "img": "static/img/widgets/joint/siglip_s03/s07.webp"
+    },
+    {
+     "step": 8,
+     "t_image": 0.017,
+     "t_text": 0.125,
+     "caption": "The image depicts a charming, cartoon-style illustration of a charming, cartoon-style character with a young child.",
+     "changed": [
+      9,
+      10,
+      14,
+      15
+     ],
+     "img": "static/img/widgets/joint/siglip_s03/s08.webp"
+    },
+    {
+     "step": 9,
+     "t_image": 0.019,
+     "t_text": 0.141,
+     "caption": "The image depicts a charming, cartoon-style illustration of a charming, cartoon-style character that appears to be a charming, cartoon-style character. The character is wearing a colorful, cartoon-style outfit with a white hat and a white hat.",
+     "changed": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35
+     ],
+     "img": "static/img/widgets/joint/siglip_s03/s09.webp"
+    },
+    {
+     "step": 10,
+     "t_image": 0.021,
+     "t_text": 0.156,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a charming, cartoon-style character that is a character of a young child.",
+     "changed": [
+      15,
+      18,
+      19,
+      21,
+      22
+     ],
+     "img": "static/img/widgets/joint/siglip_s03/s10.webp"
+    },
+    {
+     "step": 11,
+     "t_image": 0.024,
+     "t_text": 0.172,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a cute, cartoon-style character that appears to be a young child.",
+     "changed": [
+      12,
+      16,
+      17,
+      18
+     ],
+     "img": "static/img/widgets/joint/siglip_s03/s11.webp"
+    },
+    {
+     "step": 12,
+     "t_image": 0.026,
+     "t_text": 0.188,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The character has light brown hair, adorned with a yellow tunic with a red cape and a white striped shirt.",
+     "changed": [
+      12,
+      13,
+      14,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33
+     ],
+     "img": "static/img/widgets/joint/siglip_s03/s12.webp"
+    },
+    {
+     "step": 13,
+     "t_image": 0.029,
+     "t_text": 0.203,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s13.webp"
+    },
+    {
+     "step": 14,
+     "t_image": 0.032,
+     "t_text": 0.219,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The character has light brown hair adorned with a red tunic with a white crest, adorned with a red cape, and a red cape, and brown boots.",
+     "changed": [
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40
+     ],
+     "img": "static/img/widgets/joint/siglip_s03/s14.webp"
+    },
+    {
+     "step": 15,
+     "t_image": 0.035,
+     "t_text": 0.234,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The character has light brown hair adorned with a red tunic with a yellow cape, paired with blue pants with a colorful pattern, a red cape, and brown boots.",
+     "changed": [
+      27,
+      28,
+      29,
+      31,
+      32,
+      33,
+      35,
+      36
+     ],
+     "img": "static/img/widgets/joint/siglip_s03/s15.webp"
+    },
+    {
+     "step": 16,
+     "t_image": 0.038,
+     "t_text": 0.25,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The character has light brown hair, adorned with a bald ear and is dressed in a yellow tunic over a yellow shirt, paired with blue pants with a colorful pattern, a red cape, and brown boots.",
+     "changed": [
+      19,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      32,
+      35
+     ],
+     "img": "static/img/widgets/joint/siglip_s03/s16.webp"
+    },
+    {
+     "step": 17,
+     "t_image": 0.041,
+     "t_text": 0.266,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The character has light brown hair, adorned with a bald ear and is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have a colorful pattern, a red cape, and boots.",
+     "changed": [
+      40,
+      41
+     ],
+     "img": "static/img/widgets/joint/siglip_s03/s17.webp"
+    },
+    {
+     "step": 18,
+     "t_image": 0.044,
+     "t_text": 0.281,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with arrow-like wings and is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have a colorful pattern, a red cape, and blue pants. The character is dressed in a brown belt with a design on it. The character is also dressed in a playful, misty pose, surrounded by a playful, misty pose.",
+     "changed": [
+      15,
+      22,
+      23,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78
+     ],
+     "img": "static/img/widgets/joint/siglip_s03/s18.webp"
+    },
+    {
+     "step": 19,
+     "t_image": 0.047,
+     "t_text": 0.297,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with elf-like wings and is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have a red cape and gold boots. He is dressed in a brown belt with a design on it.",
+     "changed": [
+      22,
+      43,
+      45,
+      46,
+      47
+     ],
+     "img": "static/img/widgets/joint/siglip_s03/s19.webp"
+    },
+    {
+     "step": 20,
+     "t_image": 0.051,
+     "t_text": 0.312,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with elf-like wings and is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have a patterned pattern, a red cape, and gold boots. He has a brown belt with a design on it. The character is wearing a playful, mischievous pose and is depicted in a playful, mischievous pose.",
+     "changed": [
+      42,
+      43,
+      44,
+      46,
+      51,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75
+     ],
+     "img": "static/img/widgets/joint/siglip_s03/s20.webp"
+    },
+    {
+     "step": 21,
+     "t_image": 0.054,
+     "t_text": 0.328,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with elf-like wings and is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have a pattern, a red cape, and gold boots. He has a brown belt with a design on it.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s21.webp"
+    },
+    {
+     "step": 22,
+     "t_image": 0.058,
+     "t_text": 0.344,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with elf-like wings and gives outward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have a pattern, a red cape, and brown boots. He has a brown belt with a design on it. The character is also depicted in a playful, mischievous pose.",
+     "changed": [
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      54,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75
+     ],
+     "img": "static/img/widgets/joint/siglip_s03/s22.webp"
+    },
+    {
+     "step": 23,
+     "t_image": 0.062,
+     "t_text": 0.359,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with elf-like wings and gives outward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have a pattern, a red cape, and boots. He has a brown belt with a design on it. The character is also depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s23.webp"
+    },
+    {
+     "step": 24,
+     "t_image": 0.066,
+     "t_text": 0.375,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with wing-like wings and stands out with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have a pattern, a red cape, and brown boots. He has a brown belt with a design on it. The character is also depicted in a playful, mischievous pose.",
+     "changed": [
+      22,
+      25,
+      26,
+      54
+     ],
+     "img": "static/img/widgets/joint/siglip_s03/s24.webp"
+    },
+    {
+     "step": 25,
+     "t_image": 0.07,
+     "t_text": 0.391,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with wing-like wings and stands out forward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have a pattern, a red cape, and brown boots. He has a brown belt with a design on it. The character is also depicted in a playful, mischievous pose.",
+     "changed": [
+      27
+     ],
+     "img": "static/img/widgets/joint/siglip_s03/s25.webp"
+    },
+    {
+     "step": 26,
+     "t_image": 0.075,
+     "t_text": 0.406,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with wing-like wings and stands out forward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have a pattern, a red cape, and brown boots. He has a brown belt with a design on it. The character is also depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s26.webp"
+    },
+    {
+     "step": 27,
+     "t_image": 0.079,
+     "t_text": 0.422,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with wing-like wings and stand out forward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have a pattern, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [
+      25,
+      53,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79
+     ],
+     "img": "static/img/widgets/joint/siglip_s03/s27.webp"
+    },
+    {
+     "step": 28,
+     "t_image": 0.084,
+     "t_text": 0.438,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with wing-like wings and stand out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [
+      27,
+      49,
+      50
+     ],
+     "img": "static/img/widgets/joint/siglip_s03/s28.webp"
+    },
+    {
+     "step": 29,
+     "t_image": 0.089,
+     "t_text": 0.453,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with wing-like wings and stand out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s29.webp"
+    },
+    {
+     "step": 30,
+     "t_image": 0.094,
+     "t_text": 0.469,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with wing-like wings and stand out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s30.webp"
+    },
+    {
+     "step": 31,
+     "t_image": 0.1,
+     "t_text": 0.484,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with wing-like wings and stand out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s31.webp"
+    },
+    {
+     "step": 32,
+     "t_image": 0.105,
+     "t_text": 0.5,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [
+      25
+     ],
+     "img": "static/img/widgets/joint/siglip_s03/s32.webp"
+    },
+    {
+     "step": 33,
+     "t_image": 0.111,
+     "t_text": 0.516,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s33.webp"
+    },
+    {
+     "step": 34,
+     "t_image": 0.118,
+     "t_text": 0.531,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s34.webp"
+    },
+    {
+     "step": 35,
+     "t_image": 0.125,
+     "t_text": 0.547,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s35.webp"
+    },
+    {
+     "step": 36,
+     "t_image": 0.132,
+     "t_text": 0.562,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s36.webp"
+    },
+    {
+     "step": 37,
+     "t_image": 0.139,
+     "t_text": 0.578,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s37.webp"
+    },
+    {
+     "step": 38,
+     "t_image": 0.147,
+     "t_text": 0.594,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s38.webp"
+    },
+    {
+     "step": 39,
+     "t_image": 0.155,
+     "t_text": 0.609,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s39.webp"
+    },
+    {
+     "step": 40,
+     "t_image": 0.164,
+     "t_text": 0.625,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s40.webp"
+    },
+    {
+     "step": 41,
+     "t_image": 0.174,
+     "t_text": 0.641,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s41.webp"
+    },
+    {
+     "step": 42,
+     "t_image": 0.184,
+     "t_text": 0.656,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s42.webp"
+    },
+    {
+     "step": 43,
+     "t_image": 0.194,
+     "t_text": 0.672,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s43.webp"
+    },
+    {
+     "step": 44,
+     "t_image": 0.206,
+     "t_text": 0.688,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s44.webp"
+    },
+    {
+     "step": 45,
+     "t_image": 0.218,
+     "t_text": 0.703,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [
+      13
+     ],
+     "img": "static/img/widgets/joint/siglip_s03/s45.webp"
+    },
+    {
+     "step": 46,
+     "t_image": 0.231,
+     "t_text": 0.719,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s46.webp"
+    },
+    {
+     "step": 47,
+     "t_image": 0.246,
+     "t_text": 0.734,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s47.webp"
+    },
+    {
+     "step": 48,
+     "t_image": 0.261,
+     "t_text": 0.75,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s48.webp"
+    },
+    {
+     "step": 49,
+     "t_image": 0.278,
+     "t_text": 0.766,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s49.webp"
+    },
+    {
+     "step": 50,
+     "t_image": 0.296,
+     "t_text": 0.781,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s50.webp"
+    },
+    {
+     "step": 51,
+     "t_image": 0.316,
+     "t_text": 0.797,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s51.webp"
+    },
+    {
+     "step": 52,
+     "t_image": 0.338,
+     "t_text": 0.812,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s52.webp"
+    },
+    {
+     "step": 53,
+     "t_image": 0.362,
+     "t_text": 0.828,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s53.webp"
+    },
+    {
+     "step": 54,
+     "t_image": 0.389,
+     "t_text": 0.844,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s54.webp"
+    },
+    {
+     "step": 55,
+     "t_image": 0.419,
+     "t_text": 0.859,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s55.webp"
+    },
+    {
+     "step": 56,
+     "t_image": 0.452,
+     "t_text": 0.875,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s56.webp"
+    },
+    {
+     "step": 57,
+     "t_image": 0.49,
+     "t_text": 0.891,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s57.webp"
+    },
+    {
+     "step": 58,
+     "t_image": 0.533,
+     "t_text": 0.906,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s58.webp"
+    },
+    {
+     "step": 59,
+     "t_image": 0.582,
+     "t_text": 0.922,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s59.webp"
+    },
+    {
+     "step": 60,
+     "t_image": 0.639,
+     "t_text": 0.938,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with wing-like wings and is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, and brown boots.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s60.webp"
+    },
+    {
+     "step": 61,
+     "t_image": 0.706,
+     "t_text": 0.953,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      51,
+      52,
+      53,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85
+     ],
+     "img": "static/img/widgets/joint/siglip_s03/s61.webp"
+    },
+    {
+     "step": 62,
+     "t_image": 0.785,
+     "t_text": 0.969,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a charming, cartoon-style character that appears to be a young boy.",
+     "changed": [
+      12,
+      13,
+      15,
+      16,
+      17,
+      18,
+      20,
+      21
+     ],
+     "img": "static/img/widgets/joint/siglip_s03/s62.webp"
+    },
+    {
+     "step": 63,
+     "t_image": 0.881,
+     "t_text": 0.984,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85
+     ],
+     "img": "static/img/widgets/joint/siglip_s03/s63.webp"
+    },
+    {
+     "step": 64,
+     "t_image": 1.0,
+     "t_text": 1.0,
+     "caption": "The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s03/s64.webp"
+    }
+   ]
+  },
+  {
+   "id": "siglip_s25",
+   "variant": "siglip",
+   "variant_label": "SigLIP2",
+   "sample": 25,
+   "alpha": 8.485,
+   "total_steps": 64,
+   "note": "By step 8 (text time 0.13) the caption names a snowy scene; the image time is still 0.02 and the image is dark.",
+   "steps": [
+    {
+     "step": 0,
+     "t_image": 0.0,
+     "t_text": 0.0,
+     "caption": "The image depicts a photograph of a person wearing a sleeve in a sand with a curved arrow.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s25/s00.webp"
+    },
+    {
+     "step": 1,
+     "t_image": 0.002,
+     "t_text": 0.016,
+     "caption": "The image depicts a photograph of a person wearing a sleeve in a sand with a curved arrow.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s25/s01.webp"
+    },
+    {
+     "step": 2,
+     "t_image": 0.004,
+     "t_text": 0.031,
+     "caption": "The image depicts a scene of a man in a solitary setting. The image depicts a large, solitary a showcasing a large, patterned a tree with a curved edge. The solitary is a large showcasing the southwestern landscape with a large sand surrounded by a large tree. The sand is surrounded by a large sand with a curved arrow that is positioned in front of a large tree.",
+     "changed": [
+      4,
+      7,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s02.webp"
+    },
+    {
+     "step": 3,
+     "t_image": 0.006,
+     "t_text": 0.047,
+     "caption": "The image depicts a scene of a man in a solitary setting.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s25/s03.webp"
+    },
+    {
+     "step": 4,
+     "t_image": 0.008,
+     "t_text": 0.062,
+     "caption": "The image depicts a scene depicting a young woman in a rural setting.",
+     "changed": [
+      5,
+      7,
+      8,
+      11
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s04.webp"
+    },
+    {
+     "step": 5,
+     "t_image": 0.01,
+     "t_text": 0.078,
+     "caption": "The image depicts a scene depicting a person in a rural landscape.",
+     "changed": [
+      7,
+      11
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s05.webp"
+    },
+    {
+     "step": 6,
+     "t_image": 0.012,
+     "t_text": 0.094,
+     "caption": "The image depicts a scene depicting a scene of a person wearing a sand in a snowstorm.",
+     "changed": [
+      7,
+      8,
+      9,
+      11,
+      12,
+      13,
+      16
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s06.webp"
+    },
+    {
+     "step": 7,
+     "t_image": 0.014,
+     "t_text": 0.109,
+     "caption": "The image depicts a scene depicting a scene of a person wearing a snowman in a snow field.",
+     "changed": [
+      13,
+      16,
+      17
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s07.webp"
+    },
+    {
+     "step": 8,
+     "t_image": 0.017,
+     "t_text": 0.125,
+     "caption": "The image depicts a scene depicting a scene of a snowboarding in a snowy environment. The image depicts a person wearing a white shirt and a helmet with a helmet attached to a helmet. The snowboard is a white sleeve with a red helmet and a helmet that is positioned with a sleeve. The snowboard is positioned with a large, sled atop a mountain surrounded by a large area of grass and grass.",
+     "changed": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      22,
+      23,
+      24,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s08.webp"
+    },
+    {
+     "step": 9,
+     "t_image": 0.019,
+     "t_text": 0.141,
+     "caption": "The image depicts a scene of a snowboarder in a snowy mountain. The skier is wearing a red jacket and a white shirt, wearing a blue helmet and a helmet.",
+     "changed": [
+      7,
+      11,
+      13,
+      14,
+      17,
+      18,
+      22,
+      23,
+      25,
+      29
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s09.webp"
+    },
+    {
+     "step": 10,
+     "t_image": 0.021,
+     "t_text": 0.156,
+     "caption": "The image depicts a person riding a snowboarder in action, a snowy slope. The skier is wearing a red jacket and black pants, and is wearing a blue helmet with a helmet.",
+     "changed": [
+      4,
+      5,
+      9,
+      12,
+      21,
+      22,
+      23,
+      24,
+      29
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s10.webp"
+    },
+    {
+     "step": 11,
+     "t_image": 0.024,
+     "t_text": 0.172,
+     "caption": "The image depicts a person on a snowboarder in action, a snowy slope. The snowboarder is wearing a red jacket and black pants, and is wearing a blue helmet with a white helmet.",
+     "changed": [
+      5,
+      14,
+      31
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s11.webp"
+    },
+    {
+     "step": 12,
+     "t_image": 0.026,
+     "t_text": 0.188,
+     "caption": "The image captures a person on a snowboarder in action, navigating snowy slope. The snowboarder is wearing a red jacket and black pants, and a white helmet with a helmet is wearing a blue helmet and a black helmet. In the background, there are trees, indicating a mountainous or hilly area.",
+     "changed": [
+      2,
+      10,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      35,
+      37,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s12.webp"
+    },
+    {
+     "step": 13,
+     "t_image": 0.029,
+     "t_text": 0.203,
+     "caption": "The image captures a person on a snowboarder in action, navigating snowy slope. The snowboarder is wearing a red jacket, black pants, and a red helmet with a helmet.",
+     "changed": [
+      19,
+      24
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s13.webp"
+    },
+    {
+     "step": 14,
+     "t_image": 0.032,
+     "t_text": 0.219,
+     "caption": "The image captures a person on a snowboarder in action, navigating through the slope. The snowboarder is wearing a red jacket, gloves, and a red helmet, with a red helmet and a black helmet. In the background, there are evergreen trees, indicating a mountainous or hilly area.",
+     "changed": [
+      11,
+      12,
+      21,
+      25,
+      28,
+      29,
+      30,
+      31,
+      32,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s14.webp"
+    },
+    {
+     "step": 15,
+     "t_image": 0.035,
+     "t_text": 0.234,
+     "caption": "The image captures a person on a snowboarder in action, navigating through the snow. The snowboarder is wearing a red helmet, gloves, and a red jacket, with a white jacket and a red jacket. In the background, there are evergreen trees, indicating a mountainous or hilly area. The scene conveys a sense of adventure and adventure in a mountainous or hilly setting.",
+     "changed": [
+      13,
+      20,
+      25,
+      28,
+      29,
+      32,
+      33,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s15.webp"
+    },
+    {
+     "step": 16,
+     "t_image": 0.038,
+     "t_text": 0.25,
+     "caption": "The image captures a person on a snowboarder in action, navigating through the snow. The snowboarder is wearing a red helmet, gloves, and a red jacket, with a white jacket, with a black head and gloves.",
+     "changed": [
+      29,
+      30,
+      32,
+      33,
+      35
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s16.webp"
+    },
+    {
+     "step": 17,
+     "t_image": 0.041,
+     "t_text": 0.266,
+     "caption": "The image captures a person on a snowboarder in action, navigating through the snow. The snowboarder is wearing a red helmet, gloves, and a red jacket, with a white jacket, with a white head leaning forward for balance.",
+     "changed": [
+      32,
+      34,
+      35,
+      36,
+      37
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s17.webp"
+    },
+    {
+     "step": 18,
+     "t_image": 0.044,
+     "t_text": 0.281,
+     "caption": "The image captures a person on a snowboarder in action, viewed from the snow. The skier is wearing a red helmet, gloves, and a red jacket, with a white jacket, with a white head leaning forward for balance. The snow is curled, and the snowboarder's body leaning forward for balance. In the background, there are evergreen trees covered in snow, indicating a mountainous or hilly area. The scene conveys a sense of adventure and the excitement typical of a winter setting.",
+     "changed": [
+      10,
+      11,
+      15,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s18.webp"
+    },
+    {
+     "step": 19,
+     "t_image": 0.047,
+     "t_text": 0.297,
+     "caption": "The image depicts a person on a skier in action, viewed from the snow. The skier is wearing a red helmet, gloves, and a red jacket, with a white jacket, with a white goggles for protection. The snow is curled, and the skier's body leaning forward for balance. In the background, there are evergreen trees indicating a mountainous or hilly area. The scene conveys a sense of adventure and the excitement typical of a winter skiing scene.",
+     "changed": [
+      2,
+      7,
+      33,
+      35,
+      42,
+      75,
+      76
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s19.webp"
+    },
+    {
+     "step": 20,
+     "t_image": 0.051,
+     "t_text": 0.312,
+     "caption": "The image depicts a person on a skier in action, viewed into the snow. The skier is wearing a red helmet, gloves, and a red jacket, with a white jacket, with a white goggles for protection. The snow is curled, and the skier's body leaning forward for balance. In the background, there are evergreen trees covering dense snow, indicating a mountainous or hilly area. The scene conveys a sense of adventure and the excitement typical of a winter skiing scene.",
+     "changed": [
+      11,
+      55,
+      56,
+      57
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s20.webp"
+    },
+    {
+     "step": 21,
+     "t_image": 0.054,
+     "t_text": 0.328,
+     "caption": "The image depicts a person on a skier in action, pushed into the snow. The skier is wearing a red helmet, gloves, and a red jacket, with a white jacket, with a white goggles for protection. The snow is curled, and the skier's body leaning forward for balance, with a hand of protection. In the background, there are evergreen trees covering dense snow, indicating a mountainous or hilly area.",
+     "changed": [
+      10,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s21.webp"
+    },
+    {
+     "step": 22,
+     "t_image": 0.058,
+     "t_text": 0.344,
+     "caption": "The image depicts a person on a skier in action, pushed into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white jacket, with a helmet and goggles for protection. The snow is curled, and the skier's body leaning forward for balance, with the rest of the jacket, indicating a mountainous or hilly area.",
+     "changed": [
+      19,
+      32,
+      33,
+      50,
+      51,
+      54
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s22.webp"
+    },
+    {
+     "step": 23,
+     "t_image": 0.062,
+     "t_text": 0.359,
+     "caption": "The image depicts a person on a skier in action, pushed into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white jacket, with a helmet and goggles for protection.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s25/s23.webp"
+    },
+    {
+     "step": 24,
+     "t_image": 0.066,
+     "t_text": 0.375,
+     "caption": "The image depicts a person on a skier in action, pushed into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a helmet and goggles for protection.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s25/s24.webp"
+    },
+    {
+     "step": 25,
+     "t_image": 0.07,
+     "t_text": 0.391,
+     "caption": "The image depicts a person on a skier in action, pushed into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a helmet and goggles for protection. The snow is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control and maneuvering. In the background, there are evergreen trees covering dense snow, indicating a mountainous or hilly area. The scene conveys a sense of adventure and the excitement typical of a challenging yet active skiing.",
+     "changed": [
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s25.webp"
+    },
+    {
+     "step": 26,
+     "t_image": 0.075,
+     "t_text": 0.406,
+     "caption": "The image depicts a person on a skier in action, pushed into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a helmet and goggles for protection. The snow is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control and maneuvering. In the background, there are evergreen trees covering dense snow, indicating a mountainous or hilly area. The scene conveys a sense of adventure and the excitement typical of a challenging yet challenging skiing.",
+     "changed": [
+      84
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s26.webp"
+    },
+    {
+     "step": 27,
+     "t_image": 0.079,
+     "t_text": 0.422,
+     "caption": "The image depicts a person on a skier in action, pushed into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a helmet and goggles for protection. The snow is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control for balance. In the background, there are evergreen trees covering dense snow, indicating a mountainous or hilly area. The scene conveys a sense of adventure and the excitement typical of a challenging yet challenging skiing.",
+     "changed": [
+      51,
+      52
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s27.webp"
+    },
+    {
+     "step": 28,
+     "t_image": 0.084,
+     "t_text": 0.438,
+     "caption": "The image depicts a person on a skiboard in action, pushed into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a helmet and goggles for protection. The snow is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control car maneuvering and skiers. In the background, there are evergreen trees covering dense snow, indicating a mountainous or hilly area.",
+     "changed": [
+      7,
+      51,
+      52,
+      53,
+      54
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s28.webp"
+    },
+    {
+     "step": 29,
+     "t_image": 0.089,
+     "t_text": 0.453,
+     "caption": "The image depicts a person on a skiboard in action, pushed into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a helmet and goggles for protection. The snow is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control car maneuvering and skiing maneuvers. In the background, there are evergreen trees covering dense snow, indicating a mountainous or hilly area.",
+     "changed": [
+      54,
+      55
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s29.webp"
+    },
+    {
+     "step": 30,
+     "t_image": 0.094,
+     "t_text": 0.469,
+     "caption": "The image depicts a person on a skiboard in action, pushed into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a helmet and goggles for protection. The snow is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control car maneuver and skiing maneuvers. In the background, there are evergreen trees covering dense snow, indicating a mountainous or hilly area.",
+     "changed": [
+      52
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s30.webp"
+    },
+    {
+     "step": 31,
+     "t_image": 0.1,
+     "t_text": 0.484,
+     "caption": "The image depicts a person on a skiboard in action, pushed into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a helmet and goggles for protection. The snow is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control car maneuver and skiing maneuvers. In the background, there are evergreen trees cutting dense snow, indicating a mountainous or hilly area.",
+     "changed": [
+      63
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s31.webp"
+    },
+    {
+     "step": 32,
+     "t_image": 0.105,
+     "t_text": 0.5,
+     "caption": "The image depicts a person on a skiboard in action, pushed into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a helmet and goggles for protection. The terrain is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control car maneuver and skiing maneuvers. In the background, there are evergreen trees cutting dense snow, indicating a mountainous or hilly area.",
+     "changed": [
+      34
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s32.webp"
+    },
+    {
+     "step": 33,
+     "t_image": 0.111,
+     "t_text": 0.516,
+     "caption": "The image depicts a person on a skiboard in action, pushed into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white helmet and goggles for protection. The terrain is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control air maneuver and skiing maneuvers. In the background, there are evergreen trees cutting dense snow, indicating a mountainous or hilly area.",
+     "changed": [
+      28,
+      52
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s33.webp"
+    },
+    {
+     "step": 34,
+     "t_image": 0.118,
+     "t_text": 0.531,
+     "caption": "The image depicts a person on a skiboard in action, pushed into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white helmet and goggles for protection. The terrain is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control for maneuver and skiing maneuvers. In the background, there are evergreen trees cutting dense snow, indicating a mountainous or hilly area.",
+     "changed": [
+      52
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s34.webp"
+    },
+    {
+     "step": 35,
+     "t_image": 0.125,
+     "t_text": 0.547,
+     "caption": "The image depicts a person on a skiboard in action, thrown into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white helmet and goggles for protection. The terrain is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control for maneuver and skiing maneuvers. In the background, there are evergreen trees cutting dense snow, indicating a mountainous or hilly area.",
+     "changed": [
+      10
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s35.webp"
+    },
+    {
+     "step": 36,
+     "t_image": 0.132,
+     "t_text": 0.562,
+     "caption": "The image depicts a person on a skiboard in action, thrown into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white helmet and goggles for protection. The terrain is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control for maneuver and skiing maneuvers. In the background, there are evergreen trees leaving dense snow, indicating a mountainous or hilly area.",
+     "changed": [
+      64
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s36.webp"
+    },
+    {
+     "step": 37,
+     "t_image": 0.139,
+     "t_text": 0.578,
+     "caption": "The image depicts a person on a skiboard in action, thrown into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white helmet and goggles for protection. The terrain is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control for maneuver and skiing maneuvers. In the background, there are evergreen trees leaving dense snow, indicating a mountainous or hilly area.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s25/s37.webp"
+    },
+    {
+     "step": 38,
+     "t_image": 0.147,
+     "t_text": 0.594,
+     "caption": "The image depicts a person on a skiboard in action, thrown into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white helmet and goggles for protection. The terrain is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control for maneuver and skiing maneuvers. In the background, there are evergreen trees leaving dense snow, indicating a mountainous or hilly area.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s25/s38.webp"
+    },
+    {
+     "step": 39,
+     "t_image": 0.155,
+     "t_text": 0.609,
+     "caption": "The image depicts a person on a skiboard in action, thrown into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white helmet and goggles for protection. The terrain is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control for maneuver and skiing maneuvers. In the background, there are evergreen trees leaving dense snow, indicating a mountainous or hilly area.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s25/s39.webp"
+    },
+    {
+     "step": 40,
+     "t_image": 0.164,
+     "t_text": 0.625,
+     "caption": "The image depicts a person on a skiboard in action, thrown into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white helmet and goggles for protection. The terrain is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control for maneuver and skiing maneuvers. In the background, there are evergreen trees leaving heavy snow, indicating a mountainous or hilly area.",
+     "changed": [
+      65
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s40.webp"
+    },
+    {
+     "step": 41,
+     "t_image": 0.174,
+     "t_text": 0.641,
+     "caption": "The image depicts a person on a skiboard in action, thrown into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white helmet and goggles for protection. The terrain is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control for maneuver and skiing maneuvers. In the background, there are evergreen trees leaving heavy snow, indicating a mountainous or hilly area.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s25/s41.webp"
+    },
+    {
+     "step": 42,
+     "t_image": 0.184,
+     "t_text": 0.656,
+     "caption": "The image depicts a person on a skiboard in action, thrown into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white helmet and goggles for protection. The terrain is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control for maneuver and skiing maneuvers. In the background, there are evergreen trees leaving heavy snow, indicating a mountainous or hilly area.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s25/s42.webp"
+    },
+    {
+     "step": 43,
+     "t_image": 0.194,
+     "t_text": 0.672,
+     "caption": "The image depicts a person on a skiboard in action, thrown into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white helmet and goggles for protection. The terrain is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control for maneuver and skiing maneuvers. In the background, there are evergreen trees leaving heavy snow, indicating a mountainous or hilly area.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s25/s43.webp"
+    },
+    {
+     "step": 44,
+     "t_image": 0.206,
+     "t_text": 0.688,
+     "caption": "The image depicts a person on a skiboard in action, thrown into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white and goggles for protection. The terrain is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control for maneuver and skiing maneuvers. In the background, there are evergreen trees leaving heavy snow, indicating a mountainous or hilly area.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s25/s44.webp"
+    },
+    {
+     "step": 45,
+     "t_image": 0.218,
+     "t_text": 0.703,
+     "caption": "The image depicts a person on a skiboard in action, thrown into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white and goggles for protection. The terrain is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control for maneuver and skiing maneuvers. In the background, there are evergreen trees leaving heavy snow, indicating a mountainous or hilly area.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s25/s45.webp"
+    },
+    {
+     "step": 46,
+     "t_image": 0.231,
+     "t_text": 0.719,
+     "caption": "The image depicts a person on a skiboard in action, thrown into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white and goggles for protection. The terrain is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control for movement and skiing maneuvers. In the background, there are evergreen trees leaving heavy snow, indicating a mountainous or hilly area.",
+     "changed": [
+      52
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s46.webp"
+    },
+    {
+     "step": 47,
+     "t_image": 0.246,
+     "t_text": 0.734,
+     "caption": "The image depicts a person on a skiboard in action, thrown into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white and goggles for protection. The terrain is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control for movement and skiing maneuvers. In the background, there are evergreen trees leaving heavy snow, indicating a mountainous or hilly area.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s25/s47.webp"
+    },
+    {
+     "step": 48,
+     "t_image": 0.261,
+     "t_text": 0.75,
+     "caption": "The image depicts a person on a skiboard in action, thrown into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white and goggles for protection. The terrain is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control for movement and skiing maneuvers. In the background, there are evergreen trees leaving heavy snow, indicating a mountainous or hilly area.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s25/s48.webp"
+    },
+    {
+     "step": 49,
+     "t_image": 0.278,
+     "t_text": 0.766,
+     "caption": "The image depicts a person on a skiboard in action, thrown into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white and goggles for protection. The terrain is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control for movement and skiing maneuvers. In the background, there are evergreen trees leaving heavy snow, indicating a mountainous or hilly area.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s25/s49.webp"
+    },
+    {
+     "step": 50,
+     "t_image": 0.296,
+     "t_text": 0.781,
+     "caption": "The image depicts a person on a skiboard in action, thrown into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white and goggles for protection. The terrain is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control for movement and skiing maneuvers. In the background, there are evergreen trees leaving heavy snow, indicating a mountainous or hilly area.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s25/s50.webp"
+    },
+    {
+     "step": 51,
+     "t_image": 0.316,
+     "t_text": 0.797,
+     "caption": "The image depicts a person on a skiboard in action, pushed into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white and goggles for protection. The terrain is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control for movement and skiing maneuvers. In the background, there are evergreen trees leaving heavy snow, indicating a mountainous or hilly area.",
+     "changed": [
+      10
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s51.webp"
+    },
+    {
+     "step": 52,
+     "t_image": 0.338,
+     "t_text": 0.812,
+     "caption": "The image depicts a person on a skiboard in action, pushed into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white and goggles for protection. The terrain is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control for movement and skiing maneuvers. In the background, there are evergreen trees leaving heavy snow, indicating a mountainous or hilly area.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s25/s52.webp"
+    },
+    {
+     "step": 53,
+     "t_image": 0.362,
+     "t_text": 0.828,
+     "caption": "The image depicts a person on a skiboard in action, pushed into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white and goggles for protection. The terrain is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control for movement and skiing maneuvers. In the background, there are evergreen trees leaving heavy snow, indicating a mountainous or hilly area.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s25/s53.webp"
+    },
+    {
+     "step": 54,
+     "t_image": 0.389,
+     "t_text": 0.844,
+     "caption": "The image depicts a person on a skiboard in action, pushed into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white and goggles for protection. The terrain is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control for movement and skiing maneuvers. In the background, there are evergreen trees leaving heavy snow, indicating a mountainous or hilly area.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s25/s54.webp"
+    },
+    {
+     "step": 55,
+     "t_image": 0.419,
+     "t_text": 0.859,
+     "caption": "The image depicts a person on a skiboard in action, pushed into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white and goggles for protection. The terrain is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control for movement and skiing maneuvers. In the background, there are evergreen trees leaving heavy snow, indicating a mountainous or hilly area.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s25/s55.webp"
+    },
+    {
+     "step": 56,
+     "t_image": 0.452,
+     "t_text": 0.875,
+     "caption": "The image depicts a person on a skiboard in action, pushed into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white and goggles for protection. The terrain is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control for movement and skiing maneuvers. In the background, there are evergreen trees leaving heavy snow, indicating a mountainous or hilly area.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s25/s56.webp"
+    },
+    {
+     "step": 57,
+     "t_image": 0.49,
+     "t_text": 0.891,
+     "caption": "The image depicts a person on a skiboard in action, pushed into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white and goggles for protection. The terrain is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control for movement and skiing maneuvers. In the background, there are evergreen trees leaving heavy snow, indicating a mountainous or hilly area.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s25/s57.webp"
+    },
+    {
+     "step": 58,
+     "t_image": 0.533,
+     "t_text": 0.906,
+     "caption": "The image depicts a person on a skiboard in action, pushed into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white and goggles for protection. The terrain is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control for movement and skiing maneuvers. In the background, there are evergreen trees leaving heavy snow, indicating a mountainous or hilly area.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s25/s58.webp"
+    },
+    {
+     "step": 59,
+     "t_image": 0.582,
+     "t_text": 0.922,
+     "caption": "The image depicts a person on a skiboard in action, pushed into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white helmet and goggles for protection. The terrain is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control for movement and skiing maneuvers. In the background, there are evergreen trees leaving heavy snow, indicating a mountainous or hilly area.",
+     "changed": [
+      29
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s59.webp"
+    },
+    {
+     "step": 60,
+     "t_image": 0.639,
+     "t_text": 0.938,
+     "caption": "The image depicts a person on a snowboardboard in action, pushed into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white helmet and gloves.",
+     "changed": [
+      7,
+      31
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s60.webp"
+    },
+    {
+     "step": 61,
+     "t_image": 0.706,
+     "t_text": 0.953,
+     "caption": "The image depicts a person on a skiboard in action, pushed into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white wheels for protection. The terrain is curled, and the skier's body leaning forward for balance, with extended white wheels suggesting control for movement and skiing maneuvers. In the background, there are evergreen trees leaving heavy snow, indicating a mountainous or hilly area. The scene conveys an excitement typical of a challenging yet active skiing.",
+     "changed": [
+      7,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s61.webp"
+    },
+    {
+     "step": 62,
+     "t_image": 0.785,
+     "t_text": 0.969,
+     "caption": "The image depicts a person on a snowboardboard in action, pushed into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white helmet and gloves. The terrain is curled, with extended white wheels suggesting control for movement and skiing maneuvers. In the background, there are heavy snow, indicating a mountainous or hilly area.",
+     "changed": [
+      7,
+      29,
+      30,
+      31
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s62.webp"
+    },
+    {
+     "step": 63,
+     "t_image": 0.881,
+     "t_text": 0.984,
+     "caption": "The image depicts a person on a snowboardboard in action, pushed into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white helmet and goggles for protection. The terrain is curled, with extended white wheels suggesting control for movement and skiing maneuvers. In the background, there are evergreen trees leaving heavy snow, indicating a mountainous or hilly area.",
+     "changed": [
+      31,
+      32,
+      33,
+      54,
+      55,
+      56
+     ],
+     "img": "static/img/widgets/joint/siglip_s25/s63.webp"
+    },
+    {
+     "step": 64,
+     "t_image": 1.0,
+     "t_text": 1.0,
+     "caption": "The image depicts a person on a snowboardboard in action, pushed into the snow. The skier is wearing a white helmet, gloves, and a red jacket, with a white helmet and goggles for protection. The terrain is curled, with extended white wheels suggesting control for movement and skiing maneuvers. In the background, there are evergreen trees leaving heavy snow, indicating a mountainous or hilly area.",
+     "changed": [],
+     "img": "static/img/widgets/joint/siglip_s25/s64.webp"
+    }
+   ]
+  },
+  {
+   "id": "dino_s05",
+   "variant": "dino",
+   "variant_label": "DINO",
+   "sample": 5,
+   "alpha": 8.0,
+   "total_steps": 64,
+   "note": "The caption guesses the city as it forms: London at step 6, Paris at 19, Madrid at 29, and Lisbon and Portugal near the end.",
+   "steps": [
+    {
+     "step": 0,
+     "t_image": 0.0,
+     "t_text": 0.0,
+     "caption": "The image depicts a large, patterned image of a man in a solitary setting.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s00.webp"
+    },
+    {
+     "step": 1,
+     "t_image": 0.002,
+     "t_text": 0.016,
+     "caption": "The image depicts a large, colorful image depicting a large, a showcasing a modern ad in a showcasing a variety of a showcasing a variety of a showcasing a variety of a showcasing a variety of showcasing a variety of showcasing a variety of showcasing a variety of showcasing a variety of showcasing a variety of showcasing a variety of showcasing a variety of showcasing a variety of showcasing a variety of",
+     "changed": [
+      5,
+      7,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s01.webp"
+    },
+    {
+     "step": 2,
+     "t_image": 0.004,
+     "t_text": 0.031,
+     "caption": "The image depicts a large, colorful image depicting a rural a city in a city with a large, surrounded by a large, surrounded by a large, surrounded by a large area of a residential area.",
+     "changed": [
+      9,
+      11,
+      14,
+      15,
+      17,
+      18,
+      19,
+      21,
+      22,
+      23,
+      25,
+      26,
+      27,
+      29,
+      30,
+      33,
+      34
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s02.webp"
+    },
+    {
+     "step": 3,
+     "t_image": 0.006,
+     "t_text": 0.047,
+     "caption": "The image depicts a vibrant city scene with a large, colorful a scene depicting a rural a city with a large, surrounded by a large, surrounded by a large, surrounded by a large area of a residential area.",
+     "changed": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      11,
+      12
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s03.webp"
+    },
+    {
+     "step": 4,
+     "t_image": 0.008,
+     "t_text": 0.062,
+     "caption": "The image depicts a bustling urban scene in a city of a city.",
+     "changed": [
+      4,
+      5,
+      7,
+      12
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s04.webp"
+    },
+    {
+     "step": 5,
+     "t_image": 0.01,
+     "t_text": 0.078,
+     "caption": "The image depicts a bustling urban street scene in a city, surrounded by a bustling urban area.",
+     "changed": [
+      6,
+      10,
+      11,
+      12,
+      14,
+      15,
+      16
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s05.webp"
+    },
+    {
+     "step": 6,
+     "t_image": 0.013,
+     "t_text": 0.094,
+     "caption": "The image depicts a bustling urban street scene, likely in a city of London, with a bustling urban street scene.",
+     "changed": [
+      7,
+      8,
+      11,
+      12,
+      13,
+      14,
+      18,
+      19
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s06.webp"
+    },
+    {
+     "step": 7,
+     "t_image": 0.015,
+     "t_text": 0.109,
+     "caption": "The image depicts a bustling urban street scene, likely in a city of London, with a bustling urban street scene.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s07.webp"
+    },
+    {
+     "step": 8,
+     "t_image": 0.018,
+     "t_text": 0.125,
+     "caption": "The image depicts a bustling urban street scene, likely in a city of London, with the image depicts a bustling urban street scene.",
+     "changed": [
+      15,
+      16,
+      17
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s08.webp"
+    },
+    {
+     "step": 9,
+     "t_image": 0.02,
+     "t_text": 0.141,
+     "caption": "The image depicts a bustling urban street scene, likely in a city of London, with the image depicts a bustling urban street scene, likely in a city.",
+     "changed": [
+      22,
+      23,
+      24,
+      25,
+      26
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s09.webp"
+    },
+    {
+     "step": 10,
+     "t_image": 0.023,
+     "t_text": 0.156,
+     "caption": "The image depicts a bustling urban street scene, likely in a city of London, with the image depicts a bustling urban street scene, likely in a city.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s10.webp"
+    },
+    {
+     "step": 11,
+     "t_image": 0.025,
+     "t_text": 0.172,
+     "caption": "The image depicts a bustling urban street scene, likely in a city of London, with the image depicts a bustling urban street scene, likely in a city.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s11.webp"
+    },
+    {
+     "step": 12,
+     "t_image": 0.028,
+     "t_text": 0.188,
+     "caption": "The image depicts a bustling urban street scene, likely in a city area, with the pedestrian traffic being crowded.",
+     "changed": [
+      12,
+      15,
+      16,
+      17,
+      18
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s12.webp"
+    },
+    {
+     "step": 13,
+     "t_image": 0.031,
+     "t_text": 0.203,
+     "caption": "The image depicts a bustling urban street scene, likely in a city area, with the pedestrian traffic and signage. The street is paved with pedestrian walkways and lined with traditional buildings, including bricks and doors. On the left, there's a more ornate shop with large windows and a large window with windows.",
+     "changed": [
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s13.webp"
+    },
+    {
+     "step": 14,
+     "t_image": 0.034,
+     "t_text": 0.219,
+     "caption": "The image depicts a bustling urban street, likely in a city area, given the architecture and signage. The cobblestone street is paved with pedestrian walkways and lined with pedestrians. On the left, there's a more ornate shop with large windows and doors.",
+     "changed": [
+      6,
+      12,
+      14,
+      18,
+      28,
+      41
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s14.webp"
+    },
+    {
+     "step": 15,
+     "t_image": 0.037,
+     "t_text": 0.234,
+     "caption": "The image depicts a bustling urban street, likely in a city of a city, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and features a more ornate shop with large windows and doors.",
+     "changed": [
+      11,
+      12,
+      13,
+      23,
+      28
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s15.webp"
+    },
+    {
+     "step": 16,
+     "t_image": 0.04,
+     "t_text": 0.25,
+     "caption": "The image depicts a bustling urban street, likely in a city of London, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is lined with pedestrians. On the left, there's a more ornate shop with large windows and doors.",
+     "changed": [
+      12,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s16.webp"
+    },
+    {
+     "step": 17,
+     "t_image": 0.043,
+     "t_text": 0.266,
+     "caption": "The image depicts a bustling urban street, likely in a city city, given the architecture and signage.",
+     "changed": [
+      11
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s17.webp"
+    },
+    {
+     "step": 18,
+     "t_image": 0.047,
+     "t_text": 0.281,
+     "caption": "The image depicts a bustling urban street, likely in a city city, given the architecture and signage.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s18.webp"
+    },
+    {
+     "step": 19,
+     "t_image": 0.05,
+     "t_text": 0.297,
+     "caption": "The image depicts a bustling urban street, likely in Paris, Germany, given the architecture and signage.",
+     "changed": [
+      9,
+      10
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s19.webp"
+    },
+    {
+     "step": 20,
+     "t_image": 0.054,
+     "t_text": 0.312,
+     "caption": "The image depicts a bustling urban street, likely in Paris, Germany, given the architecture and signage.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s20.webp"
+    },
+    {
+     "step": 21,
+     "t_image": 0.058,
+     "t_text": 0.328,
+     "caption": "The image depicts a bustling urban street, likely in Paris, France, given the architecture and signage.",
+     "changed": [
+      10
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s21.webp"
+    },
+    {
+     "step": 22,
+     "t_image": 0.061,
+     "t_text": 0.344,
+     "caption": "The image depicts a bustling urban street, likely in Paris, France, given the architecture and signage.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s22.webp"
+    },
+    {
+     "step": 23,
+     "t_image": 0.066,
+     "t_text": 0.359,
+     "caption": "The image depicts a bustling urban street, likely in Paris, France, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is lively yet relaxed, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items displayed. On the right side features the French Embassy.",
+     "changed": [
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s23.webp"
+    },
+    {
+     "step": 24,
+     "t_image": 0.07,
+     "t_text": 0.375,
+     "caption": "The image depicts a bustling urban street, likely in Paris, Germany, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with people walking, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items displayed. The right side features the Danish flag and the German flag. In the background, there are more buildings, including a hotel with balconies, and the streets of the street. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major city.",
+     "changed": [
+      10,
+      26,
+      27,
+      28,
+      29,
+      49,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s24.webp"
+    },
+    {
+     "step": 25,
+     "t_image": 0.074,
+     "t_text": 0.391,
+     "caption": "The image depicts a bustling urban street, likely in Paris, Germany, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with people, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items belonging to. The right side features the Danish flag and the German flag. In the background, there are more buildings, including a hotel with balconies, and the streets of the street. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major city.",
+     "changed": [
+      28,
+      47,
+      48
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s25.webp"
+    },
+    {
+     "step": 26,
+     "t_image": 0.079,
+     "t_text": 0.406,
+     "caption": "The image depicts a bustling urban street, likely in Paris, Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with people, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items belonging to. The right side features the Danish flag bank. In the background, there are more buildings, including a hotel with balconies, and various streets of the street. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major city.",
+     "changed": [
+      10,
+      56,
+      70
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s26.webp"
+    },
+    {
+     "step": 27,
+     "t_image": 0.084,
+     "t_text": 0.422,
+     "caption": "The image depicts a bustling urban street, likely in Paris, Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with people, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items displayed. The right side features the Danish flag and the German flag. In the background, there are more buildings, including a hotel with balconies, and various streets of the street. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [
+      47,
+      55,
+      56,
+      57,
+      58,
+      93
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s27.webp"
+    },
+    {
+     "step": 28,
+     "t_image": 0.089,
+     "t_text": 0.438,
+     "caption": "The image depicts a bustling urban street, likely in Paris, Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with people, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Danish flag and the German flag. In the background, there are more buildings, including a luxury hotel with balconies, and various streets of the street. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [
+      47,
+      69
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s28.webp"
+    },
+    {
+     "step": 29,
+     "t_image": 0.094,
+     "t_text": 0.453,
+     "caption": "The image depicts a bustling urban street, likely in Madrid, Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with people, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Danish flag and the German flag. In the background, there are more buildings, including a luxury hotel with balconies, and various streets of the street. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [
+      9
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s29.webp"
+    },
+    {
+     "step": 30,
+     "t_image": 0.099,
+     "t_text": 0.469,
+     "caption": "The image depicts a bustling urban street, likely in Madrid, Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with people, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Danish flag and the German flag. In the background, there are more buildings, including a luxury hotel with balconies, and various balconies. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [
+      75
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s30.webp"
+    },
+    {
+     "step": 31,
+     "t_image": 0.105,
+     "t_text": 0.484,
+     "caption": "The image depicts a bustling urban street, likely in Madrid, Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with people, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Danish flag and bank. In the background, there are more buildings, including a luxury hotel with balconies, and various balconies. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [
+      57
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s31.webp"
+    },
+    {
+     "step": 32,
+     "t_image": 0.111,
+     "t_text": 0.5,
+     "caption": "The image depicts a bustling urban street, likely in Madrid, Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Danish flag and bank. In the background, there are more buildings, including a luxury hotel with balconies, and various balconies. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [
+      28
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s32.webp"
+    },
+    {
+     "step": 33,
+     "t_image": 0.117,
+     "t_text": 0.516,
+     "caption": "The image depicts a bustling urban street, likely in Madrid, Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Spanish flag and bank. In the background, there are more buildings, including a luxury hotel with balconies, and various balconies. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [
+      54
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s33.webp"
+    },
+    {
+     "step": 34,
+     "t_image": 0.124,
+     "t_text": 0.531,
+     "caption": "The image depicts a bustling urban street, likely in Madrid, Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Spanish flag and bank. In the background, there are more buildings, including a luxury hotel with balconies, and various balconies. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s34.webp"
+    },
+    {
+     "step": 35,
+     "t_image": 0.131,
+     "t_text": 0.547,
+     "caption": "The image depicts a bustling urban street, likely in Madrid, Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Spanish flag and bank. In the background, there are more buildings, including a luxury hotel with balconies, and various balconies of the street. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [
+      73,
+      74,
+      75,
+      76
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s35.webp"
+    },
+    {
+     "step": 36,
+     "t_image": 0.138,
+     "t_text": 0.562,
+     "caption": "The image depicts a bustling urban street, likely in Madrid, Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Spanish flag and bank. In the background, there are more buildings, including a luxury hotel with balconies, and various balconies of the street. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s36.webp"
+    },
+    {
+     "step": 37,
+     "t_image": 0.146,
+     "t_text": 0.578,
+     "caption": "The image depicts a bustling urban street, likely in Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Spanish flag and bank. In the background, there are more buildings, including a luxury hotel with balconies, and numerous balconies of the street. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [
+      71
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s37.webp"
+    },
+    {
+     "step": 38,
+     "t_image": 0.154,
+     "t_text": 0.594,
+     "caption": "The image depicts a bustling urban street, likely in Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Spanish flag and bank. In the background, there are more buildings, including a luxury hotel with balconies, and numerous balconies of the street. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s38.webp"
+    },
+    {
+     "step": 39,
+     "t_image": 0.163,
+     "t_text": 0.609,
+     "caption": "The image depicts a bustling urban street, likely in Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Spanish flag and bank. In the background, there are more buildings, including a luxury hotel with balconies, and numerous balconies of the street. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s39.webp"
+    },
+    {
+     "step": 40,
+     "t_image": 0.172,
+     "t_text": 0.625,
+     "caption": "The image depicts a bustling urban street, likely in Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Spanish flag and bank. In the background, there are more buildings, including a luxury hotel with balconies, and numerous balconies of the street. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s40.webp"
+    },
+    {
+     "step": 41,
+     "t_image": 0.182,
+     "t_text": 0.641,
+     "caption": "The image depicts a bustling urban street, likely in Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Spanish flag and bank. In the background, there are more buildings, including a luxury hotel with balconies, and numerous balconies of the street. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s41.webp"
+    },
+    {
+     "step": 42,
+     "t_image": 0.193,
+     "t_text": 0.656,
+     "caption": "The image depicts a bustling urban street, likely in Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Spanish flag and bank. In the background, there are more buildings, including a luxury hotel with balconies, and numerous balconies of the street. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s42.webp"
+    },
+    {
+     "step": 43,
+     "t_image": 0.204,
+     "t_text": 0.672,
+     "caption": "The image depicts a bustling urban street, likely in Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Spanish flag and bank. In the background, there are more buildings, including a luxury hotel with balconies, and numerous balconies of the street. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s43.webp"
+    },
+    {
+     "step": 44,
+     "t_image": 0.216,
+     "t_text": 0.688,
+     "caption": "The image depicts a bustling urban street, likely in Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Spanish flag and bank. In the background, there are more buildings, including a luxury hotel with balconies, and numerous balconies of the street. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s44.webp"
+    },
+    {
+     "step": 45,
+     "t_image": 0.228,
+     "t_text": 0.703,
+     "caption": "The image depicts a bustling urban street, likely in Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Spanish flag and bank. In the background, there are more buildings, including a luxury hotel with balconies, and numerous balconies of the street. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s45.webp"
+    },
+    {
+     "step": 46,
+     "t_image": 0.242,
+     "t_text": 0.719,
+     "caption": "The image depicts a bustling urban street, likely in Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Spanish flag and bank. In the background, there are more buildings, including a luxury hotel with balconies, and numerous balconies of the street. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s46.webp"
+    },
+    {
+     "step": 47,
+     "t_image": 0.257,
+     "t_text": 0.734,
+     "caption": "The image depicts a bustling urban street, likely in Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Spanish flag and restaurant. In the background, there are more buildings, including a luxury hotel with balconies, and numerous balconies of the street. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [
+      56
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s47.webp"
+    },
+    {
+     "step": 48,
+     "t_image": 0.273,
+     "t_text": 0.75,
+     "caption": "The image depicts a bustling urban street, likely in Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Spanish flag and restaurant. In the background, there are more buildings, including a luxury hotel with balconies, and numerous balconies of the street. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s48.webp"
+    },
+    {
+     "step": 49,
+     "t_image": 0.29,
+     "t_text": 0.766,
+     "caption": "The image depicts a bustling urban street, likely in Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Spanish flag and restaurant. In the background, there are more buildings, including a luxury hotel with balconies, and numerous balconies of the street. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s49.webp"
+    },
+    {
+     "step": 50,
+     "t_image": 0.309,
+     "t_text": 0.781,
+     "caption": "The image depicts a bustling urban street, likely in Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Spanish flag and restaurant. In the background, there are more buildings, including a luxury hotel with balconies, and numerous balconies of the street. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s50.webp"
+    },
+    {
+     "step": 51,
+     "t_image": 0.329,
+     "t_text": 0.797,
+     "caption": "The image depicts a bustling urban street, likely in Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Spanish flag and restaurant. In the background, there are more buildings, including a luxury hotel with balconies, and numerous balconies of the street. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s51.webp"
+    },
+    {
+     "step": 52,
+     "t_image": 0.351,
+     "t_text": 0.812,
+     "caption": "The image depicts a bustling urban street, likely in Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Spanish flag and restaurant. In the background, there are more buildings, including a luxury hotel with balconies, and numerous balconies of the street. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s52.webp"
+    },
+    {
+     "step": 53,
+     "t_image": 0.376,
+     "t_text": 0.828,
+     "caption": "The image depicts a bustling urban street, likely in Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Spanish flag and restaurant. In the background, there are more buildings, including a luxury hotel with balconies, and numerous balconies of the street. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s53.webp"
+    },
+    {
+     "step": 54,
+     "t_image": 0.403,
+     "t_text": 0.844,
+     "caption": "The image depicts a bustling urban street, likely in Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Spanish flag and restaurant. In the background, there are more buildings, including a luxury hotel with balconies, and numerous balconies of the street. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s54.webp"
+    },
+    {
+     "step": 55,
+     "t_image": 0.433,
+     "t_text": 0.859,
+     "caption": "The image depicts a bustling urban street, likely in Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Spanish flag and restaurant. In the background, there are more buildings, including a luxury hotel with balconies, and numerous balconies of the street. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s55.webp"
+    },
+    {
+     "step": 56,
+     "t_image": 0.467,
+     "t_text": 0.875,
+     "caption": "The image depicts a bustling urban street, likely in Lisbon, Australia, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Spanish flag and restaurant. In the background, there are more buildings, including a luxury hotel with balconies, and numerous balconies of the street. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [
+      9,
+      10
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s56.webp"
+    },
+    {
+     "step": 57,
+     "t_image": 0.504,
+     "t_text": 0.891,
+     "caption": "The image depicts a bustling urban street, likely in Lisbon, Australia, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Spanish flag and restaurant. In the background, there are more buildings, including a luxury hotel with balconies, and numerous balconies of the street. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s57.webp"
+    },
+    {
+     "step": 58,
+     "t_image": 0.547,
+     "t_text": 0.906,
+     "caption": "The image depicts a bustling urban street, likely in Lisbon, Australia, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items being displayed. The right side features the Spanish flag and restaurant. In the background, there are more buildings, including a luxury hotel with balconies, and numerous balconies of the street. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a major district.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s58.webp"
+    },
+    {
+     "step": 59,
+     "t_image": 0.596,
+     "t_text": 0.922,
+     "caption": "The image depicts a bustling urban street, likely in Portugal, Australia, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items on display. The right side features the Spanish flag and restaurant. In the background, there are more buildings, including a luxury hotel with balconies, and numerous balconies. The scene suggests a lively yet relaxed atmosphere, typical of a busy day in a busy day.",
+     "changed": [
+      9,
+      47,
+      48,
+      73,
+      89,
+      90
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s59.webp"
+    },
+    {
+     "step": 60,
+     "t_image": 0.652,
+     "t_text": 0.938,
+     "caption": "The image depicts a bustling urban street, likely in Portugal, Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is active with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items displayed. The right side features the Spanish flag and restaurant. In the background, there are more buildings, including a luxury hotel with balconies. The scene suggests a lively and relaxed atmosphere, typical of a busy urban street.",
+     "changed": [
+      10,
+      47,
+      75,
+      82,
+      83
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s60.webp"
+    },
+    {
+     "step": 61,
+     "t_image": 0.718,
+     "t_text": 0.953,
+     "caption": "The image depicts a bustling urban street, likely in Portugal, Spain, given the architecture and signage. The cobblestone street is lined with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items displayed.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s61.webp"
+    },
+    {
+     "step": 62,
+     "t_image": 0.795,
+     "t_text": 0.969,
+     "caption": "The image depicts a bustling urban street, likely in Portugal, Spain, given the architecture and signage. The cobblestone street is lined with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items displayed.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s62.webp"
+    },
+    {
+     "step": 63,
+     "t_image": 0.887,
+     "t_text": 0.984,
+     "caption": "The image depicts a bustling urban street, likely in Portugal, Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is lively with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items displayed. The right side features the Spanish flag and restaurant. In the background, there are more buildings, including a luxury hotel with balconies.",
+     "changed": [
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69
+     ],
+     "img": "static/img/widgets/joint/dino_s05/s63.webp"
+    },
+    {
+     "step": 64,
+     "t_image": 1.0,
+     "t_text": 1.0,
+     "caption": "The image depicts a bustling urban street, likely in Portugal, Spain, given the architecture and signage. The cobblestone street is lined with pedestrian walkways and is lively with pedestrians, some carrying bags or walking. On the left, there's a more ornate shop with large windows and items displayed. The right side features the Spanish flag and restaurant. In the background, there are more buildings, including a luxury hotel with balconies.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s05/s64.webp"
+    }
+   ]
+  },
+  {
+   "id": "dino_s20",
+   "variant": "dino",
+   "variant_label": "DINO",
+   "sample": 20,
+   "alpha": 8.0,
+   "total_steps": 64,
+   "note": "From step 16 on, the caption keeps the fantasy character and the wooden shelves and revises the details as the image forms.",
+   "steps": [
+    {
+     "step": 0,
+     "t_image": 0.0,
+     "t_text": 0.0,
+     "caption": "The image depicts a portrait of a person wearing a salid in a southwestern setting.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s20/s00.webp"
+    },
+    {
+     "step": 1,
+     "t_image": 0.002,
+     "t_text": 0.016,
+     "caption": "The image depicts a young woman in a solitary setting, a photograph depicting a woman with a large, patterned a striped hat with a striped hat.",
+     "changed": [
+      4,
+      5,
+      6,
+      8,
+      9,
+      11,
+      12,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s01.webp"
+    },
+    {
+     "step": 2,
+     "t_image": 0.004,
+     "t_text": 0.031,
+     "caption": "The image depicts a young woman in a seated position with a large, patterned a patterned a showcasing the a part of a showcasing a modern ad a showcasing a variety of a showcasing a variety of a showcasing a variety of showcasing a variety of showcasing a variety of showcasing a variety of showcasing a variety of showcasing a variety of showcasing a variety of showcasing a variety of showcasing a",
+     "changed": [
+      8,
+      9,
+      15,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s02.webp"
+    },
+    {
+     "step": 3,
+     "t_image": 0.006,
+     "t_text": 0.047,
+     "caption": "The image depicts a young woman in a rural setting with a large, colorful image depicting a woman in a seated position with a large, adorned a patterned hat. The image depicts a man dressed in a solitary setting, a showcasing a large, adorned hat with a patterned hat and a striped hat.",
+     "changed": [
+      8,
+      9,
+      13,
+      14,
+      15,
+      17,
+      18,
+      20,
+      21,
+      22,
+      24,
+      25,
+      27,
+      28,
+      29,
+      30,
+      31,
+      33,
+      34,
+      35,
+      37,
+      38,
+      42,
+      43,
+      44,
+      45,
+      47,
+      48,
+      49,
+      51,
+      52
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s03.webp"
+    },
+    {
+     "step": 4,
+     "t_image": 0.008,
+     "t_text": 0.062,
+     "caption": "The image depicts a young woman in a rural setting, a woman wearing a traditional dress with a patterned dress.",
+     "changed": [
+      11,
+      12,
+      14,
+      15,
+      19
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s04.webp"
+    },
+    {
+     "step": 5,
+     "t_image": 0.01,
+     "t_text": 0.078,
+     "caption": "The image depicts a woman dressed in a modern, a modern ad in a fashion reminiscent of a woman in a seated position.",
+     "changed": [
+      5,
+      8,
+      10,
+      11,
+      12,
+      14,
+      15,
+      16,
+      18,
+      19,
+      20,
+      21,
+      22
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s05.webp"
+    },
+    {
+     "step": 6,
+     "t_image": 0.013,
+     "t_text": 0.094,
+     "caption": "The image depicts a woman dressed in a modern, modern outfit with a woman wearing a dress in a dark coloured dress. She is wearing a white dress with a patterned dress, adorned with a white hat and a dress with a striped accent.",
+     "changed": [
+      10,
+      11,
+      14,
+      15,
+      16,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s06.webp"
+    },
+    {
+     "step": 7,
+     "t_image": 0.015,
+     "t_text": 0.109,
+     "caption": "The image depicts a woman dressed in a modern, modern outfit with a woman dressed in a dress with a white accent.",
+     "changed": [
+      14
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s07.webp"
+    },
+    {
+     "step": 8,
+     "t_image": 0.018,
+     "t_text": 0.125,
+     "caption": "The image depicts a woman dressed in a fashion adorned with a woman dressed in a fashion, dressed in a robe or a dress with a white accent.",
+     "changed": [
+      8,
+      9,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s08.webp"
+    },
+    {
+     "step": 9,
+     "t_image": 0.02,
+     "t_text": 0.141,
+     "caption": "The image depicts a person dressed in a fashion with a woman dressed in a dress, wearing a white dress with a red accent.",
+     "changed": [
+      4,
+      15,
+      16,
+      18,
+      22
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s09.webp"
+    },
+    {
+     "step": 10,
+     "t_image": 0.023,
+     "t_text": 0.156,
+     "caption": "The image depicts a character dressed in a fashion with a character dressed in a dark outfit, adorned with a white hat and a black hat.",
+     "changed": [
+      4,
+      11,
+      15,
+      16,
+      17,
+      18,
+      21,
+      22,
+      24,
+      25
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s10.webp"
+    },
+    {
+     "step": 11,
+     "t_image": 0.025,
+     "t_text": 0.172,
+     "caption": "The image depicts a character with a character dressed in a modern, upscale fashion, featuring a character with a dark hairstyle and a white sleeveless top, which adds to the stylish and casual appearance.",
+     "changed": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      19,
+      20,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s11.webp"
+    },
+    {
+     "step": 12,
+     "t_image": 0.028,
+     "t_text": 0.188,
+     "caption": "The image depicts a character that appears to be from a modern bar, characterized by a character that appears to be from a bar, adorned with a white sleeveless top, which adds to their stylish and stylish appearance.",
+     "changed": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      11,
+      12,
+      13,
+      14,
+      17,
+      18,
+      19,
+      20,
+      21,
+      23,
+      24,
+      25,
+      33,
+      36
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s12.webp"
+    },
+    {
+     "step": 13,
+     "t_image": 0.031,
+     "t_text": 0.203,
+     "caption": "The image depicts a character that appears to be from a medieval setting, characterized by a dark interior setting, adorned with various decorative items such as a bar, adorned with a white sleeveless top, which adds to their stylish and rugged appearance.",
+     "changed": [
+      11,
+      12,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      40
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s13.webp"
+    },
+    {
+     "step": 14,
+     "t_image": 0.034,
+     "t_text": 0.219,
+     "caption": "The image showcases a character that appears to be from a medieval setting, characterized by a dark interior setting, surrounded by various glass bottles and a red headscarf. The character is dressed in a white sleeveless top, which adds to the stylish and rugged appearance.",
+     "changed": [
+      2,
+      19,
+      20,
+      22,
+      23,
+      24,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      40
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s14.webp"
+    },
+    {
+     "step": 15,
+     "t_image": 0.037,
+     "t_text": 0.234,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a dark setting, surrounded by wooden bottles and a red headscarf. The character has longly braided hair and is seated at a bar, surrounded by various wooden bottles and bottles of beer. The character is also wearing a black sleeveless top, which adds to the stylish and rugged appearance.",
+     "changed": [
+      11,
+      20,
+      28,
+      29,
+      30,
+      31,
+      32,
+      34,
+      35,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s15.webp"
+    },
+    {
+     "step": 16,
+     "t_image": 0.04,
+     "t_text": 0.25,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a dark setting, surrounded by wooden shelves and a red headscarf.",
+     "changed": [
+      21
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s16.webp"
+    },
+    {
+     "step": 17,
+     "t_image": 0.043,
+     "t_text": 0.266,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a dark style, characterized by a dark hair and is seated at a bar, surrounded by wooden shelves and a red headscarf.",
+     "changed": [
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s17.webp"
+    },
+    {
+     "step": 18,
+     "t_image": 0.047,
+     "t_text": 0.281,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a sleek and rugged appearance. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and a red headscarf.",
+     "changed": [
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s18.webp"
+    },
+    {
+     "step": 19,
+     "t_image": 0.05,
+     "t_text": 0.297,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking appearance with black shoulder patches and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and bottles filled with beer. The character is also wearing a black sleeveless top, which adds to the stylish and rugged aesthetic. The background reveals other shelves or other patrons with wooden bottles, suggesting a common setting in a bar.",
+     "changed": [
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      23,
+      24,
+      25,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s19.webp"
+    },
+    {
+     "step": 20,
+     "t_image": 0.054,
+     "t_text": 0.312,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking outfit with black shoulder pads and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and bottles filled with beer. The character is also wearing a black sleeveless top, which adds to the stylish and rugged aesthetic. The background reveals other shelves or other patrons with beer, suggesting a typical setting in a bar.",
+     "changed": [
+      17,
+      21,
+      73,
+      76
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s20.webp"
+    },
+    {
+     "step": 21,
+     "t_image": 0.058,
+     "t_text": 0.328,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking appearance with black shoulder plates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The character is also wearing a black sleeveless top, which adds to the stylish and rugged aesthetic. The background reveals other shelves or other patrons with beer, suggesting a typical setting in a bar.",
+     "changed": [
+      17,
+      21,
+      43
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s21.webp"
+    },
+    {
+     "step": 22,
+     "t_image": 0.061,
+     "t_text": 0.344,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking appearance of black shoulder plates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the stylish and rugged aesthetic. The background reveals other shelves or other patrons with beer, suggesting a typical setting in a bar.",
+     "changed": [
+      18,
+      49
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s22.webp"
+    },
+    {
+     "step": 23,
+     "t_image": 0.066,
+     "t_text": 0.359,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking build of leather arm plates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with beer, suggesting a typical setting in a beer bar.",
+     "changed": [
+      17,
+      19,
+      20,
+      61,
+      68,
+      81
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s23.webp"
+    },
+    {
+     "step": 24,
+     "t_image": 0.07,
+     "t_text": 0.375,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking appearance of leather arm plates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with beer, suggesting a typical setting in a beer bar.",
+     "changed": [
+      17
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s24.webp"
+    },
+    {
+     "step": 25,
+     "t_image": 0.074,
+     "t_text": 0.391,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm plates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with beer bottles, suggesting a typical setting in a beer bar.",
+     "changed": [
+      17,
+      74,
+      75
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s25.webp"
+    },
+    {
+     "step": 26,
+     "t_image": 0.079,
+     "t_text": 0.406,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm plates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with beer bottles, suggesting a typical setting in a wine bar.",
+     "changed": [
+      82
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s26.webp"
+    },
+    {
+     "step": 27,
+     "t_image": 0.084,
+     "t_text": 0.422,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather armplates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with glass bottles, suggesting a typical setting in a wine bar.",
+     "changed": [
+      20,
+      73
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s27.webp"
+    },
+    {
+     "step": 28,
+     "t_image": 0.089,
+     "t_text": 0.438,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather armplates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a wine bar.",
+     "changed": [
+      73
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s28.webp"
+    },
+    {
+     "step": 29,
+     "t_image": 0.094,
+     "t_text": 0.453,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather armplates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a wine shop.",
+     "changed": [
+      82
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s29.webp"
+    },
+    {
+     "step": 30,
+     "t_image": 0.099,
+     "t_text": 0.469,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather armplates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a wine shop.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s20/s30.webp"
+    },
+    {
+     "step": 31,
+     "t_image": 0.105,
+     "t_text": 0.484,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm plates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a wine shop.",
+     "changed": [
+      20,
+      21
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s31.webp"
+    },
+    {
+     "step": 32,
+     "t_image": 0.111,
+     "t_text": 0.5,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm plates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a wine shop.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s20/s32.webp"
+    },
+    {
+     "step": 33,
+     "t_image": 0.117,
+     "t_text": 0.516,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm plates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a wine shop.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s20/s33.webp"
+    },
+    {
+     "step": 34,
+     "t_image": 0.124,
+     "t_text": 0.531,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm plates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a wine shop.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s20/s34.webp"
+    },
+    {
+     "step": 35,
+     "t_image": 0.131,
+     "t_text": 0.547,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm plates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a wine shop.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s20/s35.webp"
+    },
+    {
+     "step": 36,
+     "t_image": 0.138,
+     "t_text": 0.562,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm plates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a wine store.",
+     "changed": [
+      83
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s36.webp"
+    },
+    {
+     "step": 37,
+     "t_image": 0.146,
+     "t_text": 0.578,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm plates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a wine store.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s20/s37.webp"
+    },
+    {
+     "step": 38,
+     "t_image": 0.154,
+     "t_text": 0.594,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm plates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a wine store.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s20/s38.webp"
+    },
+    {
+     "step": 39,
+     "t_image": 0.163,
+     "t_text": 0.609,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm plates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a wine store.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s20/s39.webp"
+    },
+    {
+     "step": 40,
+     "t_image": 0.172,
+     "t_text": 0.625,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm plates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a wine store.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s20/s40.webp"
+    },
+    {
+     "step": 41,
+     "t_image": 0.182,
+     "t_text": 0.641,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm plates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a liquor store.",
+     "changed": [
+      82
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s41.webp"
+    },
+    {
+     "step": 42,
+     "t_image": 0.193,
+     "t_text": 0.656,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm plates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a liquor store.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s20/s42.webp"
+    },
+    {
+     "step": 43,
+     "t_image": 0.204,
+     "t_text": 0.672,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm plates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a liquor store.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s20/s43.webp"
+    },
+    {
+     "step": 44,
+     "t_image": 0.216,
+     "t_text": 0.688,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm plates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a liquor store.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s20/s44.webp"
+    },
+    {
+     "step": 45,
+     "t_image": 0.228,
+     "t_text": 0.703,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm plates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a liquor store.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s20/s45.webp"
+    },
+    {
+     "step": 46,
+     "t_image": 0.242,
+     "t_text": 0.719,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm plates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a liquor store.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s20/s46.webp"
+    },
+    {
+     "step": 47,
+     "t_image": 0.257,
+     "t_text": 0.734,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm plates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a liquor store.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s20/s47.webp"
+    },
+    {
+     "step": 48,
+     "t_image": 0.273,
+     "t_text": 0.75,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm plates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a liquor store.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s20/s48.webp"
+    },
+    {
+     "step": 49,
+     "t_image": 0.29,
+     "t_text": 0.766,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm plates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a liquor store.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s20/s49.webp"
+    },
+    {
+     "step": 50,
+     "t_image": 0.309,
+     "t_text": 0.781,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm plates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a liquor store.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s20/s50.webp"
+    },
+    {
+     "step": 51,
+     "t_image": 0.329,
+     "t_text": 0.797,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm plates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a liquor store.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s20/s51.webp"
+    },
+    {
+     "step": 52,
+     "t_image": 0.351,
+     "t_text": 0.812,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm plates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a liquor store.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s20/s52.webp"
+    },
+    {
+     "step": 53,
+     "t_image": 0.376,
+     "t_text": 0.828,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm plates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a liquor store.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s20/s53.webp"
+    },
+    {
+     "step": 54,
+     "t_image": 0.403,
+     "t_text": 0.844,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm plates and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a liquor store.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s20/s54.webp"
+    },
+    {
+     "step": 55,
+     "t_image": 0.433,
+     "t_text": 0.859,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm bands and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a liquor store.",
+     "changed": [
+      21
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s55.webp"
+    },
+    {
+     "step": 56,
+     "t_image": 0.467,
+     "t_text": 0.875,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm bands and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a liquor store.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s20/s56.webp"
+    },
+    {
+     "step": 57,
+     "t_image": 0.504,
+     "t_text": 0.891,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm bands and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a liquor store.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s20/s57.webp"
+    },
+    {
+     "step": 58,
+     "t_image": 0.547,
+     "t_text": 0.906,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm bands and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a liquor store.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s20/s58.webp"
+    },
+    {
+     "step": 59,
+     "t_image": 0.596,
+     "t_text": 0.922,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm bands and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a liquor store.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s20/s59.webp"
+    },
+    {
+     "step": 60,
+     "t_image": 0.652,
+     "t_text": 0.938,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm bands and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves or other patrons with blue bottles, suggesting a typical setting in a liquor store.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s20/s60.webp"
+    },
+    {
+     "step": 61,
+     "t_image": 0.718,
+     "t_text": 0.953,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm bands and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves and other patrons with blue bottles, suggesting a typical setting in a liquor store.",
+     "changed": [
+      70
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s61.webp"
+    },
+    {
+     "step": 62,
+     "t_image": 0.795,
+     "t_text": 0.969,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm bands and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves and other patrons with blue bottles, suggesting a typical setting in a beer shop.",
+     "changed": [
+      82,
+      83
+     ],
+     "img": "static/img/widgets/joint/dino_s20/s62.webp"
+    },
+    {
+     "step": 63,
+     "t_image": 0.887,
+     "t_text": 0.984,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm bands and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves and other patrons with blue bottles, suggesting a typical setting in a beer shop.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s20/s63.webp"
+    },
+    {
+     "step": 64,
+     "t_image": 1.0,
+     "t_text": 1.0,
+     "caption": "The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm bands and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves and other patrons with blue bottles, suggesting a typical setting in a beer shop.",
+     "changed": [],
+     "img": "static/img/widgets/joint/dino_s20/s64.webp"
+    }
+   ]
+  }
+ ]
+}

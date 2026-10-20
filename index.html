@@ -1,0 +1,1139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JUICE: Unified Multimodal Modeling in Pretrained Representation Spaces</title>
+<meta name="description" content="JUICE generates images and text with one process: a single flow matching Transformer that works directly in the continuous spaces of frozen pretrained encoders. Its backbone is trained from scratch, with no LLM initialization.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#FAFAF8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
+
+<!--
+  Social cards (Open Graph + X). The page is deployed at https://ced3-han.github.io/JUICE-Website/ (GitHub repo Ced3-han/JUICE-Website).
+  X and most unfurlers ignore relative image URLs, so these stay absolute. static/img/og.png is 1200x630.
+-->
+<link rel="canonical" href="https://ced3-han.github.io/JUICE-Website/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="JUICE">
+<meta property="og:title" content="JUICE: Unified Multimodal Modeling in Pretrained Representation Spaces">
+<meta property="og:description" content="One flow matching Transformer, trained from scratch, generates images and text together in frozen encoder spaces. Up to 0.88 GenEval and 73.1 VQAv2 with 2.1B backbones at 224×224, no LLM initialization.">
+<meta property="og:url" content="https://ced3-han.github.io/JUICE-Website/">
+<meta property="og:image" content="https://ced3-han.github.io/JUICE-Website/static/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="JUICE: one process for images and text, in pretrained encoder spaces. Tasks are paths through one square of noise levels.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="JUICE: Unified Multimodal Modeling in Pretrained Representation Spaces">
+<meta name="twitter:description" content="One process for images and text, in pretrained encoder spaces. One flow matching Transformer over frozen image and text encoders, trained from scratch with no LLM initialization.">
+<meta name="twitter:image" content="https://ced3-han.github.io/JUICE-Website/static/img/og.png">
+<meta name="twitter:image:alt" content="JUICE: one process for images and text, in pretrained encoder spaces. Tasks are paths through one square of noise levels.">
+
+<link rel="icon" href="static/img/mark.svg" type="image/svg+xml">
+<link rel="icon" href="static/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="static/img/apple-touch-icon.png">
+<link rel="preload" href="static/fonts/inter-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="static/fonts/cormorant-garamond-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+<!-- Theme before first paint: a stored choice wins, otherwise CSS follows prefers-color-scheme. -->
+<script>
+(function () {
+  var d = document.documentElement;
+  d.classList.add('js');
+  try {
+    var t = localStorage.getItem('juice-theme');
+    if (t === 'light' || t === 'dark') d.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
+<link rel="stylesheet" href="static/css/style.css">
+<link rel="stylesheet" href="static/css/widgets.css">
+<script src="static/js/config.js" defer></script>
+<script src="static/js/main.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ============================================================ sticky bar -->
+<nav class="bar" id="bar" aria-label="Page sections">
+  <div class="bar__inner">
+    <a class="bar__brand" href="#top" aria-label="JUICE, back to top">
+      <img src="static/img/mark.svg" width="22" height="22" alt="">
+      <span>JUICE</span>
+    </a>
+    <ul class="bar__links">
+      <li><a href="#why" data-spy="why" style="--accent: var(--ink)">Why</a></li>
+      <li><a href="#method" data-spy="method" style="--accent: var(--joint)">Joint modeling</a></li>
+      <li><a href="#pretraining" data-spy="pretraining" style="--accent: var(--txt)">Design studies</a></li>
+      <li><a href="#results" data-spy="results" style="--accent: var(--img)">Scaling</a></li>
+      <li><a href="#agreement" data-spy="agreement" style="--accent: var(--agree)">Joint reasoning</a></li>
+      <li><a href="#faq" data-spy="faq" style="--accent: var(--muted)">FAQ</a></li>
+      <li><a href="#citation" data-spy="citation" style="--accent: var(--muted)">Cite</a></li>
+    </ul>
+    <div class="bar__tools">
+      <a class="btn btn--mini btn--soon" data-link="paper" aria-disabled="true">Paper<span class="soon">soon</span></a>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark theme">
+        <svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z" fill="currentColor"/></svg>
+        <svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g></svg>
+      </button>
+    </div>
+  </div>
+  <div class="bar__progress" aria-hidden="true"><span></span></div>
+</nav>
+
+<!-- ============================================================ 0. hero -->
+<header class="hero" id="top">
+  <svg class="hero__motif" viewBox="0 0 600 600" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="hero-fill" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0" stop-color="var(--joint)" stop-opacity=".16"/>
+        <stop offset="1" stop-color="var(--joint)" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <rect x="80" y="80" width="440" height="440" rx="44" fill="url(#hero-fill)" stroke="var(--hairline-strong)" stroke-width="2"/>
+    <path d="M124 80H476" stroke="var(--img)" stroke-width="7" stroke-linecap="round" fill="none"/>
+    <path d="M520 124V476" stroke="var(--txt)" stroke-width="7" stroke-linecap="round" fill="none"/>
+    <path d="M80.0 520.0 L81.3 509.0 L82.7 498.0 L84.2 487.0 L85.7 476.0 L87.3 465.0 L89.0 454.0 L90.7 443.0 L92.6 432.0 L94.6 421.0 L96.6 410.0 L98.8 399.0 L101.2 388.0 L103.6 377.0 L106.3 366.0 L109.1 355.0 L112.1 344.0 L115.3 333.0 L118.7 322.0 L122.4 311.0 L126.4 300.0 L130.7 289.0 L135.4 278.0 L140.5 267.0 L146.1 256.0 L152.2 245.0 L159.0 234.0 L166.5 223.0 L174.9 212.0 L184.3 201.0 L194.9 190.0 L207.0 179.0 L221.0 168.0 L237.2 157.0 L256.2 146.0 L278.9 135.0 L306.5 124.0 L340.7 113.0 L384.2 102.0 L441.4 91.0 L520.0 80.0" stroke="var(--joint)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <circle cx="80" cy="520" r="9" fill="var(--joint)"/>
+    <circle cx="520" cy="80" r="10" fill="var(--ink)"/>
+  </svg>
+
+  <button class="theme-toggle theme-toggle--hero" type="button" aria-label="Toggle dark theme">
+    <svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z" fill="currentColor"/></svg>
+    <svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g></svg>
+  </button>
+
+  <div class="hero__inner">
+    <h1 class="title">
+      <span class="wordmark">JUICE</span><span class="sr-only">: </span>
+      <span class="subtitle">Unified Multimodal Modeling <br class="br-wide">in Pretrained Representation&nbsp;Spaces</span>
+    </h1>
+    <p class="summary">Most unified models treat images and text asymmetrically: a pretrained language model writes the text, and an attached diffusion head draws the image. JUICE generates both with one process, trained on both from scratch, directly in the continuous spaces of frozen pretrained encoders. One flow matching Transformer, with no LLM initialization, handles image generation, visual understanding and joint&nbsp;generation.</p>
+
+    <div class="authors">
+      <p class="authors__line">
+        <span class="author"><a href="https://ced3-han.github.io/">Jiahan Li</a><sup>1,*</sup></span>
+        <span class="author"><a href="https://hither1.github.io/">Huangyuan Su</a><sup>2</sup></span>
+        <span class="author"><a href="https://tsb0601.github.io/">Shengbang Tong</a><sup>1</sup></span>
+        <span class="author"><a href="https://shushengyang.com/">Shusheng Yang</a><sup>1</sup></span>
+        <span class="author"><a href="https://guoruihan.github.io/">Ruihan Guo</a><sup>3</sup></span>
+      </p>
+      <p class="authors__line">
+        <span class="author"><a href="https://hsz0403.github.io/">Suozhi Huang</a><sup>4</sup></span>
+        <span class="author"><a href="https://tarzanzhao.github.io/">Hexu Zhao</a><sup>1</sup></span>
+        <span class="author"><a href="https://pratyushasharma.github.io/">Pratyusha Sharma</a><sup>1</sup></span>
+        <span class="author"><a href="https://sherryy.github.io/">Sherry Yang</a><sup>1</sup></span>
+        <span class="author"><a href="https://jiataogu.me/">Jiatao Gu</a><sup>5</sup></span>
+      </p>
+      <p class="authors__line">
+        <span class="author"><a href="https://cs.nyu.edu/~fergus/">Rob Fergus</a><sup>1,<span class="dag">†</span></sup></span>
+        <span class="author"><a href="https://kyunghyuncho.me/">Kyunghyun Cho</a><sup>1,<span class="dag">†</span></sup></span>
+      </p>
+      <p class="marks"><sup>*</sup>&#8202;Project lead <span aria-hidden="true">·</span> <sup class="dag">†</sup>&#8202;Equal advising</p>
+    </div>
+
+    <ul class="affils" aria-label="Affiliations">
+      <li class="affil" style="--h: 29px"><sup>1</sup>
+        <img class="logo logo--light" src="static/img/logos/nyu.svg" width="144" height="25" alt="New York University" loading="lazy">
+        <img class="logo logo--dark" src="static/img/logos/nyu-dark.svg" width="144" height="25" alt="New York University" loading="lazy">
+      </li>
+      <li class="affil" style="--h: 34px"><sup>2</sup>
+        <img class="logo logo--light" src="static/img/logos/harvard.svg" width="124" height="34" alt="Harvard University" loading="lazy">
+        <img class="logo logo--dark" src="static/img/logos/harvard-dark.svg" width="124" height="34" alt="Harvard University" loading="lazy">
+      </li>
+      <li class="affil" style="--h: 32px"><sup>3</sup>
+        <img class="logo logo--light" src="static/img/logos/uiuc.svg" width="120" height="32" alt="University of Illinois Urbana-Champaign" loading="lazy">
+        <img class="logo logo--dark" src="static/img/logos/uiuc-dark.svg" width="120" height="32" alt="University of Illinois Urbana-Champaign" loading="lazy">
+      </li>
+      <li class="affil" style="--h: 34px"><sup>4</sup>
+        <img class="logo logo--light" src="static/img/logos/princeton.svg" width="119" height="34" alt="Princeton University" loading="lazy">
+        <img class="logo logo--dark" src="static/img/logos/princeton-dark.svg" width="119" height="34" alt="Princeton University" loading="lazy">
+      </li>
+      <li class="affil" style="--h: 36px"><sup>5</sup>
+        <img class="logo logo--light" src="static/img/logos/penn.svg" width="98" height="36" alt="University of Pennsylvania" loading="lazy">
+        <img class="logo logo--dark" src="static/img/logos/penn-dark.svg" width="98" height="36" alt="University of Pennsylvania" loading="lazy">
+      </li>
+    </ul>
+
+    <!-- Link buttons: filled from window.JUICE_LINKS (static/js/config.js). Null keeps the "soon" state. -->
+    <div class="links">
+      <a class="btn btn--primary btn--soon" data-link="paper" aria-disabled="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M7 2.8h7.2L19 7.6V20a1.2 1.2 0 0 1-1.2 1.2H7A1.2 1.2 0 0 1 5.8 20V4A1.2 1.2 0 0 1 7 2.8z M14 3v5h5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 13h6M9 16.5h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        Paper<span class="soon">soon</span>
+      </a>
+      <a class="btn btn--soon" data-link="arxiv" aria-disabled="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 4l14 16M19 4l-6.2 7.1M5 20l4.8-5.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
+        arXiv<span class="soon">soon</span>
+      </a>
+      <a class="btn btn--soon" data-link="code" aria-disabled="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 2.2a9.8 9.8 0 0 0-3.1 19.1c.5.1.7-.2.7-.5v-1.7c-2.7.6-3.3-1.3-3.3-1.3-.4-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1.1.6-1.3-2.2-.3-4.5-1.1-4.5-4.9 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.7 1a9.3 9.3 0 0 1 4.9 0c1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.6 1 2.7 0 3.8-2.3 4.6-4.5 4.9.4.3.7.9.7 1.8v2.7c0 .3.2.6.7.5A9.8 9.8 0 0 0 12 2.2z" fill="currentColor"/></svg>
+        Code<span class="soon">soon</span>
+      </a>
+      <a class="btn btn--soon" data-link="weights" aria-disabled="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z M4.3 7.6L12 12l7.7-4.4M12 12v8.8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        Weights<span class="soon">soon</span>
+      </a>
+      <a class="btn" href="#video">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M10 8.6v6.8l5.6-3.4z" fill="currentColor"/></svg>
+        Video
+      </a>
+      <a class="btn" href="#citation">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M8.5 6.5L3.8 12l4.7 5.5M15.5 6.5l4.7 5.5-4.7 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        BibTeX
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================================================ 1. TL;DR -->
+<section class="tldr" id="tldr" aria-labelledby="tldr-h">
+  <h2 class="label" id="tldr-h">TL;DR</h2>
+  <div class="tldr__card">
+    <p class="tldr__hook">One process for images and text, in pretrained encoder spaces.</p>
+    <ol class="tldr__list">
+      <li><strong><a class="tldr__sec" href="#why">Why one process.</a></strong> Most unified models generate text with a pretrained language model and images with an attached diffusion head, one modality after the other. JUICE asks whether one process, trained on both modalities from scratch, can generate both.</li>
+      <li><strong><a class="tldr__sec" href="#method">Joint modeling in pretrained representation spaces.</a></strong> One flow matching Transformer models images and text in the continuous spaces of
+        <span class="kw" style="--accent: var(--img)"><button class="kw__btn" type="button" aria-describedby="tip-enc">frozen encoders</button><span class="tip" id="tip-enc" role="tooltip">SigLIP2-SO400M or WebSSL-DINO300M for images (256 tokens), and the Flan-T5-Small encoder for text (128 states). They are never finetuned, so the same features are what the model generates and what it conditions on.</span></span>
+        (SigLIP2 or WebSSL-DINO for images, Flan-T5 for text). Each modality has
+        <span class="kw" style="--accent: var(--txt-ink)"><button class="kw__btn" type="button" aria-describedby="tip-noise">its own noise level</button><span class="tip" id="tip-noise" role="tooltip">An image time and a text time, each from 0 (pure noise) to 1 (clean). A modality at t = 1 is a condition; below 1 it is being generated. Each modality also gets its own noise scale and schedule.</span></span>,
+        so text-to-image, captioning, VQA and joint generation are paths through one square of noise levels.</li>
+      <li><strong><a class="tldr__sec" href="#pretraining">Systematic design studies.</a></strong> Controlled pretraining runs settle four open questions, one takeaway each:
+        <a href="#t1">continuous text spares images but costs wording</a>, <a href="#t2">train where you sample</a>,
+        <a href="#t3">semantics over reconstruction</a>, and <a href="#t4">scale reorders image spaces for generation, not captioning</a>.</li>
+      <li><strong><a class="tldr__sec" href="#results">Scaling: one set of weights at 2.1B.</a></strong> At 224×224 and with no LLM initialization, each model handles compositional image generation, generation that needs world knowledge, and visual question answering: 0.88 GenEval (DINO variant); 85.27 DPG-Bench, 0.45 WISE and 73.1 VQAv2 (SigLIP2 variant).</li>
+      <li><strong><a class="tldr__sec" href="#agreement">Joint reasoning.</a></strong> An image and its text are generated together. With
+        <span class="kw" style="--accent: var(--joint)"><button class="kw__btn" type="button" aria-describedby="tip-coupled">coupled sampling</button><span class="tip" id="tip-coupled" role="tooltip">Both velocity fields are computed from the current joint state before either stream moves, so each stream conditions on the other's evolving state at every step. One backbone call advances both.</span></span>,
+        a drawn maze route and its written moves are both valid and match 93.7% of the time (54.6% when sampled separately; SigLIP2 model adapted to mazes), within 1.5 points of the better fixed order, without choosing one. On visual spatial planning, JUICE solves 99.8% of maps at the training sizes.</li>
+    </ol>
+  </div>
+
+  <ul class="metrics" aria-label="Headline numbers">
+    <li class="metric" style="--accent: var(--img)">
+      <span class="metric__value"><span data-count="0.88" data-decimals="2">0.88</span></span>
+      <span class="metric__label">GenEval</span>
+      <span class="metric__sub">DINO variant</span>
+    </li>
+    <li class="metric" style="--accent: var(--img)">
+      <span class="metric__value"><span data-count="85.27" data-decimals="2">85.27</span></span>
+      <span class="metric__label">DPG-Bench</span>
+      <span class="metric__sub">SigLIP2 variant</span>
+    </li>
+    <li class="metric" style="--accent: var(--img)">
+      <span class="metric__value"><span data-count="0.45" data-decimals="2">0.45</span></span>
+      <span class="metric__label">WISE</span>
+      <span class="metric__sub">SigLIP2 variant</span>
+    </li>
+    <li class="metric" style="--accent: var(--txt)">
+      <span class="metric__value"><span data-count="73.1" data-decimals="1">73.1</span></span>
+      <span class="metric__label">VQAv2</span>
+      <span class="metric__sub">SigLIP2 variant</span>
+    </li>
+    <li class="metric metric--maze" style="--accent: var(--joint)">
+      <span class="metric__value"><span class="metric__from">54.6%</span><span class="metric__arrow" aria-label="to">→</span><span data-count="93.7" data-decimals="1" data-suffix="%">93.7%</span></span>
+      <span class="metric__label">Maze joint success</span>
+      <span class="metric__sub">independent → coupled · SigLIP2, maze-adapted</span>
+    </li>
+  </ul>
+  <p class="metrics__note">2.1B backbone <span aria-hidden="true">·</span> 224×224 <span aria-hidden="true">·</span> no LLM initialization</p>
+</section>
+
+<!-- ============================================================ 2. video + teaser -->
+<section class="section section--media" id="video" aria-label="Video and overview">
+  <figure class="promo">
+    <div class="promo__frame">
+      <!-- Files arrive from the video team. If they are missing, the inline handlers mark the
+           figure as missing and CSS hides it, leaving the overview figure below. -->
+      <video class="promo__video" playsinline controls preload="metadata"
+             poster="static/video/juice_promo_poster.webp"
+             aria-label="JUICE overview video, narrated, with captions"
+             onerror="this.closest('.promo').classList.add('is-missing')">
+        <source src="static/video/juice_promo.webm" type="video/webm">
+        <source src="static/video/juice_promo.mp4" type="video/mp4"
+                onerror="this.closest('.promo').classList.add('is-missing')">
+        <track kind="captions" srclang="en" label="English" src="static/video/juice_promo.en.vtt">
+      </video>
+    </div>
+    <figcaption>A narrated overview (captions in the player menu). Samples in the video are selected, 224×224.</figcaption>
+  </figure>
+
+  <figure class="fig fig--wide fig--pan" id="teaser">
+    <div class="plate">
+      <img src="static/img/fig/juice_teaser.webp"
+         srcset="static/img/fig/juice_teaser.webp 1000w, static/img/fig/juice_teaser@2x.webp 2000w"
+         sizes="(min-width: 1080px) 1000px, calc(100vw - 52px)"
+         width="2000" height="1319" decoding="async" fetchpriority="high" data-zoom="static/img/fig/juice_teaser@2x.webp"
+         alt="JUICE overview. Left: frozen image and text encoders feed one MM-RiT backbone with joint attention over image, text and time tokens, followed by frozen decoders. Right: text-to-image, visual question answering and maze generation use the same interface.">
+    </div>
+    <figcaption><strong>One backbone, every task.</strong> (a) Continuous image and text states from frozen encoders share one MM-RiT backbone through bidirectional joint attention. (b) Text-to-image, visual question answering and maze solving use the same interface: clean context sits at <i>t</i>&nbsp;=&nbsp;1 and targets are generated from <i>t</i>&nbsp;&lt;&nbsp;1. Samples are selected, 224×224.</figcaption>
+  </figure></section>
+
+<!-- ============================================================ 3. contents -->
+<section class="section section--contents" id="contents" aria-labelledby="contents-h">
+  <h2 class="label" id="contents-h">Contents</h2>
+  <ol class="contents">
+    <li><a class="ccard" href="#why" style="--accent: var(--ink)">
+      <span class="ccard__idx">01</span>
+      <span class="ccard__title">Why one process</span>
+      <span class="ccard__desc">Most unified models treat the two modalities asymmetrically. JUICE generates both with one process, learned together from scratch.</span>
+      <span class="ccard__subs"><span>1A The usual design</span><span>1B One process for both</span><span>1C Why encoder spaces</span></span>
+    </a></li>
+    <li><a class="ccard" href="#method" style="--accent: var(--joint)">
+      <span class="ccard__idx">02</span>
+      <span class="ccard__title">Joint modeling in pretrained representation spaces</span>
+      <span class="ccard__desc">Each modality gets its own noise level, every task is a path through one square, and one backbone reads and writes frozen encoder states.</span>
+      <span class="ccard__subs"><span>2A Two clocks, one square</span><span>2B The frozen encoders</span><span>2C The MM-RiT block</span><span>2D Decoders</span><span>2E Training and sampling</span></span>
+    </a></li>
+    <li><a class="ccard" href="#pretraining" style="--accent: var(--txt); --accent-ink: var(--txt-ink)">
+      <span class="ccard__idx">03</span>
+      <span class="ccard__title">Systematic design studies</span>
+      <span class="ccard__desc">Four open questions, settled by controlled pretraining runs, one takeaway each.</span>
+      <span class="ccard__subs"><span>3A Generative frameworks</span><span>3B Training task mixtures</span><span>3C Representation spaces</span><span>3D Scaling</span></span>
+    </a></li>
+    <li><a class="ccard" href="#results" style="--accent: var(--img)">
+      <span class="ccard__idx">04</span>
+      <span class="ccard__title">Scaling: one set of weights at 2.1B</span>
+      <span class="ccard__desc">Two 2.1B models, one per image space, each with one set of weights for generation and understanding.</span>
+      <span class="ccard__subs"><span>4A Image generation</span><span>4B Visual understanding</span><span>4C Selected samples</span></span>
+    </a></li>
+    <li><a class="ccard" href="#agreement" style="--accent: var(--agree); --accent-ink: var(--agree-ink)">
+      <span class="ccard__idx">05</span>
+      <span class="ccard__title">Joint reasoning</span>
+      <span class="ccard__desc">An image and its text, generated together and made to agree. The order becomes a choice at sampling time.</span>
+      <span class="ccard__subs"><span>5A Joint generation</span><span>5B Mazes with multiple solutions</span><span>5C Visual spatial planning</span><span>5D Order at sampling time</span></span>
+    </a></li>
+  </ol>
+</section>
+
+<!-- ============================================================ 4. §01 why one process -->
+<section class="section" id="why" style="--accent: var(--ink)" aria-labelledby="why-h">
+  <header class="section__head">
+    <p class="eyebrow">01</p>
+    <h2 id="why-h">Why one process</h2>
+    <p class="section__lead">Most unified models treat images and text asymmetrically. JUICE asks whether both can instead be generated by one process that is trained on them jointly from scratch.</p>
+  </header>
+
+  <div class="prose">
+    <h3 class="sub" id="usual"><span class="facet__idx">1A</span>The usual design</h3>
+    <p>In the dominant design, a pretrained autoregressive language model generates the text and drives a diffusion or flow matching head that generates the image; other models quantize images and generate both modalities as discrete tokens. Either way, the two modalities are generated by different processes or through a quantizer, and the joint distribution is factorized in a fixed order: an output that contains both an image and text is produced one modality after the other, and the first cannot be revised in light of the second. Vision is also usually added to a model that was first pretrained on language, although <a href="https://arxiv.org/abs/2608.05000">controlled studies of multimodal pretraining</a> find that late integration makes models lean on language priors and that training the modalities jointly from the start works better.</p>
+    <h3 class="sub" id="one-process"><span class="facet__idx">1B</span>One process for both</h3>
+    <p>JUICE takes the other route: a model that treats both modalities alike, generates them with one process, and learns them together from the start.</p>
+    <h3 class="sub" id="encoder-spaces"><span class="facet__idx">1C</span>Why encoder spaces</h3>
+    <p>Such a model needs two things: a space in which one process can generate both modalities, and a source of knowledge for a backbone trained without a language model. Frozen pretrained encoders provide both. Their spaces are continuous for images and text alike and carry visual and linguistic knowledge learned at scale, and recent studies find them to be good generative targets for vision and for language, although they were never built for generation.</p>
+    <p>In these spaces, one flow matching process generates both modalities with the same objective, the same features serve as targets and as context, and a model of the joint distribution also contains its conditionals. Giving each modality its own noise level turns this into one square of tasks (<a href="#square">§02</a>).</p>
+  </div>
+
+  <div class="table-block table-block--narrow">
+    <p class="table-cap" id="tab-why-cap"><strong>Two ways to build a unified model.</strong> Most unified models, as described above, and JUICE.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-labelledby="tab-why-cap">
+      <table class="results results--compare">
+        <thead><tr><th scope="col"></th><th scope="col">Most unified models</th><th scope="col">JUICE</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Text</th><td class="td-text">tokens from a pretrained language model</td><td class="td-text">continuous states of a frozen <span class="nobr">Flan-T5</span> encoder</td></tr>
+          <tr><th scope="row">Image</th><td class="td-text">an attached diffusion or flow matching head (or quantized tokens)</td><td class="td-text">continuous features of a frozen SigLIP2 or WebSSL-DINO encoder</td></tr>
+          <tr><th scope="row">Generation</th><td class="td-text">different processes, or a quantizer</td><td class="td-text">one flow matching process for both</td></tr>
+          <tr><th scope="row">Training</th><td class="td-text">vision usually added to a model pretrained on language</td><td class="td-text">both modalities together, from scratch</td></tr>
+          <tr><th scope="row">Image and text output</th><td class="td-text">one modality after the other, in a fixed order</td><td class="td-text">generated jointly; the order becomes a choice at sampling time (<a href="#order">§05</a>)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <p class="bridge">The table sums up the difference. <a href="#method">§02</a> builds the model on frozen encoder spaces; it leaves four design questions open, which <a href="#pretraining">§03</a> settles.</p>
+</section>
+
+<!-- ============================================================ 5. §02 joint modeling (square + backbone) -->
+<section class="section" id="method" style="--accent: var(--joint)" aria-labelledby="method-h">
+  <header class="section__head">
+    <p class="eyebrow">02</p>
+    <h2 id="method-h">Joint modeling in pretrained representation spaces</h2>
+    <p class="section__lead">One flow matching Transformer, trained from scratch, models the joint distribution of images and text in the continuous spaces of frozen pretrained encoders. With a noise level for each modality, every task is a path through one square, with no fixed generation order.</p>
+  </header>
+
+  <div class="prose"><h3 class="sub" id="square"><span class="facet__idx">2A</span>Two clocks, one square</h3></div>
+
+
+  <div class="prose">
+    <p>JUICE learns the joint distribution of an image representation and a text representation, both read from frozen encoders. One network takes the pair of noisy states and predicts both clean ones. Each modality keeps its own clock: an image time <i>t</i><sub>i</sub> and a text time <i>t</i><sub>t</sub>, each running from 0 (pure noise) to 1 (clean).</p>
+    <p>The two clocks span a unit square, and a task is a path through it. Text-to-image generation holds the text clean (<i>t</i><sub>t</sub>&nbsp;=&nbsp;1) and runs along the top edge. Captioning and VQA hold the image clean (<i>t</i><sub>i</sub>&nbsp;=&nbsp;1) and climb the right edge; for VQA the question also stays at <i>t</i>&nbsp;=&nbsp;1 while only the answer is generated. Joint generation starts in the corner where both streams are noise and crosses the interior to the corner where both are clean.</p>
+    <p>The joint path hugs the left side because the image schedule keeps the image noisier for longer. Training covers the same ground that sampling uses: conditional denoising on the edges, joint denoising in the interior. The samplers compared in <a href="#agreement">§05</a> are paths as well: generating one modality first runs along the edges, finishing one stream before conditioning the other on it, while coupled sampling crosses the interior and advances both streams in every backbone call. Separate timesteps per modality follow UniDiffuser; JUICE applies them to frozen encoder states for both modalities, with a backbone trained from scratch.</p>
+  </div>
+
+  <div class="widget" data-widget="time-square" data-src="static/data/time_square.json">
+    <figure class="widget__fallback ts-fallback">
+      <svg viewBox="0 0 440 400" role="img" aria-labelledby="tsf-title tsf-desc">
+        <title id="tsf-title">Tasks are paths through the square of noise levels</title>
+        <desc id="tsf-desc">Horizontal axis: image time from noise to clean. Vertical axis: text time. The top edge, where text is clean, is text-to-image generation. The right edge, where the image is clean, is captioning and VQA. A curve from the bottom-left to the top-right corner is joint generation, bending toward the left because the image stays noisier for longer.</desc>
+        <defs>
+          <linearGradient id="tsf-bg" x1="0" y1="1" x2="1" y2="0">
+            <stop offset="0" stop-color="var(--joint)" stop-opacity=".16"/>
+            <stop offset="1" stop-color="var(--joint)" stop-opacity=".02"/>
+          </linearGradient>
+          <marker id="tsf-arrow-j" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--joint)"/></marker>
+        </defs>
+        <rect x="64" y="24" width="320" height="320" fill="url(#tsf-bg)" stroke="var(--hairline-strong)"/>
+        <path class="ts-joint" d="M64.0 344.0 L65.0 336.0 L66.0 328.0 L67.0 320.0 L68.1 312.0 L69.3 304.0 L70.5 296.0 L71.8 288.0 L73.2 280.0 L74.6 272.0 L76.1 264.0 L77.7 256.0 L79.4 248.0 L81.2 240.0 L83.1 232.0 L85.1 224.0 L87.3 216.0 L89.6 208.0 L92.1 200.0 L94.8 192.0 L97.7 184.0 L100.9 176.0 L104.3 168.0 L108.0 160.0 L112.1 152.0 L116.5 144.0 L121.5 136.0 L126.9 128.0 L133.0 120.0 L139.9 112.0 L147.6 104.0 L156.4 96.0 L166.5 88.0 L178.3 80.0 L192.1 72.0 L208.7 64.0 L228.7 56.0 L253.6 48.0 L285.2 40.0 L326.8 32.0 L378.0 24.6" marker-end="url(#tsf-arrow-j)"/>
+        <g class="ts-steps">
+          <circle cx="69.3" cy="304" r="3.6"/><circle cx="76.1" cy="264" r="3.6"/><circle cx="85.1" cy="224" r="3.6"/><circle cx="97.7" cy="184" r="3.6"/>
+        </g>
+        <path class="ts-edge ts-edge--img" d="M68 24H372"/>
+        <path class="ts-edge ts-edge--txt" d="M384 340V36"/>
+        <circle class="ts-corner" cx="384" cy="24" r="5"/>
+        <text class="ts-lab ts-lab--img" x="224" y="14" text-anchor="middle">Text → Image (<tspan font-style="italic">t</tspan><tspan baseline-shift="sub" font-size="9">t</tspan> = 1)</text>
+        <text class="ts-lab ts-lab--txt" transform="translate(402 184) rotate(90)" text-anchor="middle">Captioning, VQA (<tspan font-style="italic">t</tspan><tspan baseline-shift="sub" font-size="9">i</tspan> = 1)</text>
+        <text class="ts-lab ts-lab--joint" x="122" y="214">joint generation</text>
+        <text class="ts-note" x="110" y="244">steps 8, 16, 24, 32 of 64</text>
+        <text class="ts-tick" x="64" y="362" text-anchor="middle">0</text>
+        <text class="ts-tick" x="384" y="362" text-anchor="middle">1</text>
+        <text class="ts-tick" x="52" y="348" text-anchor="end">0</text>
+        <text class="ts-tick" x="52" y="30" text-anchor="end">1</text>
+        <text class="ts-axis" x="224" y="388" text-anchor="middle">image time <tspan font-style="italic">t</tspan><tspan baseline-shift="sub" font-size="9">i</tspan>  (noise → clean)</text>
+        <text class="ts-axis" transform="translate(28 184) rotate(-90)" text-anchor="middle">text time <tspan font-style="italic">t</tspan><tspan baseline-shift="sub" font-size="9">t</tspan>  (noise → clean)</text>
+      </svg>
+      <figcaption><strong>Tasks are paths through one square.</strong> The joint curve is the real SigLIP2 schedule, <i>t</i><sub>i</sub>&nbsp;=&nbsp;S<sub>α</sub>(<i>t</i><sub>t</sub>) with α&nbsp;=&nbsp;8.485; dots mark sampling steps 8, 16, 24 and 32 of 64.</figcaption>
+    </figure>
+  </div>
+
+  <div class="prose">
+    <h3 class="sub sub--gap">One backbone over frozen encoders</h3>
+    <p>Under the square sits one network, MM-RiT, a flow matching Transformer that reads and writes the states of frozen encoders. Everything else stays fixed while it trains; the decoders are trained separately.</p>
+  </div>
+
+
+  <div class="split" id="backbone">
+    <figure class="fig fig--arch">
+    <div class="plate">
+      <img src="static/img/fig/teaser_arch.webp"
+           srcset="static/img/fig/teaser_arch.webp 640w, static/img/fig/teaser_arch@2x.webp 1272w"
+           sizes="(min-width: 960px) 420px, calc(100vw - 52px)"
+           width="1272" height="1448" loading="lazy" decoding="async" data-zoom="static/img/fig/teaser_arch@2x.webp"
+           alt="Architecture: image and text are encoded by frozen encoders, normalized and noised with their own scale and time, processed by MM-RiT blocks with per-modality projections and one joint attention over image, text and time tokens, then mapped back by frozen decoders.">
+    </div>
+    <figcaption><strong>Architecture.</strong> Flame: trained. Cube: frozen.</figcaption>
+  </figure><div class="split__text">
+      <div class="facet">
+        <h3><span class="facet__idx">2B</span> The frozen encoders</h3>
+        <p>MM-RiT reads and writes the states of pretrained encoders: one image encoder per model and the Flan-T5 encoder for text (<a href="#why">§01</a> explains why these spaces). The encoders are never finetuned, so the same features serve as targets to generate and as context to condition on. Each modality gets its own noise scale and schedule.</p>
+        <ul class="facts">
+          <li><span>Image</span><span>SigLIP2-SO400M (256&nbsp;×&nbsp;1152) or WebSSL-DINO300M (256&nbsp;×&nbsp;1024)</span></li>
+          <li><span>Text</span><span>Flan-T5-Small encoder (128&nbsp;×&nbsp;512)</span></li>
+          <li><span>Noise</span><span>σ<sub>i</sub>&nbsp;=&nbsp;1, σ<sub>t</sub>&nbsp;=&nbsp;2; image schedule shifted by α&nbsp;=&nbsp;√(<i>n</i>·<i>d</i>/4096), text unshifted</span></li>
+        </ul>
+      </div>
+      <div class="facet">
+        <h3><span class="facet__idx">2C</span> The MM-RiT block</h3>
+        <p>Each block gives image and text their own Q/K/V projections, concatenates the two sequences for one bidirectional joint attention, and splits them again into separate output projections and SwiGLU feedforward networks. RMSNorm replaces AdaLN. Two signals tell the network which positions are conditions and which are targets: a time embedding added to every token (<i>t</i>&nbsp;=&nbsp;1 at clean positions), and four learned time tokens per modality that join the attention.</p>
+      </div>
+      <div class="facet">
+        <h3><span class="facet__idx">2D</span> Decoders</h3>
+        <p>Generated image states go through the Scale-RAE decoder that matches the encoder. Text states go through a lightweight parallel decoder that maps all 128 positions to tokens in one forward pass. On short VQA answers it is <span class="nobr">3.9–6.4×</span> faster than an autoregressive readout of the same states (bf16, one A100), and <span class="nobr">54–163×</span> faster on captions of about 85 tokens, while open-answer VQA accuracy stays within 1.5 points.</p>
+      </div>
+      <div class="facet">
+        <h3><span class="facet__idx">2E</span> Training and sampling</h3>
+        <p>MM-RiT is trained on a mixture of three denoising tasks. Joint denoising draws a noise level for each modality and corrupts both streams, which covers the interior of the square and teaches the joint distribution; conditional text-to-image and image-to-text keep one modality clean at <i>t</i>&nbsp;=&nbsp;1, which covers the edges. At inference, conditions stay at <i>t</i>&nbsp;=&nbsp;1 and targets are integrated from noise. Classifier-free guidance needs no learned null token: the reference replaces the condition with an input the model already handles (the image at its noise end, or the caption “a photo.”), with <i>w</i>&nbsp;=&nbsp;5 for text-to-image and <i>w</i>&nbsp;=&nbsp;3 for captioning and VQA. In joint generation, coupled sampling computes both velocity fields from the current joint state before either stream moves (<a href="#agreement">§05</a>).</p>
+      </div>
+      <p class="note">“2.1B” counts the trainable MM-RiT backbone only. With the frozen encoders and decoders loaded, the SigLIP2 model has about 3.03B parameters (DINO: 2.91B).</p>
+    </div>
+  </div>
+
+
+
+  <p class="bridge">Four choices in this design are not settled by earlier unified models: how text is generated, which tasks are trained, which encoder spaces are read and written, and whether the answers hold as the model grows. <a href="#pretraining">§03</a> settles them with controlled runs.</p>
+</section>
+
+<!-- ============================================================ 6. §03 systematic design studies -->
+<section class="section" id="pretraining" style="--accent: var(--txt); --accent-ink: var(--txt-ink)" aria-labelledby="pretraining-h">
+  <header class="section__head">
+    <p class="eyebrow">03</p>
+    <h2 id="pretraining-h">Systematic design studies</h2>
+    <p class="section__lead">Building JUICE meant answering four questions that existing unified models leave open: whether text should be generated as continuous states or kept as tokens, which denoising tasks to train on, which encoder spaces to read and write, and whether these answers still hold as the model grows. Each is settled with controlled pretraining runs: a 668M reference backbone (179M to 2.1B in the scaling study), 50k updates, one choice changed at a time, each configuration run once.</p>
+  </header>
+
+  <!-- T1 -->
+  <article class="takeaway" id="t1" style="--accent: var(--txt); --accent-ink: var(--txt-ink)">
+    <div class="prose">
+      <h3 class="sub"><span class="facet__idx">3A</span>Generative frameworks</h3>
+      <p class="sub__q">Should text be generated as continuous states, or kept as tokens?</p>
+    </div>
+  <details class="study" style="--accent: var(--ink)">
+    <summary>
+      <span class="chip">Study setup</span>
+      <span class="study__title">Four ways to build a unified model</span>
+      <span class="study__hint" aria-hidden="true"><span class="when-closed">Show details</span><span class="when-open">Hide</span></span>
+    </summary>
+    <div class="study__body">
+      <p>The pretraining study compares JUICE with three frameworks that keep text discrete, all on the same 668M trunk with two streams, the same data, task ratios and schedule: Transfusion-style (autoregressive text, flow matching images), D-DiT-style (masked text diffusion, flow matching images) and MMaDA-style (masked diffusion for both, over vector-quantized image codes). Takeaway 1 below reports what happened.</p>
+      <figure class="fig fig--compact">
+    <div class="plate">
+      <img src="static/img/fig/fig_four_architectures.webp"
+             srcset="static/img/fig/fig_four_architectures.webp 800w, static/img/fig/fig_four_architectures@2x.webp 1600w"
+             sizes="(min-width: 900px) 760px, calc(100vw - 72px)"
+             width="1600" height="1165" loading="lazy" decoding="async" data-zoom="static/img/fig/fig_four_architectures@2x.webp"
+             alt="Four frameworks compared at 668M: (a) JUICE with continuous image and text states; (b) Transfusion-style with autoregressive text; (c) D-DiT-style with masked text diffusion; (d) MMaDA-style with masked diffusion over VQ image codes and text tokens.">
+    </div>
+    <figcaption><strong>The four frameworks of the pretraining study.</strong> Only (a) generates text as continuous states.</figcaption>
+  </figure></div>
+  </details>
+
+  <figure class="fig fig--pan">
+    <div class="plate">
+      <img src="static/img/fig/fig_paradigm_training.webp"
+           srcset="static/img/fig/fig_paradigm_training.webp 900w, static/img/fig/fig_paradigm_training@2x.webp 1800w"
+           sizes="(min-width: 960px) 864px, calc(100vw - 52px)"
+           width="1800" height="598" loading="lazy" decoding="async" data-zoom="static/img/fig/fig_paradigm_training@2x.webp"
+           alt="Training curves over 50k updates for four frameworks on GenEval, DPG-Bench, CIDEr and CLIPScore. JUICE is highest on GenEval and DPG-Bench; the Transfusion-style framework with autoregressive text is far ahead on CIDEr.">
+    </div>
+    <figcaption><strong>Four frameworks over training (668M).</strong> JUICE leads GenEval and DPG-Bench at every checkpoint and ends lowest on CIDEr, far behind autoregressive text.</figcaption>
+  </figure>
+    <div class="prose">
+      <p>Of four generative frameworks, only the one that writes text as continuous states keeps GenEval level with a model trained only for text-to-image generation (48.41 vs 47.86 at the same guidance scale). The three frameworks that write text as tokens all fall below it, even with the same frozen T5 condition. The price is exact wording: CIDEr is 88.80 against 160.52 for autoregressive text, while CLIPScore is on par (80.20 vs 80.37).</p>
+      <p>So the captions describe the image as well as autoregressive ones but word it differently from the references, which is what you would expect when errors in a continuous state drift toward nearby states with a similar meaning. With guidance tuned per model, the text-to-image-only model peaks at 51.23 and leads by 2.8 points.</p>
+    </div>
+    <div class="tbox tbox--end">
+      <p class="tbox__label">Takeaway 1 <span aria-hidden="true">·</span> Generative frameworks</p>
+      <p class="tbox__text">Continuous text spares images but costs wording.</p>
+    </div>
+  </article>
+
+  <!-- T2 -->
+  <article class="takeaway" id="t2" style="--accent: var(--joint); --accent-ink: var(--joint)">
+    <div class="prose">
+      <h3 class="sub"><span class="facet__idx">3B</span>Training task mixtures</h3>
+      <p class="sub__q">Which denoising tasks should training cover?</p>
+    </div>
+  <div class="widget" data-widget="train-coverage" data-src="static/data/coverage.json">
+      <figure class="widget__fallback fig fig--pan" data-persist>
+        <div class="plate plate--flush">
+          <img src="static/img/fig/fig_taskmix_training.webp"
+               srcset="static/img/fig/fig_taskmix_training.webp 900w, static/img/fig/fig_taskmix_training@2x.webp 1800w"
+               sizes="(min-width: 960px) 864px, calc(100vw - 52px)"
+               width="1800" height="598" loading="lazy" decoding="async" data-zoom="static/img/fig/fig_taskmix_training@2x.webp"
+               alt="Training curves over 50k updates for Mixing and Multi-task on GenEval, DPG-Bench, CIDEr and CLIPScore. Mixing stays above Multi-task on all four.">
+        </div>
+        <figcaption><strong>Joint plus conditional training leads conditional training alone throughout pretraining.</strong> Mixing combines joint, text-to-image and image-to-text denoising; Multi-task uses the two conditional tasks only. Curves at guidance 5.</figcaption>
+      </figure>
+    </div>
+    <div class="prose">
+      <p>Sampling uses both the edges of the square and its interior, so training has to cover both. With each recipe at its best guidance scale, Mixing (55.6% joint, 22.2% text-to-image, 22.2% image-to-text) reaches 48.41 GenEval, Multi-task (edges only) 44.29, and Joint only (interior only) 31.33. Joint only never sees the exactly clean condition that conditional inference hands it; Multi-task never trains on the interior that joint sampling crosses.</p>
+      <p>Mixing also supervises each modality more often (77.8% of examples vs 50%), so the study controls for that. Replacing joint examples with matched conditional ones, or blocking cross-modal attention on them, falls 2.51 and 2.92 GenEval short of Mixing. The joint examples give more than extra supervision.</p>
+    </div>
+    <div class="tbox tbox--end">
+      <p class="tbox__label">Takeaway 2 <span aria-hidden="true">·</span> Training task mixtures</p>
+      <p class="tbox__text">Train where you sample.</p>
+    </div>
+  </article>
+
+  <!-- T3 -->
+  <article class="takeaway" id="t3" style="--accent: var(--img); --accent-ink: var(--img)">
+    <div class="prose">
+      <h3 class="sub"><span class="facet__idx">3C</span>Representation spaces</h3>
+      <p class="sub__q">Which encoder spaces should the model read and write?</p>
+    </div>
+  <figure class="fig fig--pan">
+    <div class="plate">
+      <img src="static/img/fig/fig_encoder_comparison.webp"
+           srcset="static/img/fig/fig_encoder_comparison.webp 900w, static/img/fig/fig_encoder_comparison@2x.webp 1800w"
+           sizes="(min-width: 960px) 864px, calc(100vw - 52px)"
+           width="1800" height="744" loading="lazy" decoding="async" data-zoom="static/img/fig/fig_encoder_comparison@2x.webp"
+           alt="Bar charts at 668M. Image spaces with T5 text: SigLIP2 and DINO far ahead of FLUX VAE latents and raw pixels on all four metrics. Text spaces with SigLIP2 images: Flan-T5 leads Qwen3-Embedding, Qwen3-VL-Embedding and SigLIP2 text features.">
+    </div>
+    <figcaption><strong>Representation spaces at 668M.</strong> Top: image spaces with T5 text. Bottom: text spaces with SigLIP2 images.</figcaption>
+  </figure>
+    <div class="prose">
+      <p>Good reconstruction does not make a good generation space. The FLUX VAE has the best rFID among the learned spaces (0.288 vs 0.435 for SigLIP2), yet GenEval in it drops to 35.42, from 48.41 with SigLIP2; raw pixels reach 24.48. SigLIP2 and DINO are close on generation (48.41 vs 49.07), and SigLIP2's alignment with language shows in captioning, 20.0 CIDEr ahead.</p>
+      <p>The text side tells a similar story. Flan-T5 states beat larger embedding models (Qwen3-Embedding trails by 5.3 GenEval) and SigLIP2's own text features (33.08 GenEval), even though every one of these spaces lets a decoder recover <span class="nobr">97.5–99.2%</span> of the tokens.</p>
+    </div>
+    <div class="tbox tbox--end">
+      <p class="tbox__label">Takeaway 3 <span aria-hidden="true">·</span> Representation spaces</p>
+      <p class="tbox__text">Semantics over reconstruction.</p>
+    </div>
+  </article>
+
+  <!-- T4 -->
+  <article class="takeaway" id="t4" style="--accent: var(--sig); --accent-ink: var(--sig)">
+    <div class="prose">
+      <h3 class="sub"><span class="facet__idx">3D</span>Scaling</h3>
+      <p class="sub__q">Do these preferences survive as the model grows?</p>
+    </div>
+  <figure class="fig fig--pan">
+    <div class="plate">
+      <img src="static/img/fig/fig_scaling.webp"
+           srcset="static/img/fig/fig_scaling.webp 900w, static/img/fig/fig_scaling@2x.webp 1800w"
+           sizes="(min-width: 960px) 864px, calc(100vw - 52px)"
+           width="1800" height="600" loading="lazy" decoding="async" data-zoom="static/img/fig/fig_scaling@2x.webp"
+           alt="Four panels from 179M to 2.1B backbone parameters, SigLIP2 versus DINO. DINO leads GenEval at small scale and SigLIP2 overtakes at 2.1B; SigLIP2 leads CIDEr and CLIPScore at every size.">
+    </div>
+    <figcaption><strong>Scaling the backbone from 179M to 2.1B</strong> (pretraining, 50k updates). DPG-Bench in this figure uses the time-swap text reference.</figcaption>
+  </figure>
+    <div class="prose">
+      <p>At 179M, DINO is far ahead on GenEval (32.90 vs 18.99 for SigLIP2). The gap closes as the backbone grows, the two tie at 1.33B, and at 2.1B the order has flipped (SigLIP2 56.81 vs DINO 52.78). Captioning never flips: SigLIP2 leads CLIPScore at every size and ends at 86.64 against 72.32.</p>
+      <p>After finetuning, the two 2.1B models differ by less than 0.02 GenEval (DINO 0.88, SigLIP2 0.87), so neither image space keeps a clear generation advantage, while SigLIP2 leads on almost every understanding benchmark.</p>
+    </div>
+    <div class="tbox tbox--end">
+      <p class="tbox__label">Takeaway 4 <span aria-hidden="true">·</span> Scaling</p>
+      <p class="tbox__text">Scale reorders image spaces for generation, not captioning.</p>
+    </div>
+  </article>
+  <p class="bridge">With these four answers the recipe is fixed: text as continuous states, joint plus conditional training, and semantic encoder spaces (SigLIP2 or DINO for images, Flan-T5 for text). <a href="#results">§04</a> scales it to 2.1B.</p>
+</section>
+
+<!-- ============================================================ 7. §04 scaling -->
+<section class="section" id="results" style="--accent: var(--img)" aria-labelledby="results-h">
+  <header class="section__head">
+    <p class="eyebrow">04</p>
+    <h2 id="results-h">Scaling: one set of weights at 2.1B</h2>
+    <p class="section__lead">With these answers in hand, two 2.1B models are trained, one per image space. At 224×224 and with no LLM initialization, each uses one set of weights for compositional image generation, generation that needs world knowledge, and visual question answering.</p>
+  </header>
+
+  <div class="prose">
+    <p>Each model is pretrained with the recipe above for 60k updates, then finetuned for 15k updates on 20.6M text-to-image and visual understanding examples. Text-to-image uses 25 Euler steps with guidance 5; VQA uses 16 steps with guidance 3, and the parallel decoder reads out all answer positions at once. The tables compare with unified models of <span class="nobr">1–3B</span> parameters.</p>
+  </div>
+
+  <div class="prose"><h3 class="sub" id="image-generation"><span class="facet__idx">4A</span>Image generation</h3></div>
+  <div class="table-block">
+    <p class="table-cap" id="tab-gen-cap"><strong>Image generation.</strong> GenEval (<span class="nobr">0–1</span>), DPG-Bench (%) and WISE (<span class="nobr">0–1</span>) against unified models of <span class="nobr">1–3B</span>. JUICE samples 224×224 images. Its size counts the trainable backbone only (about 3.03B SigLIP2 / 2.91B DINO fully loaded); baseline sizes are as reported.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-labelledby="tab-gen-cap">
+      <table class="results">
+        <thead>
+          <tr class="group"><th scope="col" rowspan="2">Model</th><th scope="col" rowspan="2">Size</th><th scope="colgroup" colspan="3">GenEval ↑</th><th scope="col" rowspan="2">DPG ↑</th><th scope="col" rowspan="2">WISE ↑</th></tr>
+          <tr><th scope="col">Overall</th><th scope="col">Count</th><th scope="col">Position</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Muddit</th><td>1B</td><td>0.61</td><td>0.54</td><td>0.19</td><td>–</td><td>–</td></tr>
+          <tr><th scope="row">OneFlow (Mixed)</th><td>1B</td><td>–</td><td>–</td><td>–</td><td>80.30</td><td>–</td></tr>
+          <tr><th scope="row">Show-o</th><td>1.3B</td><td>0.68</td><td>0.66</td><td>0.31</td><td>–</td><td>0.35<sup>a</sup></td></tr>
+          <tr><th scope="row">JanusFlow</th><td>1.3B</td><td>–</td><td>–</td><td>–</td><td>–</td><td>0.18</td></tr>
+          <tr><th scope="row">UniDisc</th><td>1.4B</td><td>0.42</td><td>0.15</td><td>0.13</td><td>–</td><td>–</td></tr>
+          <tr><th scope="row">FUDOKI</th><td>1.5B</td><td>0.77</td><td>0.56</td><td>0.68</td><td>83.63</td><td>–</td></tr>
+          <tr><th scope="row">Janus-Pro-1B</th><td>1.5B</td><td>0.73</td><td>0.51</td><td>0.65</td><td>82.63</td><td>0.26</td></tr>
+          <tr><th scope="row">Show-o2</th><td>1.5B</td><td>0.73</td><td>0.55</td><td>0.46</td><td>85.02</td><td>0.35</td></tr>
+          <tr><th scope="row">Harmon</th><td>1.5B</td><td>0.76</td><td>0.66</td><td>0.74</td><td>–</td><td>0.41</td></tr>
+          <tr><th scope="row">TUNA</th><td>1.5B</td><td><b>0.88</b></td><td><b>0.83</b></td><td>0.81</td><td><b>86.03</b></td><td>–</td></tr>
+          <tr><th scope="row">D-DiT</th><td>2.1B</td><td>0.65</td><td>0.54</td><td>0.32</td><td>–</td><td>–</td></tr>
+          <tr class="is-ours"><th scope="row">JUICE <span class="tag tag--sig">SigLIP2</span></th><td>2.1B</td><td>0.87</td><td>0.78</td><td><b>0.85</b></td><td>85.27</td><td><b>0.45</b></td></tr>
+          <tr class="is-ours"><th scope="row">JUICE <span class="tag tag--dino">DINO</span></th><td>2.1B</td><td><b>0.88</b></td><td>0.81</td><td><b>0.85</b></td><td>84.55</td><td>0.37</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul class="table-notes">
+      <li>GenEval: the DINO variant ties TUNA at 0.88; TUNA still leads on counting and attribute binding. Both JUICE variants have the highest position score (0.85). Overall GenEval moves by at most 0.003 between 25 and 100 sampling steps.</li>
+      <li>DPG-Bench: 85.27 is above Show-o2 (85.02) and below TUNA (86.03).</li>
+      <li>WISE: 0.45 is the highest overall score among <span class="nobr">1–3B</span> unified models that report one. Two larger references score higher, FLUX.1-dev (12B, text-to-image only) 0.50 and BAGEL 0.52, while Janus-Pro-7B scores 0.35. GPT-4o judge; the 95% CI on JUICE's score is about ±0.02. <sup>a</sup>Show-o at 512².</li>
+    </ul>
+  </div>
+
+  <div class="prose"><h3 class="sub" id="visual-understanding"><span class="facet__idx">4B</span>Visual understanding</h3></div>
+  <div class="table-block">
+    <p class="table-cap" id="tab-und-cap"><strong>Visual understanding.</strong> Accuracy (%) against unified models of <span class="nobr">1–3B</span>. Init: what the model starts from. JUICE sees 224×224 images.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-labelledby="tab-und-cap">
+      <table class="results">
+        <thead>
+          <tr><th scope="col">Model</th><th scope="col">Size</th><th scope="col">Init</th><th scope="col">Res.</th><th scope="col">VQAv2 ↑</th><th scope="col">GQA ↑</th><th scope="col">MMBench ↑</th><th scope="col">AI2D ↑</th><th scope="col">MMMU ↑</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Muddit</th><td>1B</td><td>T2I</td><td>512²</td><td>68.2</td><td>57.5</td><td>–</td><td>–</td><td>27.6</td></tr>
+          <tr><th scope="row">OneFlow</th><td>1B</td><td>LLM</td><td>512²</td><td>67.7</td><td>57.8</td><td>69.0</td><td>58.5</td><td>29.8</td></tr>
+          <tr><th scope="row">Show-o</th><td>1.3B</td><td>LLM</td><td>256²</td><td>64.7</td><td>54.2</td><td>–</td><td>–</td><td>25.0</td></tr>
+          <tr><th scope="row">Show-o</th><td>1.3B</td><td>LLM</td><td>512²</td><td>69.4</td><td>58.0</td><td>–</td><td>–</td><td>26.7</td></tr>
+          <tr><th scope="row">JanusFlow</th><td>1.3B</td><td>LLM</td><td>384²</td><td><b>79.8</b></td><td>60.3</td><td>74.9</td><td>–</td><td>29.3</td></tr>
+          <tr><th scope="row">Harmon</th><td>1.5B</td><td>LLM</td><td>512²</td><td>–</td><td>58.9</td><td>65.5</td><td>–</td><td>38.9</td></tr>
+          <tr><th scope="row">FUDOKI</th><td>1.5B</td><td>LLM</td><td>384²</td><td>–</td><td>57.6</td><td>73.9</td><td>–</td><td>34.3</td></tr>
+          <tr><th scope="row">Janus-Pro-1B</th><td>1.5B</td><td>LLM</td><td>384²</td><td>–</td><td>59.3</td><td><b>75.5</b></td><td>–</td><td>36.3</td></tr>
+          <tr><th scope="row">Show-o2</th><td>1.5B</td><td>LLM</td><td>432²</td><td>–</td><td>60.0</td><td>67.4</td><td>69.0</td><td>37.1</td></tr>
+          <tr><th scope="row">TUNA</th><td>1.5B</td><td>LLM</td><td>512²</td><td>–</td><td><b>61.4</b></td><td>–</td><td><b>71.4</b></td><td><b>39.1</b></td></tr>
+          <tr><th scope="row">D-DiT</th><td>2.1B</td><td>T2I</td><td>256²</td><td>59.5</td><td>55.1</td><td>–</td><td>–</td><td>–</td></tr>
+          <tr><th scope="row">D-DiT</th><td>2.1B</td><td>T2I</td><td>512²</td><td>60.1</td><td>59.2</td><td>–</td><td>–</td><td>–</td></tr>
+          <tr class="is-ours"><th scope="row">JUICE <span class="tag tag--sig">SigLIP2</span></th><td>2.1B</td><td>None</td><td>224²</td><td>73.1</td><td>58.6</td><td>66.0</td><td>34.4</td><td>29.6</td></tr>
+          <tr class="is-ours"><th scope="row">JUICE <span class="tag tag--dino">DINO</span></th><td>2.1B</td><td>None</td><td>224²</td><td>68.8</td><td>55.7</td><td>55.8</td><td>31.9</td><td>31.5</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul class="table-notes">
+      <li>The SigLIP2 variant is competitive on several perception benchmarks (VQAv2 73.1, GQA 58.6, MMBench 66.0) and weak where domain knowledge matters (AI2D 34.4, MMMU 29.6). Every other model here starts from a pretrained language or text-to-image model.</li>
+      <li>Sizes for JUICE count the trainable backbone; fully loaded with frozen encoders and decoders it is about 3.03B (SigLIP2) or 2.91B (DINO). Baseline sizes as reported.</li>
+    </ul>
+  </div>
+
+  <div class="prose"><h3 class="sub" id="samples"><span class="facet__idx">4C</span>Selected samples</h3></div>
+<!-- GALLERY:START (generated by _build/build_gallery.py; edit the script, not this block) -->
+<div class="gallery">
+  <div class="pills" role="tablist" aria-label="Sample type">
+    <button class="pill" type="button" role="tab" id="tab-g-t2i" aria-controls="g-t2i" aria-selected="true" tabindex="0">Text → Image</button>
+    <button class="pill" type="button" role="tab" id="tab-g-wise" aria-controls="g-wise" aria-selected="false" tabindex="-1">World knowledge</button>
+    <button class="pill" type="button" role="tab" id="tab-g-vqa" aria-controls="g-vqa" aria-selected="false" tabindex="-1">VQA</button>
+    <button class="pill" type="button" role="tab" id="tab-g-cap" aria-controls="g-cap" aria-selected="false" tabindex="-1">Captions</button>
+  </div>
+<section class="gpanel" role="tabpanel" id="g-t2i" aria-labelledby="tab-g-t2i">
+  <h4 class="gpanel__title">Text → Image</h4>
+  <div class="pills pills--sub" role="tablist" aria-label="Image space">
+    <button class="pill pill--sig" type="button" role="tab" id="tab-g-t2i-sig" aria-controls="g-t2i-sig" aria-selected="true" tabindex="0">SigLIP2</button>
+    <button class="pill pill--dino" type="button" role="tab" id="tab-g-t2i-dino" aria-controls="g-t2i-dino" aria-selected="false" tabindex="-1">DINO</button>
+  </div>
+  <div role="tabpanel" id="g-t2i-sig" aria-labelledby="tab-g-t2i-sig">
+    <p class="vlabel vlabel--sig">SigLIP2 variant</p>
+    <div class="grid-t2i">
+<figure class="t2i"><img class="sample-img" src="static/img/samples/t2i/astronaut_siglip.webp" srcset="static/img/samples/t2i/astronaut_siglip.webp 1x, static/img/samples/t2i/astronaut_siglip@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="SigLIP2 sample for the prompt: an astronaut riding a horse on the surface of the moon, Earth rising in the background" data-zoom="static/img/samples/t2i/astronaut_siglip@2x.webp" data-caption="SigLIP2 · “an astronaut riding a horse on the surface of the moon, Earth rising in the background” · selected, 224×224" data-sample><figcaption>an astronaut riding a horse on the surface of the moon, Earth rising in the background</figcaption></figure>
+<figure class="t2i"><img class="sample-img" src="static/img/samples/t2i/ukiyoe_siglip.webp" srcset="static/img/samples/t2i/ukiyoe_siglip.webp 1x, static/img/samples/t2i/ukiyoe_siglip@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="SigLIP2 sample for the prompt: a ukiyo-e woodblock print of a great wave crashing beside a red lighthouse under a full moon" data-zoom="static/img/samples/t2i/ukiyoe_siglip@2x.webp" data-caption="SigLIP2 · “a ukiyo-e woodblock print of a great wave crashing beside a red lighthouse under a full moon” · selected, 224×224" data-sample><figcaption>a ukiyo-e woodblock print of a great wave crashing beside a red lighthouse under a full moon</figcaption></figure>
+<figure class="t2i"><img class="sample-img" src="static/img/samples/t2i/art_nouveau_siglip.webp" srcset="static/img/samples/t2i/art_nouveau_siglip.webp 1x, static/img/samples/t2i/art_nouveau_siglip@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="SigLIP2 sample for the prompt: an art nouveau poster of a peacock among white lilies, gold and teal palette, ornate border" data-zoom="static/img/samples/t2i/art_nouveau_siglip@2x.webp" data-caption="SigLIP2 · “an art nouveau poster of a peacock among white lilies, gold and teal palette, ornate border” · selected, 224×224" data-sample><figcaption>an art nouveau poster of a peacock among white lilies, gold and teal palette, ornate border</figcaption></figure>
+<figure class="t2i"><img class="sample-img" src="static/img/samples/t2i/tortoise_siglip.webp" srcset="static/img/samples/t2i/tortoise_siglip.webp 1x, static/img/samples/t2i/tortoise_siglip@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="SigLIP2 sample for the prompt: a giant tortoise carrying a tiny forest with a cabin on its shell, walking across a meadow" data-zoom="static/img/samples/t2i/tortoise_siglip@2x.webp" data-caption="SigLIP2 · “a giant tortoise carrying a tiny forest with a cabin on its shell, walking across a meadow” · selected, 224×224" data-sample><figcaption>a giant tortoise carrying a tiny forest with a cabin on its shell, walking across a meadow</figcaption></figure>
+<figure class="t2i"><img class="sample-img" src="static/img/samples/t2i/cyberpunk_siglip.webp" srcset="static/img/samples/t2i/cyberpunk_siglip.webp 1x, static/img/samples/t2i/cyberpunk_siglip@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="SigLIP2 sample for the prompt: a rain-soaked cyberpunk alley with holographic signs and a steaming noodle stand, teal and magenta light" data-zoom="static/img/samples/t2i/cyberpunk_siglip@2x.webp" data-caption="SigLIP2 · “a rain-soaked cyberpunk alley with holographic signs and a steaming noodle stand, teal and magenta light” · selected, 224×224" data-sample><figcaption>a rain-soaked cyberpunk alley with holographic signs and a steaming noodle stand, teal and magenta light</figcaption></figure>
+<figure class="t2i"><img class="sample-img" src="static/img/samples/t2i/donuts_siglip.webp" srcset="static/img/samples/t2i/donuts_siglip.webp 1x, static/img/samples/t2i/donuts_siglip@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="SigLIP2 sample for the prompt: a photo of four donuts" data-zoom="static/img/samples/t2i/donuts_siglip@2x.webp" data-caption="SigLIP2 · “a photo of four donuts” · selected, 224×224" data-sample><figcaption>a photo of four donuts</figcaption></figure>
+<figure class="t2i"><img class="sample-img" src="static/img/samples/t2i/matte_fantasy_siglip.webp" srcset="static/img/samples/t2i/matte_fantasy_siglip.webp 1x, static/img/samples/t2i/matte_fantasy_siglip@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="SigLIP2 sample for the prompt: a crystal castle on a floating island above the clouds at golden hour, matte painting" data-zoom="static/img/samples/t2i/matte_fantasy_siglip@2x.webp" data-caption="SigLIP2 · “a crystal castle on a floating island above the clouds at golden hour, matte painting” · selected, 224×224" data-sample><figcaption>a crystal castle on a floating island above the clouds at golden hour, matte painting</figcaption></figure>
+<figure class="t2i"><img class="sample-img" src="static/img/samples/t2i/stained_glass_siglip.webp" srcset="static/img/samples/t2i/stained_glass_siglip.webp 1x, static/img/samples/t2i/stained_glass_siglip@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="SigLIP2 sample for the prompt: a stained-glass window depicting a red fox in an autumn forest" data-zoom="static/img/samples/t2i/stained_glass_siglip@2x.webp" data-caption="SigLIP2 · “a stained-glass window depicting a red fox in an autumn forest” · selected, 224×224" data-sample><figcaption>a stained-glass window depicting a red fox in an autumn forest</figcaption></figure>
+<figure class="t2i"><img class="sample-img" src="static/img/samples/t2i/suitcase_siglip.webp" srcset="static/img/samples/t2i/suitcase_siglip.webp 1x, static/img/samples/t2i/suitcase_siglip@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="SigLIP2 sample for the prompt: a photo of a suitcase left of a banana" data-zoom="static/img/samples/t2i/suitcase_siglip@2x.webp" data-caption="SigLIP2 · “a photo of a suitcase left of a banana” · selected, 224×224" data-sample><figcaption>a photo of a suitcase left of a banana</figcaption></figure>
+<figure class="t2i"><img class="sample-img" src="static/img/samples/t2i/honey_siglip.webp" srcset="static/img/samples/t2i/honey_siglip.webp 1x, static/img/samples/t2i/honey_siglip@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="SigLIP2 sample for the prompt: a glass jar of honey with a wooden dipper beside a honeycomb, backlit by the sun" data-zoom="static/img/samples/t2i/honey_siglip@2x.webp" data-caption="SigLIP2 · “a glass jar of honey with a wooden dipper beside a honeycomb, backlit by the sun” · selected, 224×224" data-sample><figcaption>a glass jar of honey with a wooden dipper beside a honeycomb, backlit by the sun</figcaption></figure>
+<figure class="t2i"><img class="sample-img" src="static/img/samples/t2i/watercolor_siglip.webp" srcset="static/img/samples/t2i/watercolor_siglip.webp 1x, static/img/samples/t2i/watercolor_siglip@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="SigLIP2 sample for the prompt: a loose watercolor of a Venetian canal at dusk with gondolas, soft pastel wash" data-zoom="static/img/samples/t2i/watercolor_siglip@2x.webp" data-caption="SigLIP2 · “a loose watercolor of a Venetian canal at dusk with gondolas, soft pastel wash” · selected, 224×224" data-sample><figcaption>a loose watercolor of a Venetian canal at dusk with gondolas, soft pastel wash</figcaption></figure>
+<figure class="t2i"><img class="sample-img" src="static/img/samples/t2i/wine_siglip.webp" srcset="static/img/samples/t2i/wine_siglip.webp 1x, static/img/samples/t2i/wine_siglip@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="SigLIP2 sample for the prompt: a photo of a wine glass right of a hot dog" data-zoom="static/img/samples/t2i/wine_siglip@2x.webp" data-caption="SigLIP2 · “a photo of a wine glass right of a hot dog” · selected, 224×224" data-sample><figcaption>a photo of a wine glass right of a hot dog</figcaption></figure>
+    </div>
+  </div>
+  <div role="tabpanel" id="g-t2i-dino" aria-labelledby="tab-g-t2i-dino">
+    <p class="vlabel vlabel--dino">DINO variant</p>
+    <div class="grid-t2i">
+<figure class="t2i"><img class="sample-img" src="static/img/samples/t2i/astronaut_dino.webp" srcset="static/img/samples/t2i/astronaut_dino.webp 1x, static/img/samples/t2i/astronaut_dino@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="DINO sample for the prompt: an astronaut riding a horse on the surface of the moon, Earth rising in the background" data-zoom="static/img/samples/t2i/astronaut_dino@2x.webp" data-caption="DINO · “an astronaut riding a horse on the surface of the moon, Earth rising in the background” · selected, 224×224" data-sample><figcaption>an astronaut riding a horse on the surface of the moon, Earth rising in the background</figcaption></figure>
+<figure class="t2i"><img class="sample-img" src="static/img/samples/t2i/ukiyoe_dino.webp" srcset="static/img/samples/t2i/ukiyoe_dino.webp 1x, static/img/samples/t2i/ukiyoe_dino@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="DINO sample for the prompt: a ukiyo-e woodblock print of a great wave crashing beside a red lighthouse under a full moon" data-zoom="static/img/samples/t2i/ukiyoe_dino@2x.webp" data-caption="DINO · “a ukiyo-e woodblock print of a great wave crashing beside a red lighthouse under a full moon” · selected, 224×224" data-sample><figcaption>a ukiyo-e woodblock print of a great wave crashing beside a red lighthouse under a full moon</figcaption></figure>
+<figure class="t2i"><img class="sample-img" src="static/img/samples/t2i/art_nouveau_dino.webp" srcset="static/img/samples/t2i/art_nouveau_dino.webp 1x, static/img/samples/t2i/art_nouveau_dino@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="DINO sample for the prompt: an art nouveau poster of a peacock among white lilies, gold and teal palette, ornate border" data-zoom="static/img/samples/t2i/art_nouveau_dino@2x.webp" data-caption="DINO · “an art nouveau poster of a peacock among white lilies, gold and teal palette, ornate border” · selected, 224×224" data-sample><figcaption>an art nouveau poster of a peacock among white lilies, gold and teal palette, ornate border</figcaption></figure>
+<figure class="t2i"><img class="sample-img" src="static/img/samples/t2i/tortoise_dino.webp" srcset="static/img/samples/t2i/tortoise_dino.webp 1x, static/img/samples/t2i/tortoise_dino@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="DINO sample for the prompt: a giant tortoise carrying a tiny forest with a cabin on its shell, walking across a meadow" data-zoom="static/img/samples/t2i/tortoise_dino@2x.webp" data-caption="DINO · “a giant tortoise carrying a tiny forest with a cabin on its shell, walking across a meadow” · selected, 224×224" data-sample><figcaption>a giant tortoise carrying a tiny forest with a cabin on its shell, walking across a meadow</figcaption></figure>
+<figure class="t2i"><img class="sample-img" src="static/img/samples/t2i/cyberpunk_dino.webp" srcset="static/img/samples/t2i/cyberpunk_dino.webp 1x, static/img/samples/t2i/cyberpunk_dino@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="DINO sample for the prompt: a rain-soaked cyberpunk alley with holographic signs and a steaming noodle stand, teal and magenta light" data-zoom="static/img/samples/t2i/cyberpunk_dino@2x.webp" data-caption="DINO · “a rain-soaked cyberpunk alley with holographic signs and a steaming noodle stand, teal and magenta light” · selected, 224×224" data-sample><figcaption>a rain-soaked cyberpunk alley with holographic signs and a steaming noodle stand, teal and magenta light</figcaption></figure>
+<figure class="t2i"><img class="sample-img" src="static/img/samples/t2i/donuts_dino.webp" srcset="static/img/samples/t2i/donuts_dino.webp 1x, static/img/samples/t2i/donuts_dino@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="DINO sample for the prompt: a photo of four donuts" data-zoom="static/img/samples/t2i/donuts_dino@2x.webp" data-caption="DINO · “a photo of four donuts” · selected, 224×224" data-sample><figcaption>a photo of four donuts</figcaption></figure>
+<figure class="t2i"><img class="sample-img" src="static/img/samples/t2i/matte_fantasy_dino.webp" srcset="static/img/samples/t2i/matte_fantasy_dino.webp 1x, static/img/samples/t2i/matte_fantasy_dino@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="DINO sample for the prompt: a crystal castle on a floating island above the clouds at golden hour, matte painting" data-zoom="static/img/samples/t2i/matte_fantasy_dino@2x.webp" data-caption="DINO · “a crystal castle on a floating island above the clouds at golden hour, matte painting” · selected, 224×224" data-sample><figcaption>a crystal castle on a floating island above the clouds at golden hour, matte painting</figcaption></figure>
+<figure class="t2i"><img class="sample-img" src="static/img/samples/t2i/stained_glass_dino.webp" srcset="static/img/samples/t2i/stained_glass_dino.webp 1x, static/img/samples/t2i/stained_glass_dino@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="DINO sample for the prompt: a stained-glass window depicting a red fox in an autumn forest" data-zoom="static/img/samples/t2i/stained_glass_dino@2x.webp" data-caption="DINO · “a stained-glass window depicting a red fox in an autumn forest” · selected, 224×224" data-sample><figcaption>a stained-glass window depicting a red fox in an autumn forest</figcaption></figure>
+<figure class="t2i"><img class="sample-img" src="static/img/samples/t2i/suitcase_dino.webp" srcset="static/img/samples/t2i/suitcase_dino.webp 1x, static/img/samples/t2i/suitcase_dino@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="DINO sample for the prompt: a photo of a suitcase left of a banana" data-zoom="static/img/samples/t2i/suitcase_dino@2x.webp" data-caption="DINO · “a photo of a suitcase left of a banana” · selected, 224×224" data-sample><figcaption>a photo of a suitcase left of a banana</figcaption></figure>
+<figure class="t2i"><img class="sample-img" src="static/img/samples/t2i/honey_dino.webp" srcset="static/img/samples/t2i/honey_dino.webp 1x, static/img/samples/t2i/honey_dino@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="DINO sample for the prompt: a glass jar of honey with a wooden dipper beside a honeycomb, backlit by the sun" data-zoom="static/img/samples/t2i/honey_dino@2x.webp" data-caption="DINO · “a glass jar of honey with a wooden dipper beside a honeycomb, backlit by the sun” · selected, 224×224" data-sample><figcaption>a glass jar of honey with a wooden dipper beside a honeycomb, backlit by the sun</figcaption></figure>
+<figure class="t2i"><img class="sample-img" src="static/img/samples/t2i/watercolor_dino.webp" srcset="static/img/samples/t2i/watercolor_dino.webp 1x, static/img/samples/t2i/watercolor_dino@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="DINO sample for the prompt: a loose watercolor of a Venetian canal at dusk with gondolas, soft pastel wash" data-zoom="static/img/samples/t2i/watercolor_dino@2x.webp" data-caption="DINO · “a loose watercolor of a Venetian canal at dusk with gondolas, soft pastel wash” · selected, 224×224" data-sample><figcaption>a loose watercolor of a Venetian canal at dusk with gondolas, soft pastel wash</figcaption></figure>
+<figure class="t2i"><img class="sample-img" src="static/img/samples/t2i/wine_dino.webp" srcset="static/img/samples/t2i/wine_dino.webp 1x, static/img/samples/t2i/wine_dino@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="DINO sample for the prompt: a photo of a wine glass right of a hot dog" data-zoom="static/img/samples/t2i/wine_dino@2x.webp" data-caption="DINO · “a photo of a wine glass right of a hot dog” · selected, 224×224" data-sample><figcaption>a photo of a wine glass right of a hot dog</figcaption></figure>
+    </div>
+  </div>
+  <p class="gcap"><strong>Selected samples, 224×224.</strong> The same twelve prompts for both 2.1B variants; 25 Euler steps, guidance 5.</p>
+</section>
+<section class="gpanel" role="tabpanel" id="g-wise" aria-labelledby="tab-g-wise">
+  <h4 class="gpanel__title">World knowledge</h4>
+  <div class="grid-cards grid-cards--3">
+<article class="card">
+  <div class="card__meta"><span class="chip">Culture</span><span>WISE #194</span></div>
+  <p class="card__prompt">“A mythical creature embodying Singapore&#x27;s origins”</p>
+  <div class="pair"><figure><img class="sample-img" src="static/img/samples/wise/194_siglip.webp" srcset="static/img/samples/wise/194_siglip.webp 1x, static/img/samples/wise/194_siglip@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="SigLIP2 sample for the WISE prompt: A mythical creature embodying Singapore&#x27;s origins" data-zoom="static/img/samples/wise/194_siglip@2x.webp" data-caption="SigLIP2 · WISE #194 · “A mythical creature embodying Singapore&#x27;s origins” · selected, 224×224" data-sample><figcaption><span class="tag tag--sig">SigLIP2</span></figcaption></figure><figure><img class="sample-img" src="static/img/samples/wise/194_dino.webp" srcset="static/img/samples/wise/194_dino.webp 1x, static/img/samples/wise/194_dino@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="DINO sample for the WISE prompt: A mythical creature embodying Singapore&#x27;s origins" data-zoom="static/img/samples/wise/194_dino@2x.webp" data-caption="DINO · WISE #194 · “A mythical creature embodying Singapore&#x27;s origins” · selected, 224×224" data-sample><figcaption><span class="tag tag--dino">DINO</span></figcaption></figure></div>
+  <p class="card__know"><em>Implied knowledge:</em> Singapore&#x27;s founding legend → the Merlion, a lion with a fish body.</p>
+</article>
+<article class="card">
+  <div class="card__meta"><span class="chip">Time</span><span>WISE #449</span></div>
+  <p class="card__prompt">“The apple orchard when the farmers are harvesting pumpkins.”</p>
+  <div class="pair"><figure><img class="sample-img" src="static/img/samples/wise/449_siglip.webp" srcset="static/img/samples/wise/449_siglip.webp 1x, static/img/samples/wise/449_siglip@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="SigLIP2 sample for the WISE prompt: The apple orchard when the farmers are harvesting pumpkins." data-zoom="static/img/samples/wise/449_siglip@2x.webp" data-caption="SigLIP2 · WISE #449 · “The apple orchard when the farmers are harvesting pumpkins.” · selected, 224×224" data-sample><figcaption><span class="tag tag--sig">SigLIP2</span></figcaption></figure><figure><img class="sample-img" src="static/img/samples/wise/449_dino.webp" srcset="static/img/samples/wise/449_dino.webp 1x, static/img/samples/wise/449_dino@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="DINO sample for the WISE prompt: The apple orchard when the farmers are harvesting pumpkins." data-zoom="static/img/samples/wise/449_dino@2x.webp" data-caption="DINO · WISE #449 · “The apple orchard when the farmers are harvesting pumpkins.” · selected, 224×224" data-sample><figcaption><span class="tag tag--dino">DINO</span></figcaption></figure></div>
+  <p class="card__know"><em>Implied knowledge:</em> Pumpkin harvest → autumn; apples still on the trees.</p>
+</article>
+<article class="card">
+  <div class="card__meta"><span class="chip">Space</span><span>WISE #621</span></div>
+  <p class="card__prompt">“Generate an image of a bird and a dog, with the smaller animal on top and the larger below”</p>
+  <div class="pair"><figure><img class="sample-img" src="static/img/samples/wise/621_siglip.webp" srcset="static/img/samples/wise/621_siglip.webp 1x, static/img/samples/wise/621_siglip@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="SigLIP2 sample for the WISE prompt: Generate an image of a bird and a dog, with the smaller animal on top and the larger below" data-zoom="static/img/samples/wise/621_siglip@2x.webp" data-caption="SigLIP2 · WISE #621 · “Generate an image of a bird and a dog, with the smaller animal on top and the larger below” · selected, 224×224" data-sample><figcaption><span class="tag tag--sig">SigLIP2</span></figcaption></figure><figure><img class="sample-img" src="static/img/samples/wise/621_dino.webp" srcset="static/img/samples/wise/621_dino.webp 1x, static/img/samples/wise/621_dino@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="DINO sample for the WISE prompt: Generate an image of a bird and a dog, with the smaller animal on top and the larger below" data-zoom="static/img/samples/wise/621_dino@2x.webp" data-caption="DINO · WISE #621 · “Generate an image of a bird and a dog, with the smaller animal on top and the larger below” · selected, 224×224" data-sample><figcaption><span class="tag tag--dino">DINO</span></figcaption></figure></div>
+  <p class="card__know"><em>Implied knowledge:</em> The bird is the smaller animal → the bird on top, the dog below.</p>
+</article>
+<article class="card">
+  <div class="card__meta"><span class="chip">Biology</span><span>WISE #754</span></div>
+  <p class="card__prompt">“A chameleon perfectly camouflaged against a green leaf”</p>
+  <div class="pair"><figure><img class="sample-img" src="static/img/samples/wise/754_siglip.webp" srcset="static/img/samples/wise/754_siglip.webp 1x, static/img/samples/wise/754_siglip@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="SigLIP2 sample for the WISE prompt: A chameleon perfectly camouflaged against a green leaf" data-zoom="static/img/samples/wise/754_siglip@2x.webp" data-caption="SigLIP2 · WISE #754 · “A chameleon perfectly camouflaged against a green leaf” · selected, 224×224" data-sample><figcaption><span class="tag tag--sig">SigLIP2</span></figcaption></figure><figure><img class="sample-img" src="static/img/samples/wise/754_dino.webp" srcset="static/img/samples/wise/754_dino.webp 1x, static/img/samples/wise/754_dino@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="DINO sample for the WISE prompt: A chameleon perfectly camouflaged against a green leaf" data-zoom="static/img/samples/wise/754_dino@2x.webp" data-caption="DINO · WISE #754 · “A chameleon perfectly camouflaged against a green leaf” · selected, 224×224" data-sample><figcaption><span class="tag tag--dino">DINO</span></figcaption></figure></div>
+  <p class="card__know"><em>Implied knowledge:</em> Camouflage → skin color and pattern match the leaf.</p>
+</article>
+<article class="card">
+  <div class="card__meta"><span class="chip">Physics</span><span>WISE #900</span></div>
+  <p class="card__prompt">“The balloon that has been rubbed comes into contact with long hair”</p>
+  <div class="pair"><figure><img class="sample-img" src="static/img/samples/wise/900_siglip.webp" srcset="static/img/samples/wise/900_siglip.webp 1x, static/img/samples/wise/900_siglip@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="SigLIP2 sample for the WISE prompt: The balloon that has been rubbed comes into contact with long hair" data-zoom="static/img/samples/wise/900_siglip@2x.webp" data-caption="SigLIP2 · WISE #900 · “The balloon that has been rubbed comes into contact with long hair” · selected, 224×224" data-sample><figcaption><span class="tag tag--sig">SigLIP2</span></figcaption></figure><figure><img class="sample-img" src="static/img/samples/wise/900_dino.webp" srcset="static/img/samples/wise/900_dino.webp 1x, static/img/samples/wise/900_dino@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="DINO sample for the WISE prompt: The balloon that has been rubbed comes into contact with long hair" data-zoom="static/img/samples/wise/900_dino@2x.webp" data-caption="DINO · WISE #900 · “The balloon that has been rubbed comes into contact with long hair” · selected, 224×224" data-sample><figcaption><span class="tag tag--dino">DINO</span></figcaption></figure></div>
+  <p class="card__know"><em>Implied knowledge:</em> Rubbing charges the balloon → the hair is pulled toward it.</p>
+</article>
+<article class="card">
+  <div class="card__meta"><span class="chip">Chemistry</span><span>WISE #935</span></div>
+  <p class="card__prompt">“A piece of gold that has been exposed to oxygen for decades”</p>
+  <div class="pair"><figure><img class="sample-img" src="static/img/samples/wise/935_siglip.webp" srcset="static/img/samples/wise/935_siglip.webp 1x, static/img/samples/wise/935_siglip@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="SigLIP2 sample for the WISE prompt: A piece of gold that has been exposed to oxygen for decades" data-zoom="static/img/samples/wise/935_siglip@2x.webp" data-caption="SigLIP2 · WISE #935 · “A piece of gold that has been exposed to oxygen for decades” · selected, 224×224" data-sample><figcaption><span class="tag tag--sig">SigLIP2</span></figcaption></figure><figure><img class="sample-img" src="static/img/samples/wise/935_dino.webp" srcset="static/img/samples/wise/935_dino.webp 1x, static/img/samples/wise/935_dino@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="DINO sample for the WISE prompt: A piece of gold that has been exposed to oxygen for decades" data-zoom="static/img/samples/wise/935_dino@2x.webp" data-caption="DINO · WISE #935 · “A piece of gold that has been exposed to oxygen for decades” · selected, 224×224" data-sample><figcaption><span class="tag tag--dino">DINO</span></figcaption></figure></div>
+  <p class="card__know"><em>Implied knowledge:</em> Gold does not oxidize → still bright, no corrosion.</p>
+</article>
+  </div>
+  <p class="gcap"><strong>Selected samples, 224×224.</strong> One WISE prompt per category. The prompt leaves the needed knowledge implicit; the “implied knowledge” line is the benchmark's key, not model output.</p>
+</section>
+<section class="gpanel" role="tabpanel" id="g-vqa" aria-labelledby="tab-g-vqa">
+  <h4 class="gpanel__title">Visual question answering</h4>
+  <div class="grid-cards grid-cards--4">
+<article class="card">
+  <img class="sample-img" src="static/img/samples/qa/attribute.webp" width="380" height="380" loading="lazy" decoding="async" alt="Input photo for the question: Which type of material is used to make the trash bin below the pepper shaker?" data-zoom="static/img/samples/qa/attribute.webp" data-caption="Real input photo · Q: Which type of material is used to make the trash bin below the pepper shaker? · SigLIP2: plastic · DINO: plastic · reference: plastic · selected example" data-sample>
+  <div class="card__meta"><span class="chip">Attribute</span><span>GQA</span></div>
+  <p class="qa__q">Which type of material is used to make the trash bin below the pepper shaker?</p>
+  <dl class="answers">
+    <div><dt><span class="tag tag--sig">SigLIP2</span></dt><dd>plastic</dd></div>
+    <div><dt><span class="tag tag--dino">DINO</span></dt><dd>plastic</dd></div>
+    <div class="ref"><dt>Reference</dt><dd>plastic</dd></div>
+  </dl>
+</article>
+<article class="card">
+  <img class="sample-img" src="static/img/samples/qa/counting.webp" width="380" height="380" loading="lazy" decoding="async" alt="Input photo for the question: How many cows are there?" data-zoom="static/img/samples/qa/counting.webp" data-caption="Real input photo · Q: How many cows are there? · SigLIP2: 4 · DINO: 4 · reference: 4 · selected example" data-sample>
+  <div class="card__meta"><span class="chip">Counting</span><span>VQAv2</span></div>
+  <p class="qa__q">How many cows are there?</p>
+  <dl class="answers">
+    <div><dt><span class="tag tag--sig">SigLIP2</span></dt><dd>4</dd></div>
+    <div><dt><span class="tag tag--dino">DINO</span></dt><dd>4</dd></div>
+    <div class="ref"><dt>Reference</dt><dd>4</dd></div>
+  </dl>
+</article>
+<article class="card">
+  <img class="sample-img" src="static/img/samples/qa/spatial1.webp" width="380" height="380" loading="lazy" decoding="async" alt="Input photo for the question: Is the green umbrella to the right or to the left of the person who is to the left of the palm tree?" data-zoom="static/img/samples/qa/spatial1.webp" data-caption="Real input photo · Q: Is the green umbrella to the right or to the left of the person who is to the left of the palm tree? · SigLIP2: left · DINO: left · reference: left · selected example" data-sample>
+  <div class="card__meta"><span class="chip">Spatial relation</span><span>GQA</span></div>
+  <p class="qa__q">Is the green umbrella to the right or to the left of the person who is to the left of the palm tree?</p>
+  <dl class="answers">
+    <div><dt><span class="tag tag--sig">SigLIP2</span></dt><dd>left</dd></div>
+    <div><dt><span class="tag tag--dino">DINO</span></dt><dd>left</dd></div>
+    <div class="ref"><dt>Reference</dt><dd>left</dd></div>
+  </dl>
+</article>
+<article class="card">
+  <img class="sample-img" src="static/img/samples/qa/spatial2.webp" width="380" height="380" loading="lazy" decoding="async" alt="Input photo for the question: Are the thick books to the left or to the right of the computer that is to the right of the lamps?" data-zoom="static/img/samples/qa/spatial2.webp" data-caption="Real input photo · Q: Are the thick books to the left or to the right of the computer that is to the right of the lamps? · SigLIP2: right · DINO: right · reference: right · selected example" data-sample>
+  <div class="card__meta"><span class="chip">Spatial relation</span><span>GQA</span></div>
+  <p class="qa__q">Are the thick books to the left or to the right of the computer that is to the right of the lamps?</p>
+  <dl class="answers">
+    <div><dt><span class="tag tag--sig">SigLIP2</span></dt><dd>right</dd></div>
+    <div><dt><span class="tag tag--dino">DINO</span></dt><dd>right</dd></div>
+    <div class="ref"><dt>Reference</dt><dd>right</dd></div>
+  </dl>
+</article>
+<article class="card">
+  <img class="sample-img" src="static/img/samples/qa/action.webp" width="380" height="380" loading="lazy" decoding="async" alt="Input photo for the question: What&#x27;s the player doing?" data-zoom="static/img/samples/qa/action.webp" data-caption="Real input photo · Q: What&#x27;s the player doing? · SigLIP2: jumping · DINO: jumping · reference: jumping · selected example" data-sample>
+  <div class="card__meta"><span class="chip">Action</span><span>GQA</span></div>
+  <p class="qa__q">What&#x27;s the player doing?</p>
+  <dl class="answers">
+    <div><dt><span class="tag tag--sig">SigLIP2</span></dt><dd>jumping</dd></div>
+    <div><dt><span class="tag tag--dino">DINO</span></dt><dd>jumping</dd></div>
+    <div class="ref"><dt>Reference</dt><dd>jumping</dd></div>
+  </dl>
+</article>
+<article class="card">
+  <img class="sample-img" src="static/img/samples/qa/multientity.webp" width="380" height="380" loading="lazy" decoding="async" alt="Input photo for the question: Which material is the clock that is to the left of the tennis ball made of, stainless steel or brick?" data-zoom="static/img/samples/qa/multientity.webp" data-caption="Real input photo · Q: Which material is the clock that is to the left of the tennis ball made of, stainless steel or brick? · SigLIP2: stainless steel · DINO: stainless steel · reference: stainless steel · selected example" data-sample>
+  <div class="card__meta"><span class="chip">Multiple entities</span><span>GQA</span></div>
+  <p class="qa__q">Which material is the clock that is to the left of the tennis ball made of, stainless steel or brick?</p>
+  <dl class="answers">
+    <div><dt><span class="tag tag--sig">SigLIP2</span></dt><dd>stainless steel</dd></div>
+    <div><dt><span class="tag tag--dino">DINO</span></dt><dd>stainless steel</dd></div>
+    <div class="ref"><dt>Reference</dt><dd>stainless steel</dd></div>
+  </dl>
+</article>
+<article class="card">
+  <img class="sample-img" src="static/img/samples/qa/knowledge.webp" width="380" height="380" loading="lazy" decoding="async" alt="Input photo for the question: What is a male of this animal called?" data-zoom="static/img/samples/qa/knowledge.webp" data-caption="Real input photo · Q: What is a male of this animal called? · SigLIP2: ram · DINO: ram · reference: ram · selected example" data-sample>
+  <div class="card__meta"><span class="chip">Outside knowledge</span><span>OK-VQA</span></div>
+  <p class="qa__q">What is a male of this animal called?</p>
+  <dl class="answers">
+    <div><dt><span class="tag tag--sig">SigLIP2</span></dt><dd>ram</dd></div>
+    <div><dt><span class="tag tag--dino">DINO</span></dt><dd>ram</dd></div>
+    <div class="ref"><dt>Reference</dt><dd>ram</dd></div>
+  </dl>
+</article>
+<article class="card">
+  <img class="sample-img" src="static/img/samples/qa/existence.webp" width="380" height="380" loading="lazy" decoding="async" alt="Input photo for the question: Is there a baseball bat in the image?" data-zoom="static/img/samples/qa/existence.webp" data-caption="Real input photo · Q: Is there a baseball bat in the image? · SigLIP2: no · DINO: no · reference: no · selected example" data-sample>
+  <div class="card__meta"><span class="chip">Object existence</span><span>POPE</span></div>
+  <p class="qa__q">Is there a baseball bat in the image?</p>
+  <dl class="answers">
+    <div><dt><span class="tag tag--sig">SigLIP2</span></dt><dd>no</dd></div>
+    <div><dt><span class="tag tag--dino">DINO</span></dt><dd>no</dd></div>
+    <div class="ref"><dt>Reference</dt><dd>no</dd></div>
+  </dl>
+</article>
+  </div>
+  <p class="gcap"><strong>Selected samples.</strong> Real benchmark photos, seen by the model at 224×224. Eight questions of seven types, answered by both 2.1B variants (16 steps, guidance 3).</p>
+</section>
+<section class="gpanel" role="tabpanel" id="g-cap" aria-labelledby="tab-g-cap">
+  <h4 class="gpanel__title">Captions</h4>
+  <div class="grid-cards grid-cards--3">
+<article class="card">
+  <img class="sample-img" src="static/img/samples/caption/caption_01_bedroom.webp" width="420" height="420" loading="lazy" decoding="async" alt="Input photo: a bedroom" data-zoom="static/img/samples/caption/caption_01_bedroom.webp" data-caption="Real input photo · SigLIP2: “Spacious, modern bedroom with white furniture and a large window.” · DINO: “Modern bedroom with a large bed, mirror, and sliding glass door.” · selected example" data-sample>
+  <dl class="answers">
+    <div><dt><span class="tag tag--sig">SigLIP2</span></dt><dd>Spacious, modern bedroom with white furniture and a large window.</dd></div>
+    <div><dt><span class="tag tag--dino">DINO</span></dt><dd>Modern bedroom with a large bed, mirror, and sliding glass door.</dd></div>
+  </dl>
+</article>
+<article class="card">
+  <img class="sample-img" src="static/img/samples/caption/caption_01_restaurant_meal.webp" width="420" height="420" loading="lazy" decoding="async" alt="Input photo: people sharing a meal at a restaurant" data-zoom="static/img/samples/caption/caption_01_restaurant_meal.webp" data-caption="Real input photo · SigLIP2: “Three people enjoy a meal together at a cozy Arabic restaurant.” · DINO: “Three people enjoy a delicious meal together at a cozy restaurant.” · selected example" data-sample>
+  <dl class="answers">
+    <div><dt><span class="tag tag--sig">SigLIP2</span></dt><dd>Three people enjoy a meal together at a cozy Arabic restaurant.</dd></div>
+    <div><dt><span class="tag tag--dino">DINO</span></dt><dd>Three people enjoy a delicious meal together at a cozy restaurant.</dd></div>
+  </dl>
+</article>
+<article class="card">
+  <img class="sample-img" src="static/img/samples/caption/caption_01_workspace_laptop_roses.webp" width="420" height="420" loading="lazy" decoding="async" alt="Input photo: a laptop, roses and a cup on a bed" data-zoom="static/img/samples/caption/caption_01_workspace_laptop_roses.webp" data-caption="Real input photo · SigLIP2: “A cozy workspace with a laptop, roses, and a cup of coffee or cream on a stylish bedspread.” · DINO: “A cozy workspace setup with coffee, laptop, camera, pink tulips, and tea on patterned fabric.” · selected example" data-sample>
+  <dl class="answers">
+    <div><dt><span class="tag tag--sig">SigLIP2</span></dt><dd>A cozy workspace with a laptop, roses, and a cup of coffee or cream on a stylish bedspread.</dd></div>
+    <div><dt><span class="tag tag--dino">DINO</span></dt><dd>A cozy workspace setup with coffee, laptop, camera, pink tulips, and tea on patterned fabric.</dd></div>
+  </dl>
+</article>
+<article class="card">
+  <img class="sample-img" src="static/img/samples/caption/caption_02_tea_plantation_road.webp" width="420" height="420" loading="lazy" decoding="async" alt="Input photo: a road through tea plantations" data-zoom="static/img/samples/caption/caption_02_tea_plantation_road.webp" data-caption="Real input photo · SigLIP2: “A serene rural road winds through lush green tea plantations under a cloudy sky.” · DINO: “A serene road winds through lush green plantations under a bright sky.” · selected example" data-sample>
+  <dl class="answers">
+    <div><dt><span class="tag tag--sig">SigLIP2</span></dt><dd>A serene rural road winds through lush green tea plantations under a cloudy sky.</dd></div>
+    <div><dt><span class="tag tag--dino">DINO</span></dt><dd>A serene road winds through lush green plantations under a bright sky.</dd></div>
+  </dl>
+</article>
+<article class="card">
+  <img class="sample-img" src="static/img/samples/caption/caption_02_vintage_family_portrait.webp" width="420" height="420" loading="lazy" decoding="async" alt="Input photo: a vintage family portrait" data-zoom="static/img/samples/caption/caption_02_vintage_family_portrait.webp" data-caption="Real input photo · SigLIP2: “A vintage family portrait in colorful attire, the mid-20th century.” · DINO: “A family photo dressed in vintage attire, possibly from a historic event.” · selected example" data-sample>
+  <dl class="answers">
+    <div><dt><span class="tag tag--sig">SigLIP2</span></dt><dd>A vintage family portrait in colorful attire, the mid-20th century.</dd></div>
+    <div><dt><span class="tag tag--dino">DINO</span></dt><dd>A family photo dressed in vintage attire, possibly from a historic event.</dd></div>
+  </dl>
+</article>
+<article class="card">
+  <img class="sample-img" src="static/img/samples/caption/caption_02_church_clock_tower.webp" width="420" height="420" loading="lazy" decoding="async" alt="Input photo: a stone church with a clock tower" data-zoom="static/img/samples/caption/caption_02_church_clock_tower.webp" data-caption="Real input photo · SigLIP2: “A serene white church with arched windows and a clock tower, set against a sunny day.” · DINO: “A serene church with an architectural tower with stained glass windows and a clock on it stands under a bright blue sky.” · selected example" data-sample>
+  <dl class="answers">
+    <div><dt><span class="tag tag--sig">SigLIP2</span></dt><dd>A serene white church with arched windows and a clock tower, set against a sunny day.</dd></div>
+    <div><dt><span class="tag tag--dino">DINO</span></dt><dd>A serene church with an architectural tower with stained glass windows and a clock on it stands under a bright blue sky.</dd></div>
+  </dl>
+</article>
+  </div>
+  <p class="gcap"><strong>Selected samples.</strong> Real photos, seen at 224×224, with the instruction “Describe the image concisely.” Short captions are fluent; long, detailed descriptions are less reliable and contain grammatical errors and the occasional invented word.</p>
+</section>
+</div>
+<!-- GALLERY:END -->
+  <p class="bridge">Image generation and understanding run along the edges of the square, with one modality held clean. Joint reasoning crosses the interior, where both outputs are generated together (<a href="#agreement">§05</a>).</p>
+</section>
+
+<!-- ============================================================ 8. §05 joint reasoning -->
+<section class="section" id="agreement" style="--accent: var(--agree); --accent-ink: var(--agree-ink)" aria-labelledby="agreement-h">
+  <header class="section__head">
+    <p class="eyebrow">05</p>
+    <h2 id="agreement-h">Joint reasoning</h2>
+    <p class="section__lead">Because JUICE models the joint distribution, it can generate an image and a text together. Some tasks need the two outputs to be correct and to agree, such as a route drawn on a map and the moves that describe it. With several valid routes, agreement is not automatic.</p>
+  </header>
+
+  <div class="prose">
+    <h3 class="sub" id="joint-generation"><span class="facet__idx">5A</span>Joint generation</h3>
+    <p>Without any condition, both streams start from noise and the model generates an image and a caption together. The text clock runs ahead, so the caption takes shape before the image does, and each stream conditions on the other at every step. In the selected samples below, the caption describes the image it is generated with, so the two streams agree even though neither is given. Step through a sample to watch both form.</p>
+  </div>
+
+  <div class="widget" data-widget="joint-player" data-src="static/data/joint.json">
+    <div class="widget__fallback">
+  <div class="grid-cards grid-cards--2">
+<article class="card joint-card">
+  <img class="sample-img" src="static/img/samples/joint/siglip_wingedboy.webp" srcset="static/img/samples/joint/siglip_wingedboy.webp 1x, static/img/samples/joint/siglip_wingedboy@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="Image generated jointly with the text beside it (SigLIP2 variant)" data-zoom="static/img/samples/joint/siglip_wingedboy@2x.webp" data-caption="SigLIP2 · image generated together with its text, from noise · selected, 224×224" data-sample>
+  <div class="joint-card__text">
+    <div class="card__meta"><span class="tag tag--sig">SigLIP2</span><span>generated together, from noise</span></div>
+    <p>The image depicts a charming, cartoon-style character that appears to be a young boy. The boy has light brown hair, adorned with wing-like wings and stands out backward with a cheerful expression. He is dressed in a yellow tunic over a yellow shirt, paired with blue pants that have dotted patterns, a red cape and brown boots. He has a brown belt with a design on it. The character is also showing a peace sign on his forehead and is depicted in a playful, mischievous pose.</p>
+  </div>
+</article>
+<article class="card joint-card">
+  <img class="sample-img" src="static/img/samples/joint/siglip_pier.webp" srcset="static/img/samples/joint/siglip_pier.webp 1x, static/img/samples/joint/siglip_pier@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="Image generated jointly with the text beside it (SigLIP2 variant)" data-zoom="static/img/samples/joint/siglip_pier@2x.webp" data-caption="SigLIP2 · image generated together with its text, from noise · selected, 224×224" data-sample>
+  <div class="joint-card__text">
+    <div class="card__meta"><span class="tag tag--sig">SigLIP2</span><span>generated together, from noise</span></div>
+    <p>The image depicts a person standing on the end of a wooden bridge, facing away from the camera, towards a stunning mountainous landscape. The individual is dressed in outdoor attire, including a light gray long-sleeved shirt, dark pants, and black shoes. The bridge appears to be made of well-maintained, with lush green trees and grass on both sides. The landscape reflects the surrounding scenery, including the rugged mountains and overcast sky above.</p>
+  </div>
+</article>
+<article class="card joint-card">
+  <img class="sample-img" src="static/img/samples/joint/dino_castle.webp" srcset="static/img/samples/joint/dino_castle.webp 1x, static/img/samples/joint/dino_castle@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="Image generated jointly with the text beside it (DINO variant)" data-zoom="static/img/samples/joint/dino_castle@2x.webp" data-caption="DINO · image generated together with its text, from noise · selected, 224×224" data-sample>
+  <div class="joint-card__text">
+    <div class="card__meta"><span class="tag tag--dino">DINO</span><span>generated together, from noise</span></div>
+    <p>The image depicts a tranquil and picturesque park scene with an old European castle in the background, characterized by its multiple levels, turrets, and golden domes. The sky is partly cloudy, suggesting it might be late afternoon or early evening. A stone bridge arches over a body of water adorned with greenery. Surrounding the water are lush green trees and flowers, and a gentle red path winds through the center. The overall atmosphere is serene and idyllic, evoking a sense of history and isolation.</p>
+  </div>
+</article>
+<article class="card joint-card">
+  <img class="sample-img" src="static/img/samples/joint/dino_tavern.webp" srcset="static/img/samples/joint/dino_tavern.webp 1x, static/img/samples/joint/dino_tavern@2x.webp 2x" width="224" height="224" loading="lazy" decoding="async" alt="Image generated jointly with the text beside it (DINO variant)" data-zoom="static/img/samples/joint/dino_tavern@2x.webp" data-caption="DINO · image generated together with its text, from noise · selected, 224×224" data-sample>
+  <div class="joint-card__text">
+    <div class="card__meta"><span class="tag tag--dino">DINO</span><span>generated together, from noise</span></div>
+    <p>The image showcases a character that appears to be from a fantasy setting, characterized by a striking use of leather arm bands and a red headscarf. The character has neatly braided hair and is seated at a bar, surrounded by wooden shelves and various bottles filled with beer. The individual is also wearing a black sleeveless top, which adds to the sturdy and rugged aesthetic. The background reveals more shelves and other patrons with blue bottles, suggesting a typical setting in a beer shop.</p>
+  </div>
+</article>
+  </div>
+  <p class="gcap"><strong>Selected samples, 224×224.</strong> No condition: image and text start from noise and are generated together over 64 steps. In these samples, the caption describes the image it is generated with, so the two streams agree even though neither is given. The text is read out with the autoregressive caption decoder and cut where it starts to repeat; wording errors are left as generated.</p>
+    </div>
+  </div>
+
+  <div class="prose">
+    <p>Planning tasks test the harder case, in which the outputs must also be correct.</p>
+    <h3 class="sub" id="mazes"><span class="facet__idx">5B</span>Mazes with multiple solutions</h3>
+    <p>The mazes here have two to sixteen shortest routes each, so both outputs can be valid and still disagree. Sampling each modality from its own marginal often picks a different valid route in each, a cross-modal mode mismatch, and joint success is only 54.6% for the maze-adapted SigLIP2 model. Generating one modality first avoids it, but the result then depends on the order, because mistakes in the first modality are passed on to the second (95.2% with the image first, 85.3% with the text first). The better order starts with the more reliable modality, here the image, but for a new task, which modality is more reliable is not known in advance. Generating one modality first is the fixed order of <a href="#why">§01</a>, here in a task where agreement can be checked.</p>
+    <p>Coupled sampling computes both velocity fields from the current joint state before either stream moves, so each stream conditions on the other as it forms. Two selected mazes, traced step by step, show it at work.</p>
+  </div>
+
+  <div class="widget" data-widget="maze-player" data-src="static/data/maze.json">
+    <figure class="widget__fallback fig fig--pan">
+      <div class="plate plate--flush">
+        <img src="static/img/fig/maze_cases.webp"
+             srcset="static/img/fig/maze_cases.webp 1000w, static/img/fig/maze_cases@2x.webp 2000w"
+             sizes="(min-width: 1080px) 1000px, calc(100vw - 52px)"
+             width="2000" height="1447" loading="lazy" decoding="async" data-zoom="static/img/fig/maze_cases@2x.webp"
+             alt="Two mazes. Coupled sampling at three steps and independent sampling at its last step. In maze (a) the drawn route changes to follow the moves by step 3; in maze (b) the moves change from RURRD to RURDR to follow the drawn route by step 7. Independent sampling ends with two different valid routes.">
+      </div>
+      <figcaption><strong>Coupled sampling brings the two outputs onto one route; independent sampling does not.</strong> Selected mazes. Blue: the drawn path (image). Dashed: the route traced by the decoded moves (text). Independent sampling here uses 16 steps per stream, twice the budget of the table below.</figcaption>
+    </figure>
+  </div>
+
+  <div class="prose">
+    <h4 class="sub4">Who gives way</h4>
+    <p>In both traced mazes, whichever output settles later changes to match the other. In Maze A the drawn route switches to the route of the moves at step 3. In Maze B the moves change from <code class="moves">RURRD</code> to <code class="moves">RUR<u>DR</u></code> at step 7 to follow the drawing. Because either modality can be the one that yields, coupled sampling is not simply copying one into the other. It does not collapse onto one canonical route either: on solved mazes it returns the stored reference route 43.5% of the time for SigLIP2, close to the 44.1% expected from a uniform pick among shortest routes (DINO: 47.0% vs 44.4%).</p>
+  </div>
+
+  <div class="table-block table-block--narrow">
+    <p class="table-cap" id="tab-maze-cap"><strong>Maze joint success (%).</strong> Both outputs must be valid shortest routes and show the same route. 500 unseen mazes, 224×224 images, 16 backbone calls, mean of 2 seeds.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-labelledby="tab-maze-cap">
+      <table class="results">
+        <thead><tr><th scope="col">Sampler</th><th scope="col">Order</th><th scope="col"><span class="tag tag--sig">SigLIP2</span></th><th scope="col"><span class="tag tag--dino">DINO</span></th></tr></thead>
+        <tbody>
+          <tr class="is-coupled"><th scope="row">Coupled</th><td>none</td><td>93.7</td><td>81.7</td></tr>
+          <tr><th scope="row">Image first</th><td>image → text</td><td><b>95.2</b></td><td><b>82.7</b></td></tr>
+          <tr><th scope="row">Text first</th><td>text → image</td><td>85.3</td><td>59.9</td></tr>
+          <tr><th scope="row">Independent</th><td>none</td><td>54.6</td><td>42.7</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul class="table-notes">
+      <li>Coupled sampling lands 1.5 / 1.0 points below the better order and 8.4 / 21.8 above the worse one, without choosing either. Image first is significantly better than coupled for SigLIP2 (paired test, p&nbsp;=&nbsp;0.017; DINO p&nbsp;=&nbsp;0.19). Coupled loses at most 0.3 points when the budget is halved to 8 calls.</li>
+      <li>The maze models are the finetuned 2.1B models adapted for 5k updates on 200k mazes (5×5 to 7×7); a linear head trained for the task reads the moves.</li>
+    </ul>
+  </div>
+
+  <div class="prose">
+    <h3 class="sub" id="vsp"><span class="facet__idx">5C</span>Visual spatial planning</h3>
+    <p>VSP asks for a path through a FrozenLake grid from start to goal without stepping into a hole. The SigLIP2 model, adapted for 5k updates on 55.9k maps of sizes 3×3 to 6×6, solves 99.8% of the official maps at those sizes, on par with the fine variant of LatentUM (99%), which plans visually step by step. On larger maps it never saw in adaptation, it solves 94% at 7×7 and 69% at 8×8.</p>
+    <p>On those unseen sizes the drawn path is right more often than the moves. Of the 37 failures, 29 drop exactly one move while the drawn path is the reference route, and drops grow more frequent with the length of a run of repeated moves. As on mazes, the image is the more reliable modality here, and these dropped moves match the cost in exact wording from <a href="#t1">Takeaway 1</a>. Coupled sampling can still repair a move string: on nine of all 600 benchmark maps (levels 3 to 8), the moves fail at the first of 16 steps and solve the map by the last.</p>
+  </div>
+
+  <div class="table-block table-block--narrow">
+    <p class="table-cap" id="tab-vsp-cap"><strong>VSP success (%)</strong>, 100 official maps per level, 224×224 images. Levels <span class="nobr">7–8</span> are map sizes not seen in adaptation. Baseline numbers are taken from the LatentUM paper, which reports InternVL3.5 and ThinkMorph only as averages; ThinkMorph does not state which levels its average covers.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-labelledby="tab-vsp-cap">
+      <table class="results">
+        <thead><tr><th scope="col">Model</th><th scope="col">Size</th><th scope="col">Task data</th><th scope="col">Avg. (Lv <span class="nobr">3–6</span>)</th><th scope="col">Lv 7</th><th scope="col">Lv 8</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">InternVL3.5</th><td>38B</td><td>none</td><td>20</td><td>–</td><td>–</td></tr>
+          <tr><th scope="row">ThinkMorph</th><td>7B</td><td>6k</td><td>76</td><td>–</td><td>–</td></tr>
+          <tr><th scope="row">LatentUM, coarse</th><td>4B</td><td>6k</td><td>85</td><td>–</td><td>–</td></tr>
+          <tr><th scope="row">LatentUM, fine</th><td>4B</td><td class="td-text">18k step-by-step</td><td>99</td><td>–</td><td>–</td></tr>
+          <tr class="is-ours"><th scope="row">JUICE <span class="tag tag--sig">SigLIP2</span></th><td>2.1B</td><td>55.9k</td><td><b>99.8</b></td><td>94</td><td>69</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="prose">
+    <p>The player below steps through four maps from the paper's VSP figure, decoded at every one of the 16 coupled steps. In two of them the moves solve the map from the first step. The other two are among the nine whose moves fail at first and are corrected during sampling, while the drawn path stays on the reference route throughout.</p>
+  </div>
+  <div class="widget widget--wide" data-widget="vsp-player" data-src="static/data/vsp.json">
+    <div class="widget__fallback" data-persist>
+  <figure class="fig fig--wide fig--pan">
+    <div class="plate">
+      <img src="static/img/fig/vsp_cases.webp"
+         srcset="static/img/fig/vsp_cases.webp 1000w, static/img/fig/vsp_cases@2x.webp 2000w"
+         sizes="(min-width: 1080px) 1000px, calc(100vw - 52px)"
+         width="2000" height="1149" loading="lazy" decoding="async" data-zoom="static/img/fig/vsp_cases@2x.webp"
+         alt="FrozenLake maps. Top row: one solved map for each size from 3×3 to 8×8, the last two unseen in adaptation. Bottom row: three maps where the moves fail at the first sampling step and are corrected by the last step while the drawn path stays fixed.">
+    </div>
+    <figcaption><strong>VSP cases.</strong> Selected maps. (a) One solved map per size; 7×7 and 8×8 were not seen in adaptation. (b) Moves that fail at the first of 16 steps and solve the map at the last, with the drawn path fixed. Red: the drawn path (image). Dashed: the route of the moves (text).</figcaption>
+  </figure>
+    </div>
+  </div>
+
+  <div class="prose">
+    <h3 class="sub" id="order"><span class="facet__idx">5D</span>Order at sampling time</h3>
+    <p>In a model of the joint distribution, the order in which modalities are generated is no longer fixed by the architecture: it becomes a choice at sampling time, and coupled sampling can leave it open. Coupled sampling does not beat the better order, but it comes close (93.7% against 95.2% with the image first on mazes, SigLIP2) without having to know which order that is. On visual spatial planning, JUICE solves nearly all maps of the training sizes (99.8%). Together with the generation and understanding results of <a href="#results">§04</a>, pretrained continuous spaces thus let one model understand, generate, and coordinate images and text without putting either one first.</p>
+  </div>
+</section>
+
+<!-- ============================================================ 10. limitations -->
+<section class="section section--plain" id="limitations" aria-labelledby="limitations-h">
+  <header class="section__head">
+    <h2 id="limitations-h">Limitations and next steps</h2>
+  </header>
+  <div class="prose">
+    <ul class="limits">
+      <li>The models run at a native 224×224 resolution, which limits fine visual detail.</li>
+      <li>Exact wording lags behind autoregressive text. Long, detailed descriptions get the main objects, colors and layout right but contain grammatical errors and the occasional invented word.</li>
+      <li>Without a language model backbone, JUICE trails models initialized from LLMs on benchmarks that need domain knowledge, such as AI2D and MMMU.</li>
+      <li>Each pretraining configuration was run once.</li>
+      <li>The joint reasoning tasks are synthetic planning problems, and each uses its own task-adapted model.</li>
+    </ul>
+    <p>The next steps follow from these limits: higher resolution, more accurate continuous text, and joint generation on real tasks in which several pairs of image and text outputs are valid.</p>
+  </div>
+</section>
+
+<!-- ============================================================ 11. FAQ -->
+<section class="section section--plain" id="faq" aria-labelledby="faq-h">
+  <header class="section__head">
+    <h2 id="faq-h">FAQ</h2>
+  </header>
+  <div class="faq">
+    <details class="faq__item">
+      <summary>Why frozen encoders?</summary>
+      <div class="faq__body">
+        <p>Their spaces are continuous for images and text alike, so one flow matching process can generate both with the same objective. They also carry knowledge learned at scale, which a backbone trained without a language model needs. Keeping them frozen means the same features work as generation targets and as conditioning context. In the pretraining study, semantic spaces (SigLIP2, DINO) were much better targets than VAE latents or raw pixels.</p>
+      </div>
+    </details>
+    <details class="faq__item">
+      <summary>Why continuous text, and what does it cost?</summary>
+      <div class="faq__body">
+        <p>Continuous text lets one process and one loss cover both modalities. At 668M it keeps image generation level with a text-to-image-only model at the same guidance scale (48.41 vs 47.86 GenEval), while every framework that writes text as tokens falls below that model. The cost is exact wording: CIDEr is 88.80 against 160.52 for autoregressive text, although CLIPScore is on par. Long descriptions show grammatical slips and occasional invented words.</p>
+      </div>
+    </details>
+    <details class="faq__item">
+      <summary>Isn't this UniDiffuser?</summary>
+      <div class="faq__body">
+        <p>It builds on it. Giving each modality its own timestep, and treating tasks as different settings of those timesteps, follows UniDiffuser. UniDiffuser diffuses CLIP embeddings and needs a separate autoregressive GPT-2 to decode text. JUICE keeps both modalities as frozen encoder states with one state per token (SigLIP2 or WebSSL-DINO patches, Flan-T5 tokens) and reads text out with a lightweight parallel decoder. The paper then studies which design choices make this work and what coupled sampling does for agreement between the two outputs.</p>
+      </div>
+    </details>
+    <details class="faq__item">
+      <summary>Does coupled sampling just copy one modality into the other?</summary>
+      <div class="faq__body">
+        <p>No. In the traced mazes, the output that settles later is the one that changes: the drawn route in one maze, the moves in the other. On solved mazes, coupled sampling returns the stored reference route 43.5% of the time for SigLIP2, close to the 44.1% expected from a uniform choice among shortest routes (DINO: 47.0% vs 44.4%), so it does not collapse onto one canonical answer either.</p>
+      </div>
+    </details>
+    <details class="faq__item">
+      <summary>Is coupled sampling better than generating one modality first?</summary>
+      <div class="faq__body">
+        <p>Not better than the better order: it comes close to it but does not beat it. On mazes, image first reaches 95.2% joint success and coupled sampling 93.7% for the maze-adapted SigLIP2 model; for DINO the two are 82.7% and 81.7%. The gap is significant for SigLIP2 (paired exact McNemar test, p&nbsp;=&nbsp;0.017) and not for DINO (p&nbsp;=&nbsp;0.19). Against the worse order, text first, coupled sampling is 8.4 (SigLIP2) and 21.8 (DINO) points ahead. The better order starts with the more reliable modality, which for a new task is not known in advance; coupled sampling does not need that choice.</p>
+      </div>
+    </details>
+    <details class="faq__item">
+      <summary>How does it compare with LLM-initialized models?</summary>
+      <div class="faq__body">
+        <p>On image generation it is close to the best unified models of <span class="nobr">1–3B</span> parameters (GenEval up to 0.88; DPG-Bench 85.27 for the SigLIP2 variant). On perception-style VQA the SigLIP2 variant is competitive: VQAv2 73.1 is above Show-o at 512² (69.4), Muddit (68.2) and OneFlow (67.7), and below JanusFlow (79.8). On benchmarks that need domain knowledge it trails clearly: AI2D 34.4 against <span class="nobr">58.5–71.4</span> for LLM-initialized models, and MMMU 29.6 against <span class="nobr">34.3–39.1</span> for Harmon, FUDOKI, Janus-Pro, Show-o2 and TUNA. That gap is what you would expect without a language model backbone. All JUICE numbers are at 224×224.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ============================================================ 12. citation -->
+<section class="section section--plain" id="citation" aria-labelledby="citation-h">
+  <header class="section__head">
+    <h2 id="citation-h">Citation</h2>
+  </header>
+  <div class="cite">
+    <div class="cite__bar">
+      <span class="cite__lang">BibTeX</span>
+      <button class="copy" type="button" data-copy="#bibtex">
+        <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><rect x="8.5" y="8.5" width="11" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M15.5 5.5V5a1.5 1.5 0 0 0-1.5-1.5H6A1.5 1.5 0 0 0 4.5 5v8A1.5 1.5 0 0 0 6 14.5h.5" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
+        <span class="copy__label">Copy</span>
+      </button>
+    </div>
+<pre id="bibtex"><code>@article{li2026juice,
+  title   = {{JUICE}: Unified Multimodal Modeling in Pretrained Representation Spaces},
+  author  = {Li, Jiahan and Su, Huangyuan and Tong, Shengbang and Yang, Shusheng and
+             Guo, Ruihan and Huang, Suozhi and Zhao, Hexu and Sharma, Pratyusha and
+             Yang, Sherry and Gu, Jiatao and Fergus, Rob and Cho, Kyunghyun},
+  journal = {arXiv preprint arXiv:XXXX.XXXXX},
+  year    = {2026}
+}</code></pre>
+    <p class="sr-only" aria-live="polite" id="copy-status"></p>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================ footer -->
+<footer class="footer">
+  <img class="footer__mark" src="static/img/mark.svg" width="28" height="28" alt="" loading="lazy">
+  <p>Questions? Contact Jiahan Li at <a href="mailto:jl17319@nyu.edu">jl17319@nyu.edu</a>.</p>
+  <p class="footer__links" data-optional-links>
+    <a data-link="thread" data-optional hidden>Discussion on X</a>
+    <a data-link="hf" data-optional hidden>Hugging Face paper page</a>
+  </p>
+  <p class="footer__credit">Page template inspired by <a href="https://beyond-llms.github.io/">Beyond Language Modeling</a> and <a href="https://junlinhan.github.io/projects/physics_of_mm_pretrain/">Physics of Multimodal Pretraining</a>. Last updated October 2026.</p>
+</footer>
+
+<!-- ============================================================ lightbox -->
+<dialog class="lightbox" id="lightbox" aria-label="Enlarged image">
+  <figure class="lightbox__fig">
+    <img class="lightbox__img" alt="">
+    <figcaption class="lightbox__cap"></figcaption>
+  </figure>
+  <button class="lightbox__btn lightbox__prev" type="button" aria-label="Previous image">‹</button>
+  <button class="lightbox__btn lightbox__next" type="button" aria-label="Next image">›</button>
+  <button class="lightbox__btn lightbox__close" type="button" aria-label="Close">×</button>
+</dialog>
+</body>
+</html>

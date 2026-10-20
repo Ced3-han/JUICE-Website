@@ -1,0 +1,3374 @@
+{
+ "_note": "Built by blog/_build/build_joint_vsp.py from /tmp/claude-0/-home-claude/f446da7b-9ee1-5ee5-80aa-8b3a4fc49eb9/scratchpad/webdata/web_steps_20261020/vsp.",
+ "steps_per_stream": 16,
+ "first_step": 0,
+ "every_step": true,
+ "source": "coupled sampling with the SigLIP2 model adapted to VSP; final outputs are the reported results",
+ "legend": {
+  "path": "drawn path (image)",
+  "moves": "route of the moves (text)",
+  "fail": "where the moves fail"
+ },
+ "maps": [
+  {
+   "id": "3_map8030",
+   "label": "8×8",
+   "sub": "unseen size · fixed at step 6",
+   "size": 8,
+   "map_id": 8030,
+   "level": 8,
+   "explain": "An 8×8 map, not seen in training. The drawn path is the reference route from the first step. The moves first drop one L from the run of four and walk into a hole; at step 5 they gain a move at the end (still into the hole), and at step 6 they complete the run of four L and reach the goal.",
+   "fixed_at": 6,
+   "frames": [
+    {
+     "step": 0,
+     "img": "static/img/widgets/vsp/3_map8030/s00.webp",
+     "moves": "LULLLD",
+     "route": [
+      [
+       6,
+       7
+      ],
+      [
+       6,
+       6
+      ],
+      [
+       5,
+       6
+      ],
+      [
+       5,
+       5
+      ],
+      [
+       5,
+       4
+      ],
+      [
+       5,
+       3
+      ],
+      [
+       6,
+       3
+      ]
+     ],
+     "status": "moves fail",
+     "status_kind": "bad",
+     "fail": {
+      "r": 6,
+      "c": 3
+     }
+    },
+    {
+     "step": 1,
+     "img": "static/img/widgets/vsp/3_map8030/s01.webp",
+     "moves": "LULLLD",
+     "route": [
+      [
+       6,
+       7
+      ],
+      [
+       6,
+       6
+      ],
+      [
+       5,
+       6
+      ],
+      [
+       5,
+       5
+      ],
+      [
+       5,
+       4
+      ],
+      [
+       5,
+       3
+      ],
+      [
+       6,
+       3
+      ]
+     ],
+     "status": "moves fail",
+     "status_kind": "bad",
+     "fail": {
+      "r": 6,
+      "c": 3
+     }
+    },
+    {
+     "step": 2,
+     "img": "static/img/widgets/vsp/3_map8030/s02.webp",
+     "moves": "LULLLD",
+     "route": [
+      [
+       6,
+       7
+      ],
+      [
+       6,
+       6
+      ],
+      [
+       5,
+       6
+      ],
+      [
+       5,
+       5
+      ],
+      [
+       5,
+       4
+      ],
+      [
+       5,
+       3
+      ],
+      [
+       6,
+       3
+      ]
+     ],
+     "status": "moves fail",
+     "status_kind": "bad",
+     "fail": {
+      "r": 6,
+      "c": 3
+     }
+    },
+    {
+     "step": 3,
+     "img": "static/img/widgets/vsp/3_map8030/s03.webp",
+     "moves": "LULLLD",
+     "route": [
+      [
+       6,
+       7
+      ],
+      [
+       6,
+       6
+      ],
+      [
+       5,
+       6
+      ],
+      [
+       5,
+       5
+      ],
+      [
+       5,
+       4
+      ],
+      [
+       5,
+       3
+      ],
+      [
+       6,
+       3
+      ]
+     ],
+     "status": "moves fail",
+     "status_kind": "bad",
+     "fail": {
+      "r": 6,
+      "c": 3
+     }
+    },
+    {
+     "step": 4,
+     "img": "static/img/widgets/vsp/3_map8030/s04.webp",
+     "moves": "LULLLD",
+     "route": [
+      [
+       6,
+       7
+      ],
+      [
+       6,
+       6
+      ],
+      [
+       5,
+       6
+      ],
+      [
+       5,
+       5
+      ],
+      [
+       5,
+       4
+      ],
+      [
+       5,
+       3
+      ],
+      [
+       6,
+       3
+      ]
+     ],
+     "status": "moves fail",
+     "status_kind": "bad",
+     "fail": {
+      "r": 6,
+      "c": 3
+     }
+    },
+    {
+     "step": 5,
+     "img": "static/img/widgets/vsp/3_map8030/s05.webp",
+     "moves": "LULLLDD",
+     "route": [
+      [
+       6,
+       7
+      ],
+      [
+       6,
+       6
+      ],
+      [
+       5,
+       6
+      ],
+      [
+       5,
+       5
+      ],
+      [
+       5,
+       4
+      ],
+      [
+       5,
+       3
+      ],
+      [
+       6,
+       3
+      ]
+     ],
+     "status": "moves fail",
+     "status_kind": "bad",
+     "fail": {
+      "r": 6,
+      "c": 3
+     }
+    },
+    {
+     "step": 6,
+     "img": "static/img/widgets/vsp/3_map8030/s06.webp",
+     "moves": "LULLLLD",
+     "route": [
+      [
+       6,
+       7
+      ],
+      [
+       6,
+       6
+      ],
+      [
+       5,
+       6
+      ],
+      [
+       5,
+       5
+      ],
+      [
+       5,
+       4
+      ],
+      [
+       5,
+       3
+      ],
+      [
+       5,
+       2
+      ],
+      [
+       6,
+       2
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 7,
+     "img": "static/img/widgets/vsp/3_map8030/s07.webp",
+     "moves": "LULLLLD",
+     "route": [
+      [
+       6,
+       7
+      ],
+      [
+       6,
+       6
+      ],
+      [
+       5,
+       6
+      ],
+      [
+       5,
+       5
+      ],
+      [
+       5,
+       4
+      ],
+      [
+       5,
+       3
+      ],
+      [
+       5,
+       2
+      ],
+      [
+       6,
+       2
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 8,
+     "img": "static/img/widgets/vsp/3_map8030/s08.webp",
+     "moves": "LULLLLD",
+     "route": [
+      [
+       6,
+       7
+      ],
+      [
+       6,
+       6
+      ],
+      [
+       5,
+       6
+      ],
+      [
+       5,
+       5
+      ],
+      [
+       5,
+       4
+      ],
+      [
+       5,
+       3
+      ],
+      [
+       5,
+       2
+      ],
+      [
+       6,
+       2
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 9,
+     "img": "static/img/widgets/vsp/3_map8030/s09.webp",
+     "moves": "LULLLLD",
+     "route": [
+      [
+       6,
+       7
+      ],
+      [
+       6,
+       6
+      ],
+      [
+       5,
+       6
+      ],
+      [
+       5,
+       5
+      ],
+      [
+       5,
+       4
+      ],
+      [
+       5,
+       3
+      ],
+      [
+       5,
+       2
+      ],
+      [
+       6,
+       2
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 10,
+     "img": "static/img/widgets/vsp/3_map8030/s10.webp",
+     "moves": "LULLLLD",
+     "route": [
+      [
+       6,
+       7
+      ],
+      [
+       6,
+       6
+      ],
+      [
+       5,
+       6
+      ],
+      [
+       5,
+       5
+      ],
+      [
+       5,
+       4
+      ],
+      [
+       5,
+       3
+      ],
+      [
+       5,
+       2
+      ],
+      [
+       6,
+       2
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 11,
+     "img": "static/img/widgets/vsp/3_map8030/s11.webp",
+     "moves": "LULLLLD",
+     "route": [
+      [
+       6,
+       7
+      ],
+      [
+       6,
+       6
+      ],
+      [
+       5,
+       6
+      ],
+      [
+       5,
+       5
+      ],
+      [
+       5,
+       4
+      ],
+      [
+       5,
+       3
+      ],
+      [
+       5,
+       2
+      ],
+      [
+       6,
+       2
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 12,
+     "img": "static/img/widgets/vsp/3_map8030/s12.webp",
+     "moves": "LULLLLD",
+     "route": [
+      [
+       6,
+       7
+      ],
+      [
+       6,
+       6
+      ],
+      [
+       5,
+       6
+      ],
+      [
+       5,
+       5
+      ],
+      [
+       5,
+       4
+      ],
+      [
+       5,
+       3
+      ],
+      [
+       5,
+       2
+      ],
+      [
+       6,
+       2
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 13,
+     "img": "static/img/widgets/vsp/3_map8030/s13.webp",
+     "moves": "LULLLLD",
+     "route": [
+      [
+       6,
+       7
+      ],
+      [
+       6,
+       6
+      ],
+      [
+       5,
+       6
+      ],
+      [
+       5,
+       5
+      ],
+      [
+       5,
+       4
+      ],
+      [
+       5,
+       3
+      ],
+      [
+       5,
+       2
+      ],
+      [
+       6,
+       2
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 14,
+     "img": "static/img/widgets/vsp/3_map8030/s14.webp",
+     "moves": "LULLLLD",
+     "route": [
+      [
+       6,
+       7
+      ],
+      [
+       6,
+       6
+      ],
+      [
+       5,
+       6
+      ],
+      [
+       5,
+       5
+      ],
+      [
+       5,
+       4
+      ],
+      [
+       5,
+       3
+      ],
+      [
+       5,
+       2
+      ],
+      [
+       6,
+       2
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 15,
+     "img": "static/img/widgets/vsp/3_map8030/s15.webp",
+     "moves": "LULLLLD",
+     "route": [
+      [
+       6,
+       7
+      ],
+      [
+       6,
+       6
+      ],
+      [
+       5,
+       6
+      ],
+      [
+       5,
+       5
+      ],
+      [
+       5,
+       4
+      ],
+      [
+       5,
+       3
+      ],
+      [
+       5,
+       2
+      ],
+      [
+       6,
+       2
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    }
+   ]
+  },
+  {
+   "id": "4_map8016",
+   "label": "8×8",
+   "sub": "unseen size · fixed at step 4",
+   "size": 8,
+   "map_id": 8016,
+   "level": 8,
+   "explain": "An 8×8 map, not seen in training. The drawn path is the reference route from the first step. The moves first drop one U from the run of four and walk into a hole; at step 1 they add an R (still into the same hole), and at step 4 they complete the run of four U and reach the goal.",
+   "fixed_at": 4,
+   "frames": [
+    {
+     "step": 0,
+     "img": "static/img/widgets/vsp/4_map8016/s00.webp",
+     "moves": "ULULUUURR",
+     "route": [
+      [
+       7,
+       3
+      ],
+      [
+       6,
+       3
+      ],
+      [
+       6,
+       2
+      ],
+      [
+       5,
+       2
+      ],
+      [
+       5,
+       1
+      ],
+      [
+       4,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       2,
+       2
+      ]
+     ],
+     "status": "moves fail",
+     "status_kind": "bad",
+     "fail": {
+      "r": 2,
+      "c": 2
+     }
+    },
+    {
+     "step": 1,
+     "img": "static/img/widgets/vsp/4_map8016/s01.webp",
+     "moves": "ULULUUURRR",
+     "route": [
+      [
+       7,
+       3
+      ],
+      [
+       6,
+       3
+      ],
+      [
+       6,
+       2
+      ],
+      [
+       5,
+       2
+      ],
+      [
+       5,
+       1
+      ],
+      [
+       4,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       2,
+       2
+      ]
+     ],
+     "status": "moves fail",
+     "status_kind": "bad",
+     "fail": {
+      "r": 2,
+      "c": 2
+     }
+    },
+    {
+     "step": 2,
+     "img": "static/img/widgets/vsp/4_map8016/s02.webp",
+     "moves": "ULULUUURRR",
+     "route": [
+      [
+       7,
+       3
+      ],
+      [
+       6,
+       3
+      ],
+      [
+       6,
+       2
+      ],
+      [
+       5,
+       2
+      ],
+      [
+       5,
+       1
+      ],
+      [
+       4,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       2,
+       2
+      ]
+     ],
+     "status": "moves fail",
+     "status_kind": "bad",
+     "fail": {
+      "r": 2,
+      "c": 2
+     }
+    },
+    {
+     "step": 3,
+     "img": "static/img/widgets/vsp/4_map8016/s03.webp",
+     "moves": "ULULUUURRR",
+     "route": [
+      [
+       7,
+       3
+      ],
+      [
+       6,
+       3
+      ],
+      [
+       6,
+       2
+      ],
+      [
+       5,
+       2
+      ],
+      [
+       5,
+       1
+      ],
+      [
+       4,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       2,
+       2
+      ]
+     ],
+     "status": "moves fail",
+     "status_kind": "bad",
+     "fail": {
+      "r": 2,
+      "c": 2
+     }
+    },
+    {
+     "step": 4,
+     "img": "static/img/widgets/vsp/4_map8016/s04.webp",
+     "moves": "ULULUUUURR",
+     "route": [
+      [
+       7,
+       3
+      ],
+      [
+       6,
+       3
+      ],
+      [
+       6,
+       2
+      ],
+      [
+       5,
+       2
+      ],
+      [
+       5,
+       1
+      ],
+      [
+       4,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       1,
+       1
+      ],
+      [
+       1,
+       2
+      ],
+      [
+       1,
+       3
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 5,
+     "img": "static/img/widgets/vsp/4_map8016/s05.webp",
+     "moves": "ULULUUUURR",
+     "route": [
+      [
+       7,
+       3
+      ],
+      [
+       6,
+       3
+      ],
+      [
+       6,
+       2
+      ],
+      [
+       5,
+       2
+      ],
+      [
+       5,
+       1
+      ],
+      [
+       4,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       1,
+       1
+      ],
+      [
+       1,
+       2
+      ],
+      [
+       1,
+       3
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 6,
+     "img": "static/img/widgets/vsp/4_map8016/s06.webp",
+     "moves": "ULULUUUURR",
+     "route": [
+      [
+       7,
+       3
+      ],
+      [
+       6,
+       3
+      ],
+      [
+       6,
+       2
+      ],
+      [
+       5,
+       2
+      ],
+      [
+       5,
+       1
+      ],
+      [
+       4,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       1,
+       1
+      ],
+      [
+       1,
+       2
+      ],
+      [
+       1,
+       3
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 7,
+     "img": "static/img/widgets/vsp/4_map8016/s07.webp",
+     "moves": "ULULUUUURR",
+     "route": [
+      [
+       7,
+       3
+      ],
+      [
+       6,
+       3
+      ],
+      [
+       6,
+       2
+      ],
+      [
+       5,
+       2
+      ],
+      [
+       5,
+       1
+      ],
+      [
+       4,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       1,
+       1
+      ],
+      [
+       1,
+       2
+      ],
+      [
+       1,
+       3
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 8,
+     "img": "static/img/widgets/vsp/4_map8016/s08.webp",
+     "moves": "ULULUUUURR",
+     "route": [
+      [
+       7,
+       3
+      ],
+      [
+       6,
+       3
+      ],
+      [
+       6,
+       2
+      ],
+      [
+       5,
+       2
+      ],
+      [
+       5,
+       1
+      ],
+      [
+       4,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       1,
+       1
+      ],
+      [
+       1,
+       2
+      ],
+      [
+       1,
+       3
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 9,
+     "img": "static/img/widgets/vsp/4_map8016/s09.webp",
+     "moves": "ULULUUUURR",
+     "route": [
+      [
+       7,
+       3
+      ],
+      [
+       6,
+       3
+      ],
+      [
+       6,
+       2
+      ],
+      [
+       5,
+       2
+      ],
+      [
+       5,
+       1
+      ],
+      [
+       4,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       1,
+       1
+      ],
+      [
+       1,
+       2
+      ],
+      [
+       1,
+       3
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 10,
+     "img": "static/img/widgets/vsp/4_map8016/s10.webp",
+     "moves": "ULULUUUURR",
+     "route": [
+      [
+       7,
+       3
+      ],
+      [
+       6,
+       3
+      ],
+      [
+       6,
+       2
+      ],
+      [
+       5,
+       2
+      ],
+      [
+       5,
+       1
+      ],
+      [
+       4,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       1,
+       1
+      ],
+      [
+       1,
+       2
+      ],
+      [
+       1,
+       3
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 11,
+     "img": "static/img/widgets/vsp/4_map8016/s11.webp",
+     "moves": "ULULUUUURR",
+     "route": [
+      [
+       7,
+       3
+      ],
+      [
+       6,
+       3
+      ],
+      [
+       6,
+       2
+      ],
+      [
+       5,
+       2
+      ],
+      [
+       5,
+       1
+      ],
+      [
+       4,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       1,
+       1
+      ],
+      [
+       1,
+       2
+      ],
+      [
+       1,
+       3
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 12,
+     "img": "static/img/widgets/vsp/4_map8016/s12.webp",
+     "moves": "ULULUUUURR",
+     "route": [
+      [
+       7,
+       3
+      ],
+      [
+       6,
+       3
+      ],
+      [
+       6,
+       2
+      ],
+      [
+       5,
+       2
+      ],
+      [
+       5,
+       1
+      ],
+      [
+       4,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       1,
+       1
+      ],
+      [
+       1,
+       2
+      ],
+      [
+       1,
+       3
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 13,
+     "img": "static/img/widgets/vsp/4_map8016/s13.webp",
+     "moves": "ULULUUUURR",
+     "route": [
+      [
+       7,
+       3
+      ],
+      [
+       6,
+       3
+      ],
+      [
+       6,
+       2
+      ],
+      [
+       5,
+       2
+      ],
+      [
+       5,
+       1
+      ],
+      [
+       4,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       1,
+       1
+      ],
+      [
+       1,
+       2
+      ],
+      [
+       1,
+       3
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 14,
+     "img": "static/img/widgets/vsp/4_map8016/s14.webp",
+     "moves": "ULULUUUURR",
+     "route": [
+      [
+       7,
+       3
+      ],
+      [
+       6,
+       3
+      ],
+      [
+       6,
+       2
+      ],
+      [
+       5,
+       2
+      ],
+      [
+       5,
+       1
+      ],
+      [
+       4,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       1,
+       1
+      ],
+      [
+       1,
+       2
+      ],
+      [
+       1,
+       3
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 15,
+     "img": "static/img/widgets/vsp/4_map8016/s15.webp",
+     "moves": "ULULUUUURR",
+     "route": [
+      [
+       7,
+       3
+      ],
+      [
+       6,
+       3
+      ],
+      [
+       6,
+       2
+      ],
+      [
+       5,
+       2
+      ],
+      [
+       5,
+       1
+      ],
+      [
+       4,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       1,
+       1
+      ],
+      [
+       1,
+       2
+      ],
+      [
+       1,
+       3
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    }
+   ]
+  },
+  {
+   "id": "1_map6026",
+   "label": "6×6",
+   "sub": "training size · solved from step 0",
+   "size": 6,
+   "map_id": 6026,
+   "level": 6,
+   "explain": "A 6×6 map, a size used in training. The moves and the drawn path are the reference route from the first step and do not change.",
+   "fixed_at": null,
+   "frames": [
+    {
+     "step": 0,
+     "img": "static/img/widgets/vsp/1_map6026/s00.webp",
+     "moves": "DRDRRURURU",
+     "route": [
+      [
+       1,
+       0
+      ],
+      [
+       2,
+       0
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ],
+      [
+       2,
+       3
+      ],
+      [
+       2,
+       4
+      ],
+      [
+       1,
+       4
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 1,
+     "img": "static/img/widgets/vsp/1_map6026/s01.webp",
+     "moves": "DRDRRURURU",
+     "route": [
+      [
+       1,
+       0
+      ],
+      [
+       2,
+       0
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ],
+      [
+       2,
+       3
+      ],
+      [
+       2,
+       4
+      ],
+      [
+       1,
+       4
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 2,
+     "img": "static/img/widgets/vsp/1_map6026/s02.webp",
+     "moves": "DRDRRURURU",
+     "route": [
+      [
+       1,
+       0
+      ],
+      [
+       2,
+       0
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ],
+      [
+       2,
+       3
+      ],
+      [
+       2,
+       4
+      ],
+      [
+       1,
+       4
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 3,
+     "img": "static/img/widgets/vsp/1_map6026/s03.webp",
+     "moves": "DRDRRURURU",
+     "route": [
+      [
+       1,
+       0
+      ],
+      [
+       2,
+       0
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ],
+      [
+       2,
+       3
+      ],
+      [
+       2,
+       4
+      ],
+      [
+       1,
+       4
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 4,
+     "img": "static/img/widgets/vsp/1_map6026/s04.webp",
+     "moves": "DRDRRURURU",
+     "route": [
+      [
+       1,
+       0
+      ],
+      [
+       2,
+       0
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ],
+      [
+       2,
+       3
+      ],
+      [
+       2,
+       4
+      ],
+      [
+       1,
+       4
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 5,
+     "img": "static/img/widgets/vsp/1_map6026/s05.webp",
+     "moves": "DRDRRURURU",
+     "route": [
+      [
+       1,
+       0
+      ],
+      [
+       2,
+       0
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ],
+      [
+       2,
+       3
+      ],
+      [
+       2,
+       4
+      ],
+      [
+       1,
+       4
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 6,
+     "img": "static/img/widgets/vsp/1_map6026/s06.webp",
+     "moves": "DRDRRURURU",
+     "route": [
+      [
+       1,
+       0
+      ],
+      [
+       2,
+       0
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ],
+      [
+       2,
+       3
+      ],
+      [
+       2,
+       4
+      ],
+      [
+       1,
+       4
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 7,
+     "img": "static/img/widgets/vsp/1_map6026/s07.webp",
+     "moves": "DRDRRURURU",
+     "route": [
+      [
+       1,
+       0
+      ],
+      [
+       2,
+       0
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ],
+      [
+       2,
+       3
+      ],
+      [
+       2,
+       4
+      ],
+      [
+       1,
+       4
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 8,
+     "img": "static/img/widgets/vsp/1_map6026/s08.webp",
+     "moves": "DRDRRURURU",
+     "route": [
+      [
+       1,
+       0
+      ],
+      [
+       2,
+       0
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ],
+      [
+       2,
+       3
+      ],
+      [
+       2,
+       4
+      ],
+      [
+       1,
+       4
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 9,
+     "img": "static/img/widgets/vsp/1_map6026/s09.webp",
+     "moves": "DRDRRURURU",
+     "route": [
+      [
+       1,
+       0
+      ],
+      [
+       2,
+       0
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ],
+      [
+       2,
+       3
+      ],
+      [
+       2,
+       4
+      ],
+      [
+       1,
+       4
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 10,
+     "img": "static/img/widgets/vsp/1_map6026/s10.webp",
+     "moves": "DRDRRURURU",
+     "route": [
+      [
+       1,
+       0
+      ],
+      [
+       2,
+       0
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ],
+      [
+       2,
+       3
+      ],
+      [
+       2,
+       4
+      ],
+      [
+       1,
+       4
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 11,
+     "img": "static/img/widgets/vsp/1_map6026/s11.webp",
+     "moves": "DRDRRURURU",
+     "route": [
+      [
+       1,
+       0
+      ],
+      [
+       2,
+       0
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ],
+      [
+       2,
+       3
+      ],
+      [
+       2,
+       4
+      ],
+      [
+       1,
+       4
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 12,
+     "img": "static/img/widgets/vsp/1_map6026/s12.webp",
+     "moves": "DRDRRURURU",
+     "route": [
+      [
+       1,
+       0
+      ],
+      [
+       2,
+       0
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ],
+      [
+       2,
+       3
+      ],
+      [
+       2,
+       4
+      ],
+      [
+       1,
+       4
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 13,
+     "img": "static/img/widgets/vsp/1_map6026/s13.webp",
+     "moves": "DRDRRURURU",
+     "route": [
+      [
+       1,
+       0
+      ],
+      [
+       2,
+       0
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ],
+      [
+       2,
+       3
+      ],
+      [
+       2,
+       4
+      ],
+      [
+       1,
+       4
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 14,
+     "img": "static/img/widgets/vsp/1_map6026/s14.webp",
+     "moves": "DRDRRURURU",
+     "route": [
+      [
+       1,
+       0
+      ],
+      [
+       2,
+       0
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ],
+      [
+       2,
+       3
+      ],
+      [
+       2,
+       4
+      ],
+      [
+       1,
+       4
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 15,
+     "img": "static/img/widgets/vsp/1_map6026/s15.webp",
+     "moves": "DRDRRURURU",
+     "route": [
+      [
+       1,
+       0
+      ],
+      [
+       2,
+       0
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       3,
+       1
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ],
+      [
+       2,
+       3
+      ],
+      [
+       2,
+       4
+      ],
+      [
+       1,
+       4
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    }
+   ]
+  },
+  {
+   "id": "2_map7099",
+   "label": "7×7",
+   "sub": "unseen size · solved from step 0",
+   "size": 7,
+   "map_id": 7099,
+   "level": 7,
+   "explain": "A 7×7 map, larger than any map seen in training. The moves and the drawn path are the reference route from the first step and do not change.",
+   "fixed_at": null,
+   "frames": [
+    {
+     "step": 0,
+     "img": "static/img/widgets/vsp/2_map7099/s00.webp",
+     "moves": "UUUUULLLDDDR",
+     "route": [
+      [
+       5,
+       5
+      ],
+      [
+       4,
+       5
+      ],
+      [
+       3,
+       5
+      ],
+      [
+       2,
+       5
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ],
+      [
+       0,
+       4
+      ],
+      [
+       0,
+       3
+      ],
+      [
+       0,
+       2
+      ],
+      [
+       1,
+       2
+      ],
+      [
+       2,
+       2
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 1,
+     "img": "static/img/widgets/vsp/2_map7099/s01.webp",
+     "moves": "UUUUULLLDDDR",
+     "route": [
+      [
+       5,
+       5
+      ],
+      [
+       4,
+       5
+      ],
+      [
+       3,
+       5
+      ],
+      [
+       2,
+       5
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ],
+      [
+       0,
+       4
+      ],
+      [
+       0,
+       3
+      ],
+      [
+       0,
+       2
+      ],
+      [
+       1,
+       2
+      ],
+      [
+       2,
+       2
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 2,
+     "img": "static/img/widgets/vsp/2_map7099/s02.webp",
+     "moves": "UUUUULLLDDDR",
+     "route": [
+      [
+       5,
+       5
+      ],
+      [
+       4,
+       5
+      ],
+      [
+       3,
+       5
+      ],
+      [
+       2,
+       5
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ],
+      [
+       0,
+       4
+      ],
+      [
+       0,
+       3
+      ],
+      [
+       0,
+       2
+      ],
+      [
+       1,
+       2
+      ],
+      [
+       2,
+       2
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 3,
+     "img": "static/img/widgets/vsp/2_map7099/s03.webp",
+     "moves": "UUUUULLLDDDR",
+     "route": [
+      [
+       5,
+       5
+      ],
+      [
+       4,
+       5
+      ],
+      [
+       3,
+       5
+      ],
+      [
+       2,
+       5
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ],
+      [
+       0,
+       4
+      ],
+      [
+       0,
+       3
+      ],
+      [
+       0,
+       2
+      ],
+      [
+       1,
+       2
+      ],
+      [
+       2,
+       2
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 4,
+     "img": "static/img/widgets/vsp/2_map7099/s04.webp",
+     "moves": "UUUUULLLDDDR",
+     "route": [
+      [
+       5,
+       5
+      ],
+      [
+       4,
+       5
+      ],
+      [
+       3,
+       5
+      ],
+      [
+       2,
+       5
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ],
+      [
+       0,
+       4
+      ],
+      [
+       0,
+       3
+      ],
+      [
+       0,
+       2
+      ],
+      [
+       1,
+       2
+      ],
+      [
+       2,
+       2
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 5,
+     "img": "static/img/widgets/vsp/2_map7099/s05.webp",
+     "moves": "UUUUULLLDDDR",
+     "route": [
+      [
+       5,
+       5
+      ],
+      [
+       4,
+       5
+      ],
+      [
+       3,
+       5
+      ],
+      [
+       2,
+       5
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ],
+      [
+       0,
+       4
+      ],
+      [
+       0,
+       3
+      ],
+      [
+       0,
+       2
+      ],
+      [
+       1,
+       2
+      ],
+      [
+       2,
+       2
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 6,
+     "img": "static/img/widgets/vsp/2_map7099/s06.webp",
+     "moves": "UUUUULLLDDDR",
+     "route": [
+      [
+       5,
+       5
+      ],
+      [
+       4,
+       5
+      ],
+      [
+       3,
+       5
+      ],
+      [
+       2,
+       5
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ],
+      [
+       0,
+       4
+      ],
+      [
+       0,
+       3
+      ],
+      [
+       0,
+       2
+      ],
+      [
+       1,
+       2
+      ],
+      [
+       2,
+       2
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 7,
+     "img": "static/img/widgets/vsp/2_map7099/s07.webp",
+     "moves": "UUUUULLLDDDR",
+     "route": [
+      [
+       5,
+       5
+      ],
+      [
+       4,
+       5
+      ],
+      [
+       3,
+       5
+      ],
+      [
+       2,
+       5
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ],
+      [
+       0,
+       4
+      ],
+      [
+       0,
+       3
+      ],
+      [
+       0,
+       2
+      ],
+      [
+       1,
+       2
+      ],
+      [
+       2,
+       2
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 8,
+     "img": "static/img/widgets/vsp/2_map7099/s08.webp",
+     "moves": "UUUUULLLDDDR",
+     "route": [
+      [
+       5,
+       5
+      ],
+      [
+       4,
+       5
+      ],
+      [
+       3,
+       5
+      ],
+      [
+       2,
+       5
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ],
+      [
+       0,
+       4
+      ],
+      [
+       0,
+       3
+      ],
+      [
+       0,
+       2
+      ],
+      [
+       1,
+       2
+      ],
+      [
+       2,
+       2
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 9,
+     "img": "static/img/widgets/vsp/2_map7099/s09.webp",
+     "moves": "UUUUULLLDDDR",
+     "route": [
+      [
+       5,
+       5
+      ],
+      [
+       4,
+       5
+      ],
+      [
+       3,
+       5
+      ],
+      [
+       2,
+       5
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ],
+      [
+       0,
+       4
+      ],
+      [
+       0,
+       3
+      ],
+      [
+       0,
+       2
+      ],
+      [
+       1,
+       2
+      ],
+      [
+       2,
+       2
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 10,
+     "img": "static/img/widgets/vsp/2_map7099/s10.webp",
+     "moves": "UUUUULLLDDDR",
+     "route": [
+      [
+       5,
+       5
+      ],
+      [
+       4,
+       5
+      ],
+      [
+       3,
+       5
+      ],
+      [
+       2,
+       5
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ],
+      [
+       0,
+       4
+      ],
+      [
+       0,
+       3
+      ],
+      [
+       0,
+       2
+      ],
+      [
+       1,
+       2
+      ],
+      [
+       2,
+       2
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 11,
+     "img": "static/img/widgets/vsp/2_map7099/s11.webp",
+     "moves": "UUUUULLLDDDR",
+     "route": [
+      [
+       5,
+       5
+      ],
+      [
+       4,
+       5
+      ],
+      [
+       3,
+       5
+      ],
+      [
+       2,
+       5
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ],
+      [
+       0,
+       4
+      ],
+      [
+       0,
+       3
+      ],
+      [
+       0,
+       2
+      ],
+      [
+       1,
+       2
+      ],
+      [
+       2,
+       2
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 12,
+     "img": "static/img/widgets/vsp/2_map7099/s12.webp",
+     "moves": "UUUUULLLDDDR",
+     "route": [
+      [
+       5,
+       5
+      ],
+      [
+       4,
+       5
+      ],
+      [
+       3,
+       5
+      ],
+      [
+       2,
+       5
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ],
+      [
+       0,
+       4
+      ],
+      [
+       0,
+       3
+      ],
+      [
+       0,
+       2
+      ],
+      [
+       1,
+       2
+      ],
+      [
+       2,
+       2
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 13,
+     "img": "static/img/widgets/vsp/2_map7099/s13.webp",
+     "moves": "UUUUULLLDDDR",
+     "route": [
+      [
+       5,
+       5
+      ],
+      [
+       4,
+       5
+      ],
+      [
+       3,
+       5
+      ],
+      [
+       2,
+       5
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ],
+      [
+       0,
+       4
+      ],
+      [
+       0,
+       3
+      ],
+      [
+       0,
+       2
+      ],
+      [
+       1,
+       2
+      ],
+      [
+       2,
+       2
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 14,
+     "img": "static/img/widgets/vsp/2_map7099/s14.webp",
+     "moves": "UUUUULLLDDDR",
+     "route": [
+      [
+       5,
+       5
+      ],
+      [
+       4,
+       5
+      ],
+      [
+       3,
+       5
+      ],
+      [
+       2,
+       5
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ],
+      [
+       0,
+       4
+      ],
+      [
+       0,
+       3
+      ],
+      [
+       0,
+       2
+      ],
+      [
+       1,
+       2
+      ],
+      [
+       2,
+       2
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    },
+    {
+     "step": 15,
+     "img": "static/img/widgets/vsp/2_map7099/s15.webp",
+     "moves": "UUUUULLLDDDR",
+     "route": [
+      [
+       5,
+       5
+      ],
+      [
+       4,
+       5
+      ],
+      [
+       3,
+       5
+      ],
+      [
+       2,
+       5
+      ],
+      [
+       1,
+       5
+      ],
+      [
+       0,
+       5
+      ],
+      [
+       0,
+       4
+      ],
+      [
+       0,
+       3
+      ],
+      [
+       0,
+       2
+      ],
+      [
+       1,
+       2
+      ],
+      [
+       2,
+       2
+      ],
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ]
+     ],
+     "status": "solves the map",
+     "status_kind": "agree"
+    }
+   ]
+  }
+ ]
+}

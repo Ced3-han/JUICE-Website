@@ -1,0 +1,64 @@
+{
+ "_note": "Built by blog/_qa/build_widget_data.py. Distributions: paper Sec. 3.4 (Eq. 5, time shift) and fact_sheet 3; recipes: Table 3; GenEval at best guidance: Table 20 (668M, 50k updates, single runs).",
+ "n_draws": 900,
+ "seed": 20260926,
+ "image": {
+  "mu": 0,
+  "s": 1,
+  "alpha": 8.485
+ },
+ "text": {
+  "mu": -1.5,
+  "s": 0.8,
+  "alpha": 1
+ },
+ "recipes": [
+  {
+   "id": "mixing",
+   "label": "Mixing",
+   "tag": "JUICE default",
+   "mix": {
+    "joint": 0.5555555555555556,
+    "t2i": 0.2222222222222222,
+    "i2t": 0.2222222222222222
+   },
+   "mix_label": "55.6% joint · 22.2% T2I · 22.2% I2T",
+   "geneval": 48.41,
+   "best_w": 5,
+   "explain": "Mixing trains on the interior and on both edges, so every sampling path runs through trained ground."
+  },
+  {
+   "id": "multitask",
+   "label": "Multi-task",
+   "tag": "edges only",
+   "mix": {
+    "joint": 0,
+    "t2i": 0.5,
+    "i2t": 0.5
+   },
+   "mix_label": "50% T2I · 50% I2T",
+   "geneval": 44.29,
+   "best_w": 3,
+   "explain": "Multi-task trains only on the edges. The joint path crosses an interior it never saw."
+  },
+  {
+   "id": "joint_only",
+   "label": "Joint only",
+   "tag": "interior only",
+   "mix": {
+    "joint": 1,
+    "t2i": 0,
+    "i2t": 0
+   },
+   "mix_label": "100% joint",
+   "geneval": 31.33,
+   "best_w": 5,
+   "explain": "Joint only never sees a clean condition. Text-to-image and captioning run along the edges, exactly where it never trained."
+  }
+ ],
+ "source": {
+  "recipes": "Table 3",
+  "geneval": "Table 20",
+  "figure": "Fig. 4"
+ }
+}

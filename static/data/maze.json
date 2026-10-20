@@ -1,0 +1,1931 @@
+{
+ "_note": "Built by blog/_build/build_joint_vsp.py from /tmp/claude-0/-home-claude/f446da7b-9ee1-5ee5-80aa-8b3a4fc49eb9/scratchpad/webdata/web_steps_20261020/maze (every coupled step; scoreboard and legend kept).",
+ "grid_px": 224,
+ "steps_per_stream": 16,
+ "legend": {
+  "start": "static/img/widgets/maze_legend_start.png",
+  "goal": "static/img/widgets/maze_legend_goal.png",
+  "route": "static/img/widgets/maze_legend_route.png"
+ },
+ "mazes": [
+  {
+   "id": "1_maze37",
+   "label": "Maze A",
+   "subtitle": "The drawing changes to match the moves",
+   "explain": "A 6×6 maze with two shortest routes. The moves are the reference route from the first step and never change. The drawn path starts on the other shortest route, is invalid at steps 1 and 2, and follows the route of the moves from step 3. Independent sampling keeps the other route in the drawing.",
+   "frames": [
+    {
+     "step": 0,
+     "coupled": {
+      "step": 0,
+      "img": "static/img/widgets/maze/1_maze37/s00.webp",
+      "moves": "RRDDRUUUULDL",
+      "underlined_idx": [],
+      "status": "different routes",
+      "status_kind": "warn",
+      "route": [
+       [
+        0.40625,
+        0.53125
+       ],
+       [
+        0.53125,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.65625
+       ],
+       [
+        0.65625,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.65625
+       ],
+       [
+        0.78125,
+        0.53125
+       ],
+       [
+        0.78125,
+        0.40625
+       ],
+       [
+        0.78125,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.40625
+       ],
+       [
+        0.53125,
+        0.40625
+       ]
+      ]
+     },
+     "independent": {
+      "step": 0,
+      "img": "static/img/widgets/maze/1_maze37/s00.webp",
+      "moves": "RRDDRUUUULDL",
+      "underlined_idx": [],
+      "status": "different routes",
+      "status_kind": "warn",
+      "route": [
+       [
+        0.40625,
+        0.53125
+       ],
+       [
+        0.53125,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.65625
+       ],
+       [
+        0.65625,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.65625
+       ],
+       [
+        0.78125,
+        0.53125
+       ],
+       [
+        0.78125,
+        0.40625
+       ],
+       [
+        0.78125,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.40625
+       ],
+       [
+        0.53125,
+        0.40625
+       ]
+      ],
+      "shared_start": true
+     }
+    },
+    {
+     "step": 1,
+     "coupled": {
+      "step": 1,
+      "img": "static/img/widgets/maze/1_maze37/s01.webp",
+      "moves": "RRDDRUUUULDL",
+      "underlined_idx": [],
+      "status": "drawn path invalid",
+      "status_kind": "bad",
+      "route": [
+       [
+        0.40625,
+        0.53125
+       ],
+       [
+        0.53125,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.65625
+       ],
+       [
+        0.65625,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.65625
+       ],
+       [
+        0.78125,
+        0.53125
+       ],
+       [
+        0.78125,
+        0.40625
+       ],
+       [
+        0.78125,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.40625
+       ],
+       [
+        0.53125,
+        0.40625
+       ]
+      ]
+     },
+     "independent": null
+    },
+    {
+     "step": 2,
+     "coupled": {
+      "step": 2,
+      "img": "static/img/widgets/maze/1_maze37/s02.webp",
+      "moves": "RRDDRUUUULDL",
+      "underlined_idx": [],
+      "status": "drawn path invalid",
+      "status_kind": "bad",
+      "route": [
+       [
+        0.40625,
+        0.53125
+       ],
+       [
+        0.53125,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.65625
+       ],
+       [
+        0.65625,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.65625
+       ],
+       [
+        0.78125,
+        0.53125
+       ],
+       [
+        0.78125,
+        0.40625
+       ],
+       [
+        0.78125,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.40625
+       ],
+       [
+        0.53125,
+        0.40625
+       ]
+      ]
+     },
+     "independent": null
+    },
+    {
+     "step": 3,
+     "coupled": {
+      "step": 3,
+      "img": "static/img/widgets/maze/1_maze37/s03.webp",
+      "moves": "RRDDRUUUULDL",
+      "underlined_idx": [],
+      "status": "same route",
+      "status_kind": "agree",
+      "route": [
+       [
+        0.40625,
+        0.53125
+       ],
+       [
+        0.53125,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.65625
+       ],
+       [
+        0.65625,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.65625
+       ],
+       [
+        0.78125,
+        0.53125
+       ],
+       [
+        0.78125,
+        0.40625
+       ],
+       [
+        0.78125,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.40625
+       ],
+       [
+        0.53125,
+        0.40625
+       ]
+      ]
+     },
+     "independent": null
+    },
+    {
+     "step": 4,
+     "coupled": {
+      "step": 4,
+      "img": "static/img/widgets/maze/1_maze37/s04.webp",
+      "moves": "RRDDRUUUULDL",
+      "underlined_idx": [],
+      "status": "same route",
+      "status_kind": "agree",
+      "route": [
+       [
+        0.40625,
+        0.53125
+       ],
+       [
+        0.53125,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.65625
+       ],
+       [
+        0.65625,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.65625
+       ],
+       [
+        0.78125,
+        0.53125
+       ],
+       [
+        0.78125,
+        0.40625
+       ],
+       [
+        0.78125,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.40625
+       ],
+       [
+        0.53125,
+        0.40625
+       ]
+      ]
+     },
+     "independent": null
+    },
+    {
+     "step": 5,
+     "coupled": {
+      "step": 5,
+      "img": "static/img/widgets/maze/1_maze37/s05.webp",
+      "moves": "RRDDRUUUULDL",
+      "underlined_idx": [],
+      "status": "same route",
+      "status_kind": "agree",
+      "route": [
+       [
+        0.40625,
+        0.53125
+       ],
+       [
+        0.53125,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.65625
+       ],
+       [
+        0.65625,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.65625
+       ],
+       [
+        0.78125,
+        0.53125
+       ],
+       [
+        0.78125,
+        0.40625
+       ],
+       [
+        0.78125,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.40625
+       ],
+       [
+        0.53125,
+        0.40625
+       ]
+      ]
+     },
+     "independent": null
+    },
+    {
+     "step": 6,
+     "coupled": {
+      "step": 6,
+      "img": "static/img/widgets/maze/1_maze37/s06.webp",
+      "moves": "RRDDRUUUULDL",
+      "underlined_idx": [],
+      "status": "same route",
+      "status_kind": "agree",
+      "route": [
+       [
+        0.40625,
+        0.53125
+       ],
+       [
+        0.53125,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.65625
+       ],
+       [
+        0.65625,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.65625
+       ],
+       [
+        0.78125,
+        0.53125
+       ],
+       [
+        0.78125,
+        0.40625
+       ],
+       [
+        0.78125,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.40625
+       ],
+       [
+        0.53125,
+        0.40625
+       ]
+      ]
+     },
+     "independent": null
+    },
+    {
+     "step": 7,
+     "coupled": {
+      "step": 7,
+      "img": "static/img/widgets/maze/1_maze37/s07.webp",
+      "moves": "RRDDRUUUULDL",
+      "underlined_idx": [],
+      "status": "same route",
+      "status_kind": "agree",
+      "route": [
+       [
+        0.40625,
+        0.53125
+       ],
+       [
+        0.53125,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.65625
+       ],
+       [
+        0.65625,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.65625
+       ],
+       [
+        0.78125,
+        0.53125
+       ],
+       [
+        0.78125,
+        0.40625
+       ],
+       [
+        0.78125,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.40625
+       ],
+       [
+        0.53125,
+        0.40625
+       ]
+      ]
+     },
+     "independent": null
+    },
+    {
+     "step": 8,
+     "coupled": {
+      "step": 8,
+      "img": "static/img/widgets/maze/1_maze37/s08.webp",
+      "moves": "RRDDRUUUULDL",
+      "underlined_idx": [],
+      "status": "same route",
+      "status_kind": "agree",
+      "route": [
+       [
+        0.40625,
+        0.53125
+       ],
+       [
+        0.53125,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.65625
+       ],
+       [
+        0.65625,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.65625
+       ],
+       [
+        0.78125,
+        0.53125
+       ],
+       [
+        0.78125,
+        0.40625
+       ],
+       [
+        0.78125,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.40625
+       ],
+       [
+        0.53125,
+        0.40625
+       ]
+      ]
+     },
+     "independent": null
+    },
+    {
+     "step": 9,
+     "coupled": {
+      "step": 9,
+      "img": "static/img/widgets/maze/1_maze37/s09.webp",
+      "moves": "RRDDRUUUULDL",
+      "underlined_idx": [],
+      "status": "same route",
+      "status_kind": "agree",
+      "route": [
+       [
+        0.40625,
+        0.53125
+       ],
+       [
+        0.53125,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.65625
+       ],
+       [
+        0.65625,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.65625
+       ],
+       [
+        0.78125,
+        0.53125
+       ],
+       [
+        0.78125,
+        0.40625
+       ],
+       [
+        0.78125,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.40625
+       ],
+       [
+        0.53125,
+        0.40625
+       ]
+      ]
+     },
+     "independent": null
+    },
+    {
+     "step": 10,
+     "coupled": {
+      "step": 10,
+      "img": "static/img/widgets/maze/1_maze37/s10.webp",
+      "moves": "RRDDRUUUULDL",
+      "underlined_idx": [],
+      "status": "same route",
+      "status_kind": "agree",
+      "route": [
+       [
+        0.40625,
+        0.53125
+       ],
+       [
+        0.53125,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.65625
+       ],
+       [
+        0.65625,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.65625
+       ],
+       [
+        0.78125,
+        0.53125
+       ],
+       [
+        0.78125,
+        0.40625
+       ],
+       [
+        0.78125,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.40625
+       ],
+       [
+        0.53125,
+        0.40625
+       ]
+      ]
+     },
+     "independent": null
+    },
+    {
+     "step": 11,
+     "coupled": {
+      "step": 11,
+      "img": "static/img/widgets/maze/1_maze37/s11.webp",
+      "moves": "RRDDRUUUULDL",
+      "underlined_idx": [],
+      "status": "same route",
+      "status_kind": "agree",
+      "route": [
+       [
+        0.40625,
+        0.53125
+       ],
+       [
+        0.53125,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.65625
+       ],
+       [
+        0.65625,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.65625
+       ],
+       [
+        0.78125,
+        0.53125
+       ],
+       [
+        0.78125,
+        0.40625
+       ],
+       [
+        0.78125,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.40625
+       ],
+       [
+        0.53125,
+        0.40625
+       ]
+      ]
+     },
+     "independent": null
+    },
+    {
+     "step": 12,
+     "coupled": {
+      "step": 12,
+      "img": "static/img/widgets/maze/1_maze37/s12.webp",
+      "moves": "RRDDRUUUULDL",
+      "underlined_idx": [],
+      "status": "same route",
+      "status_kind": "agree",
+      "route": [
+       [
+        0.40625,
+        0.53125
+       ],
+       [
+        0.53125,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.65625
+       ],
+       [
+        0.65625,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.65625
+       ],
+       [
+        0.78125,
+        0.53125
+       ],
+       [
+        0.78125,
+        0.40625
+       ],
+       [
+        0.78125,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.40625
+       ],
+       [
+        0.53125,
+        0.40625
+       ]
+      ]
+     },
+     "independent": null
+    },
+    {
+     "step": 13,
+     "coupled": {
+      "step": 13,
+      "img": "static/img/widgets/maze/1_maze37/s13.webp",
+      "moves": "RRDDRUUUULDL",
+      "underlined_idx": [],
+      "status": "same route",
+      "status_kind": "agree",
+      "route": [
+       [
+        0.40625,
+        0.53125
+       ],
+       [
+        0.53125,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.65625
+       ],
+       [
+        0.65625,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.65625
+       ],
+       [
+        0.78125,
+        0.53125
+       ],
+       [
+        0.78125,
+        0.40625
+       ],
+       [
+        0.78125,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.40625
+       ],
+       [
+        0.53125,
+        0.40625
+       ]
+      ]
+     },
+     "independent": null
+    },
+    {
+     "step": 14,
+     "coupled": {
+      "step": 14,
+      "img": "static/img/widgets/maze/1_maze37/s14.webp",
+      "moves": "RRDDRUUUULDL",
+      "underlined_idx": [],
+      "status": "same route",
+      "status_kind": "agree",
+      "route": [
+       [
+        0.40625,
+        0.53125
+       ],
+       [
+        0.53125,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.65625
+       ],
+       [
+        0.65625,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.65625
+       ],
+       [
+        0.78125,
+        0.53125
+       ],
+       [
+        0.78125,
+        0.40625
+       ],
+       [
+        0.78125,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.40625
+       ],
+       [
+        0.53125,
+        0.40625
+       ]
+      ]
+     },
+     "independent": null
+    },
+    {
+     "step": 15,
+     "coupled": {
+      "step": 15,
+      "img": "static/img/widgets/maze/1_maze37/s15.webp",
+      "moves": "RRDDRUUUULDL",
+      "underlined_idx": [],
+      "status": "same route",
+      "status_kind": "agree",
+      "route": [
+       [
+        0.40625,
+        0.53125
+       ],
+       [
+        0.53125,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.65625
+       ],
+       [
+        0.65625,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.65625
+       ],
+       [
+        0.78125,
+        0.53125
+       ],
+       [
+        0.78125,
+        0.40625
+       ],
+       [
+        0.78125,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.40625
+       ],
+       [
+        0.53125,
+        0.40625
+       ]
+      ]
+     },
+     "independent": {
+      "step": 15,
+      "img": "static/img/widgets/maze/1_maze37/independent_s15.webp",
+      "moves": "RRDDRUUUULDL",
+      "underlined_idx": [],
+      "status": "different routes",
+      "status_kind": "warn",
+      "route": [
+       [
+        0.40625,
+        0.53125
+       ],
+       [
+        0.53125,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.53125
+       ],
+       [
+        0.65625,
+        0.65625
+       ],
+       [
+        0.65625,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.78125
+       ],
+       [
+        0.78125,
+        0.65625
+       ],
+       [
+        0.78125,
+        0.53125
+       ],
+       [
+        0.78125,
+        0.40625
+       ],
+       [
+        0.78125,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.28125
+       ],
+       [
+        0.65625,
+        0.40625
+       ],
+       [
+        0.53125,
+        0.40625
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "2_maze61",
+   "label": "Maze B",
+   "subtitle": "The moves change to match the drawing",
+   "explain": "A 6×6 maze with two shortest routes. The moves RURRD are a valid route from the first step. The drawn path becomes valid at step 2, on the other shortest route, and does not change after that. At step 7 the moves change to the drawn route, RURDR. Independent sampling ends with RURRD and the drawing on the other route.",
+   "frames": [
+    {
+     "step": 0,
+     "coupled": {
+      "step": 0,
+      "img": "static/img/widgets/maze/2_maze61/s00.webp",
+      "moves": "RURRD",
+      "underlined_idx": [],
+      "status": "drawn path invalid",
+      "status_kind": "bad",
+      "route": [
+       [
+        0.15625,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.65625
+       ],
+       [
+        0.40625,
+        0.65625
+       ],
+       [
+        0.53125,
+        0.65625
+       ],
+       [
+        0.53125,
+        0.78125
+       ]
+      ]
+     },
+     "independent": {
+      "step": 0,
+      "img": "static/img/widgets/maze/2_maze61/s00.webp",
+      "moves": "RURRD",
+      "underlined_idx": [],
+      "status": "drawn path invalid",
+      "status_kind": "bad",
+      "route": [
+       [
+        0.15625,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.65625
+       ],
+       [
+        0.40625,
+        0.65625
+       ],
+       [
+        0.53125,
+        0.65625
+       ],
+       [
+        0.53125,
+        0.78125
+       ]
+      ],
+      "shared_start": true
+     }
+    },
+    {
+     "step": 1,
+     "coupled": {
+      "step": 1,
+      "img": "static/img/widgets/maze/2_maze61/s01.webp",
+      "moves": "RURRD",
+      "underlined_idx": [],
+      "status": "drawn path invalid",
+      "status_kind": "bad",
+      "route": [
+       [
+        0.15625,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.65625
+       ],
+       [
+        0.40625,
+        0.65625
+       ],
+       [
+        0.53125,
+        0.65625
+       ],
+       [
+        0.53125,
+        0.78125
+       ]
+      ]
+     },
+     "independent": null
+    },
+    {
+     "step": 2,
+     "coupled": {
+      "step": 2,
+      "img": "static/img/widgets/maze/2_maze61/s02.webp",
+      "moves": "RURRD",
+      "underlined_idx": [],
+      "status": "different routes",
+      "status_kind": "warn",
+      "route": [
+       [
+        0.15625,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.65625
+       ],
+       [
+        0.40625,
+        0.65625
+       ],
+       [
+        0.53125,
+        0.65625
+       ],
+       [
+        0.53125,
+        0.78125
+       ]
+      ]
+     },
+     "independent": null
+    },
+    {
+     "step": 3,
+     "coupled": {
+      "step": 3,
+      "img": "static/img/widgets/maze/2_maze61/s03.webp",
+      "moves": "RURRD",
+      "underlined_idx": [],
+      "status": "different routes",
+      "status_kind": "warn",
+      "route": [
+       [
+        0.15625,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.65625
+       ],
+       [
+        0.40625,
+        0.65625
+       ],
+       [
+        0.53125,
+        0.65625
+       ],
+       [
+        0.53125,
+        0.78125
+       ]
+      ]
+     },
+     "independent": null
+    },
+    {
+     "step": 4,
+     "coupled": {
+      "step": 4,
+      "img": "static/img/widgets/maze/2_maze61/s04.webp",
+      "moves": "RURRD",
+      "underlined_idx": [],
+      "status": "different routes",
+      "status_kind": "warn",
+      "route": [
+       [
+        0.15625,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.65625
+       ],
+       [
+        0.40625,
+        0.65625
+       ],
+       [
+        0.53125,
+        0.65625
+       ],
+       [
+        0.53125,
+        0.78125
+       ]
+      ]
+     },
+     "independent": null
+    },
+    {
+     "step": 5,
+     "coupled": {
+      "step": 5,
+      "img": "static/img/widgets/maze/2_maze61/s05.webp",
+      "moves": "RURRD",
+      "underlined_idx": [],
+      "status": "different routes",
+      "status_kind": "warn",
+      "route": [
+       [
+        0.15625,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.65625
+       ],
+       [
+        0.40625,
+        0.65625
+       ],
+       [
+        0.53125,
+        0.65625
+       ],
+       [
+        0.53125,
+        0.78125
+       ]
+      ]
+     },
+     "independent": null
+    },
+    {
+     "step": 6,
+     "coupled": {
+      "step": 6,
+      "img": "static/img/widgets/maze/2_maze61/s06.webp",
+      "moves": "RURRD",
+      "underlined_idx": [],
+      "status": "different routes",
+      "status_kind": "warn",
+      "route": [
+       [
+        0.15625,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.65625
+       ],
+       [
+        0.40625,
+        0.65625
+       ],
+       [
+        0.53125,
+        0.65625
+       ],
+       [
+        0.53125,
+        0.78125
+       ]
+      ]
+     },
+     "independent": null
+    },
+    {
+     "step": 7,
+     "coupled": {
+      "step": 7,
+      "img": "static/img/widgets/maze/2_maze61/s07.webp",
+      "moves": "RURDR",
+      "underlined_idx": [
+       3,
+       4
+      ],
+      "status": "same route",
+      "status_kind": "agree",
+      "route": [
+       [
+        0.15625,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.65625
+       ],
+       [
+        0.40625,
+        0.65625
+       ],
+       [
+        0.40625,
+        0.78125
+       ],
+       [
+        0.53125,
+        0.78125
+       ]
+      ]
+     },
+     "independent": null
+    },
+    {
+     "step": 8,
+     "coupled": {
+      "step": 8,
+      "img": "static/img/widgets/maze/2_maze61/s08.webp",
+      "moves": "RURDR",
+      "underlined_idx": [],
+      "status": "same route",
+      "status_kind": "agree",
+      "route": [
+       [
+        0.15625,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.65625
+       ],
+       [
+        0.40625,
+        0.65625
+       ],
+       [
+        0.40625,
+        0.78125
+       ],
+       [
+        0.53125,
+        0.78125
+       ]
+      ]
+     },
+     "independent": null
+    },
+    {
+     "step": 9,
+     "coupled": {
+      "step": 9,
+      "img": "static/img/widgets/maze/2_maze61/s09.webp",
+      "moves": "RURDR",
+      "underlined_idx": [],
+      "status": "same route",
+      "status_kind": "agree",
+      "route": [
+       [
+        0.15625,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.65625
+       ],
+       [
+        0.40625,
+        0.65625
+       ],
+       [
+        0.40625,
+        0.78125
+       ],
+       [
+        0.53125,
+        0.78125
+       ]
+      ]
+     },
+     "independent": null
+    },
+    {
+     "step": 10,
+     "coupled": {
+      "step": 10,
+      "img": "static/img/widgets/maze/2_maze61/s10.webp",
+      "moves": "RURDR",
+      "underlined_idx": [],
+      "status": "same route",
+      "status_kind": "agree",
+      "route": [
+       [
+        0.15625,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.65625
+       ],
+       [
+        0.40625,
+        0.65625
+       ],
+       [
+        0.40625,
+        0.78125
+       ],
+       [
+        0.53125,
+        0.78125
+       ]
+      ]
+     },
+     "independent": null
+    },
+    {
+     "step": 11,
+     "coupled": {
+      "step": 11,
+      "img": "static/img/widgets/maze/2_maze61/s11.webp",
+      "moves": "RURDR",
+      "underlined_idx": [],
+      "status": "same route",
+      "status_kind": "agree",
+      "route": [
+       [
+        0.15625,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.65625
+       ],
+       [
+        0.40625,
+        0.65625
+       ],
+       [
+        0.40625,
+        0.78125
+       ],
+       [
+        0.53125,
+        0.78125
+       ]
+      ]
+     },
+     "independent": null
+    },
+    {
+     "step": 12,
+     "coupled": {
+      "step": 12,
+      "img": "static/img/widgets/maze/2_maze61/s12.webp",
+      "moves": "RURDR",
+      "underlined_idx": [],
+      "status": "same route",
+      "status_kind": "agree",
+      "route": [
+       [
+        0.15625,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.65625
+       ],
+       [
+        0.40625,
+        0.65625
+       ],
+       [
+        0.40625,
+        0.78125
+       ],
+       [
+        0.53125,
+        0.78125
+       ]
+      ]
+     },
+     "independent": null
+    },
+    {
+     "step": 13,
+     "coupled": {
+      "step": 13,
+      "img": "static/img/widgets/maze/2_maze61/s13.webp",
+      "moves": "RURDR",
+      "underlined_idx": [],
+      "status": "same route",
+      "status_kind": "agree",
+      "route": [
+       [
+        0.15625,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.65625
+       ],
+       [
+        0.40625,
+        0.65625
+       ],
+       [
+        0.40625,
+        0.78125
+       ],
+       [
+        0.53125,
+        0.78125
+       ]
+      ]
+     },
+     "independent": null
+    },
+    {
+     "step": 14,
+     "coupled": {
+      "step": 14,
+      "img": "static/img/widgets/maze/2_maze61/s14.webp",
+      "moves": "RURDR",
+      "underlined_idx": [],
+      "status": "same route",
+      "status_kind": "agree",
+      "route": [
+       [
+        0.15625,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.65625
+       ],
+       [
+        0.40625,
+        0.65625
+       ],
+       [
+        0.40625,
+        0.78125
+       ],
+       [
+        0.53125,
+        0.78125
+       ]
+      ]
+     },
+     "independent": null
+    },
+    {
+     "step": 15,
+     "coupled": {
+      "step": 15,
+      "img": "static/img/widgets/maze/2_maze61/s15.webp",
+      "moves": "RURDR",
+      "underlined_idx": [],
+      "status": "same route",
+      "status_kind": "agree",
+      "route": [
+       [
+        0.15625,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.65625
+       ],
+       [
+        0.40625,
+        0.65625
+       ],
+       [
+        0.40625,
+        0.78125
+       ],
+       [
+        0.53125,
+        0.78125
+       ]
+      ]
+     },
+     "independent": {
+      "step": 15,
+      "img": "static/img/widgets/maze/2_maze61/independent_s15.webp",
+      "moves": "RURRD",
+      "underlined_idx": [],
+      "status": "different routes",
+      "status_kind": "warn",
+      "route": [
+       [
+        0.15625,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.78125
+       ],
+       [
+        0.28125,
+        0.65625
+       ],
+       [
+        0.40625,
+        0.65625
+       ],
+       [
+        0.53125,
+        0.65625
+       ],
+       [
+        0.53125,
+        0.78125
+       ]
+      ]
+     }
+    }
+   ]
+  }
+ ],
+ "scoreboard": {
+  "metric": "Maze joint success (%)",
+  "setting": "500 test mazes at 224×224, 16 backbone calls, mean of 2 seeds; task-adapted models (5k updates on 200k mazes)",
+  "source": "Table 7",
+  "variants": {
+   "siglip": "SigLIP2",
+   "dino": "DINO"
+  },
+  "rows": [
+   {
+    "id": "independent",
+    "label": "Independent",
+    "siglip": 54.6,
+    "dino": 42.7,
+    "group": null
+   },
+   {
+    "id": "text_first",
+    "label": "Text first",
+    "siglip": 85.3,
+    "dino": 59.9,
+    "group": "sequential"
+   },
+   {
+    "id": "image_first",
+    "label": "Image first",
+    "siglip": 95.2,
+    "dino": 82.7,
+    "group": "sequential"
+   },
+   {
+    "id": "coupled",
+    "label": "Coupled",
+    "siglip": 93.7,
+    "dino": 81.7,
+    "group": null,
+    "accent": true
+   }
+  ],
+  "gap_to_better_order": {
+   "siglip": 1.5,
+   "dino": 1.0
+  }
+ },
+ "source": "Fig. 11",
+ "every_step": true
+}
