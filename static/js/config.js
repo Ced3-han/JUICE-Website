@@ -12,7 +12,7 @@ window.JUICE_LINKS = {
   arxiv: 'https://arxiv.org/abs/2610.28801',
   code: 'https://github.com/Ced3-han/JUICE-Code',
   weights: 'https://huggingface.co/collections/CedLJH/juice',
-  hf: null,
+  hf: 'https://huggingface.co/papers/2610.28801',
   thread: null,
   site: 'https://ced3-han.github.io/JUICE-Website/'
 };
