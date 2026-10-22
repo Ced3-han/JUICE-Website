@@ -421,6 +421,59 @@
     }, { threshold: [0, 0.5] }).observe(v);
   }
 
+  /* ------------------------------------------------------------ animated study charts */
+  // Figures 3-5 are redrawn by study_charts.js (shared with the video) and animate once when their plate is in view.
+  // The paper's image stays in the plate as the no-JS fallback; clicking the chart enlarges that image.
+  function initAnimFigs() {
+    var plates = $$('.plate[data-anim]');
+    if (!plates.length) return;
+    import('./study_charts.js').then(function (m) {
+      plates.forEach(function (plate) {
+        var img = $('img', plate), kind = plate.getAttribute('data-anim');
+        var host = doc.createElement('div');
+        host.className = 'anim-fig';
+        host.setAttribute('data-zoom', img.getAttribute('data-zoom'));
+        host.tabIndex = 0;
+        host.setAttribute('role', 'button');
+        host.setAttribute('aria-label', 'Enlarge: ' + (img.alt || 'figure'));
+        host.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); host.click(); }
+        });
+        plate.insertBefore(host, img);
+        var chart = kind === 'encoders' ? m.encoderChart(host) : m.trainingChart(host, kind);
+        chart.svg.setAttribute('aria-label', img.alt);
+        img.style.display = 'none';
+        if (reduceMotion || !hasIO) return;   // the final frame only
+        var dur = kind === 'encoders' ? 2200 : 3000, raf = 0;
+        var btn = doc.createElement('button');
+        btn.type = 'button';
+        btn.className = 'anim-replay';
+        btn.textContent = 'Replay';
+        plate.appendChild(btn);
+        var play = function () {
+          cancelAnimationFrame(raf);
+          btn.classList.remove('is-ready');
+          var t0 = performance.now();
+          var tick = function (now) {
+            var p = Math.min(1, (now - t0) / dur);
+            chart.set(p);
+            if (p < 1) raf = requestAnimationFrame(tick); else btn.classList.add('is-ready');
+          };
+          chart.set(0);
+          raf = requestAnimationFrame(tick);
+        };
+        btn.addEventListener('click', play);
+        chart.set(0);
+        var io = new IntersectionObserver(function (entries) {
+          if (entries[0].isIntersecting) { io.disconnect(); play(); }
+        }, { threshold: 0.6 });
+        io.observe(plate);
+      });
+    }).catch(function (err) {
+      if (window.console) console.warn('[juice] animated figures unavailable; keeping the images.', err);
+    });
+  }
+
   /* ------------------------------------------------------------ lazy widget loader */
   function loadWidget(el) {
     var name = el.getAttribute('data-widget') || '';
@@ -497,6 +550,7 @@
     safe('video', initVideo);
     safe('jumps', initJumps);
     safe('widgets', initWidgets);
+    safe('anim-figs', initAnimFigs);
   }
   if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', boot);
   else boot();

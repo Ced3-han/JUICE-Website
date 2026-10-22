@@ -497,6 +497,17 @@ html:not(.js) .kw:hover .tip, html:not(.js) .kw__btn:focus + .tip { display: blo
   padding: 18px; box-shadow: var(--shadow-plate);
 }
 .plate img { display: block; width: 100%; border-radius: var(--r-sm); filter: var(--plate-img-filter); }
+/* animated study charts (static/js/study_charts.js); the img stays in the plate as the no-JS fallback */
+.plate[data-anim] { position: relative; }
+.anim-fig { border-radius: var(--r-sm); filter: var(--plate-img-filter); cursor: zoom-in; }
+.anim-replay {
+  position: absolute; top: 8px; right: 8px; padding: 3px 11px; border-radius: 999px;
+  border: 1px solid #D0D4D9; background: rgba(255, 255, 255, .92); color: #4A5058;
+  font: 500 12.5px/1.5 var(--font-sans, system-ui, sans-serif); cursor: pointer;
+  opacity: 0; visibility: hidden; transition: opacity .2s;
+}
+.anim-replay.is-ready { opacity: 1; visibility: visible; }
+.anim-replay:hover { background: #fff; color: #1A1A1A; }
 .plate--flush { box-shadow: var(--shadow-2); }
 .fig figcaption, .promo figcaption {
   max-width: var(--w-text); margin: 14px auto 0;
@@ -939,6 +950,7 @@ html:not(.js) .pills { display: none; }
   /* wide multi-panel figures: keep them legible and let the reader pan */
   .fig--pan .plate { overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin; }
   .fig--pan .plate img { width: 600px; max-width: none; }
+  .fig--pan .plate .anim-fig { width: 600px; }
   .fig--pan figcaption::after { content: " Swipe to pan, tap to enlarge."; color: var(--muted); font-style: italic; }
 }
 @media (hover: none) {
