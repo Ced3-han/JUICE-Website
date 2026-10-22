@@ -107,7 +107,7 @@
       <span class="wordmark">JUICE</span><span class="sr-only">: </span>
       <span class="subtitle">Unified Multimodal Modeling <br class="br-wide">in Pretrained Representation&nbsp;Spaces</span>
     </h1>
-    <p class="summary">Most unified models treat images and text asymmetrically: a pretrained language model writes the text, and an attached diffusion head draws the image. JUICE generates both with one process, trained on both from scratch, directly in the continuous spaces of frozen pretrained encoders. One flow matching Transformer, with no LLM initialization, handles image generation, visual understanding and joint&nbsp;generation.</p>
+    <p class="summary">Most unified models treat images and text asymmetrically: a pretrained language model writes the text, and an attached diffusion head draws the image. JUICE generates both with one process, trained on both from scratch in the continuous spaces of frozen pretrained encoders. One flow matching Transformer, with no LLM initialization, handles image generation, visual understanding, and joint&nbsp;generation.</p>
 
     <div class="authors">
       <p class="authors__line">
@@ -192,19 +192,13 @@
   <div class="tldr__card">
     <p class="tldr__hook">One process for images and text, in pretrained encoder spaces.</p>
     <ol class="tldr__list">
-      <li><strong><a class="tldr__sec" href="#why">Why one process.</a></strong> Most unified models generate text with a pretrained language model and images with an attached diffusion head, one modality after the other. JUICE asks whether one process, trained on both modalities from scratch, can generate both.</li>
-      <li><strong><a class="tldr__sec" href="#method">Joint modeling in pretrained representation spaces.</a></strong> One flow matching Transformer models images and text in the continuous spaces of
-        <span class="kw" style="--accent: var(--img)"><button class="kw__btn" type="button" aria-describedby="tip-enc">frozen encoders</button><span class="tip" id="tip-enc" role="tooltip">SigLIP2-SO400M or WebSSL-DINO300M for images (256 tokens), and the Flan-T5-Small encoder for text (128 states). They are never finetuned, so the same features are what the model generates and what it conditions on.</span></span>
-        (SigLIP2 or WebSSL-DINO for images, Flan-T5 for text). Each modality has
-        <span class="kw" style="--accent: var(--txt-ink)"><button class="kw__btn" type="button" aria-describedby="tip-noise">its own noise level</button><span class="tip" id="tip-noise" role="tooltip">An image time and a text time, each from 0 (pure noise) to 1 (clean). A modality at t = 1 is a condition; below 1 it is being generated. Each modality also gets its own noise scale and schedule.</span></span>,
-        so text-to-image, captioning, VQA and joint generation are paths through one square of noise levels.</li>
+      <li><strong><a class="tldr__sec" href="#why">Why one process.</a></strong> Most unified models generate text with a pretrained language model and images with an attached diffusion head, producing one modality after the other. JUICE asks whether one process, trained on both modalities from scratch, can generate both.</li>
+      <li><strong><a class="tldr__sec" href="#method">Joint modeling in pretrained representation spaces.</a></strong> One flow matching Transformer models images and text in the continuous spaces of <span class="kw" style="--accent: var(--img)"><button class="kw__btn" type="button" aria-describedby="tip-enc">frozen encoders</button><span class="tip" id="tip-enc" role="tooltip">SigLIP2-SO400M or WebSSL-DINO300M for images (256 tokens), and the Flan-T5-Small encoder for text (128 states). Because they stay frozen, the model generates and conditions on the exact same feature spaces.</span></span> (SigLIP2 or WebSSL-DINO for images, Flan-T5 for text). Each modality has <span class="kw" style="--accent: var(--txt-ink)"><button class="kw__btn" type="button" aria-describedby="tip-noise">its own noise level</button><span class="tip" id="tip-noise" role="tooltip">An image time and a text time, each from 0 (pure noise) to 1 (clean). A modality at t = 1 is a condition; below 1 it is being generated. Each modality also gets its own noise scale and schedule.</span></span>, so text-to-image, captioning, VQA, and joint generation are paths through one square of noise levels.</li>
       <li><strong><a class="tldr__sec" href="#pretraining">Systematic design studies.</a></strong> Controlled pretraining runs settle four open questions, one takeaway each:
         <a href="#t1">continuous text spares images but costs wording</a>, <a href="#t2">train where you sample</a>,
         <a href="#t3">semantics over reconstruction</a>, and <a href="#t4">scale reorders image spaces for generation, not captioning</a>.</li>
-      <li><strong><a class="tldr__sec" href="#results">Scaling: one set of weights at 2.1B.</a></strong> At 224×224 and with no LLM initialization, each model handles compositional image generation, generation that needs world knowledge, and visual question answering: 0.88 GenEval (DINO variant); 85.27 DPG-Bench, 0.45 WISE and 73.1 VQAv2 (SigLIP2 variant).</li>
-      <li><strong><a class="tldr__sec" href="#agreement">Joint reasoning.</a></strong> An image and its text are generated together. With
-        <span class="kw" style="--accent: var(--joint)"><button class="kw__btn" type="button" aria-describedby="tip-coupled">coupled sampling</button><span class="tip" id="tip-coupled" role="tooltip">Both velocity fields are computed from the current joint state before either stream moves, so each stream conditions on the other's evolving state at every step. One backbone call advances both.</span></span>,
-        a drawn maze route and its written moves are both valid and match 93.7% of the time (54.6% when sampled separately; SigLIP2 model adapted to mazes), within 1.5 points of the better fixed order, without choosing one. On visual spatial planning, JUICE solves 99.8% of maps at the training sizes.</li>
+      <li><strong><a class="tldr__sec" href="#results">Scaling: one set of weights at 2.1B.</a></strong> At 224×224 and with no LLM initialization, each model uses one set of weights for compositional image generation, generation that needs world knowledge, and visual question answering: 0.88 GenEval (DINO variant); 85.27 DPG-Bench, 0.45 WISE, and 73.1 VQAv2 (SigLIP2 variant).</li>
+      <li><strong><a class="tldr__sec" href="#agreement">Joint reasoning.</a></strong> An image and its text are generated together. With <span class="kw" style="--accent: var(--joint)"><button class="kw__btn" type="button" aria-describedby="tip-coupled">coupled sampling</button><span class="tip" id="tip-coupled" role="tooltip">Both velocity fields are computed from the current joint state before either stream moves, so each stream conditions on the other's evolving state at every step. One backbone call advances both.</span></span>, a drawn maze route and its written moves are both valid and match 93.7% of the time (54.6% when sampled separately; SigLIP2 model adapted to mazes). That is within 1.5 points of the better fixed order, without choosing one. On visual spatial planning, JUICE solves 99.8% of maps at the training sizes.</li>
     </ol>
   </div>
 
@@ -265,7 +259,7 @@
          width="2000" height="1319" decoding="async" fetchpriority="high" data-zoom="static/img/fig/juice_teaser@2x.webp"
          alt="JUICE overview. Left: frozen image and text encoders feed one MM-RiT backbone with joint attention over image, text and time tokens, followed by frozen decoders. Right: text-to-image, visual question answering and maze generation use the same interface.">
     </div>
-    <figcaption><strong>One backbone, every task.</strong> (a) Continuous image and text states from frozen encoders share one MM-RiT backbone through bidirectional joint attention. (b) Text-to-image, visual question answering and maze solving use the same interface: clean context sits at <i>t</i>&nbsp;=&nbsp;1 and targets are generated from <i>t</i>&nbsp;&lt;&nbsp;1. Samples are selected, 224×224.</figcaption>
+    <figcaption><strong>One backbone, every task.</strong> (a) Continuous image and text states from frozen encoders share one MM-RiT backbone through bidirectional joint attention. (b) Text-to-image, visual question answering, and maze solving use the same interface: clean context sits at <i>t</i>&nbsp;=&nbsp;1, and targets are generated from <i>t</i>&nbsp;&lt;&nbsp;1. Samples are selected, 224×224.</figcaption>
   </figure></section>
 
 <!-- ============================================================ 3. contents -->
@@ -310,16 +304,16 @@
   <header class="section__head">
     <p class="eyebrow">01</p>
     <h2 id="why-h">Why one process</h2>
-    <p class="section__lead">Most unified models treat images and text asymmetrically. JUICE asks whether both can instead be generated by one process that is trained on them jointly from scratch.</p>
+    <p class="section__lead">Most unified models treat images and text asymmetrically. JUICE asks whether a single process, trained on both modalities jointly from scratch, can generate both.</p>
   </header>
 
   <div class="prose">
     <h3 class="sub" id="usual"><span class="facet__idx">1A</span>The usual design</h3>
-    <p>In the dominant design, a pretrained autoregressive language model generates the text and drives a diffusion or flow matching head that generates the image; other models quantize images and generate both modalities as discrete tokens. Either way, the two modalities are generated by different processes or through a quantizer, and the joint distribution is factorized in a fixed order: an output that contains both an image and text is produced one modality after the other, and the first cannot be revised in light of the second. Vision is also usually added to a model that was first pretrained on language, although <a href="https://arxiv.org/abs/2608.05000">controlled studies of multimodal pretraining</a> find that late integration makes models lean on language priors and that training the modalities jointly from the start works better.</p>
+    <p>In the dominant design, a pretrained autoregressive language model generates the text and drives a diffusion or flow matching head that generates the image; other models quantize images and generate both modalities as discrete tokens. Either way, the two modalities are generated by different processes or through a quantizer, and the joint distribution is factorized in a fixed order. An output with both an image and text is produced one modality after the other, so the first cannot be revised in light of the second. Vision is also usually added to a model pretrained first on language, although <a href="https://arxiv.org/abs/2608.05000">controlled studies of multimodal pretraining</a> find that late integration makes models lean on language priors and that training the modalities jointly from the start works better.</p>
     <h3 class="sub" id="one-process"><span class="facet__idx">1B</span>One process for both</h3>
     <p>JUICE takes the other route: a model that treats both modalities alike, generates them with one process, and learns them together from the start.</p>
     <h3 class="sub" id="encoder-spaces"><span class="facet__idx">1C</span>Why encoder spaces</h3>
-    <p>Such a model needs two things: a space in which one process can generate both modalities, and a source of knowledge for a backbone trained without a language model. Frozen pretrained encoders provide both. Their spaces are continuous for images and text alike and carry visual and linguistic knowledge learned at scale, and recent studies find them to be good generative targets for vision and for language, although they were never built for generation.</p>
+    <p>Such a model needs two things: a space where one process can generate both modalities, and a source of knowledge for a backbone trained without a language model. Frozen pretrained encoders provide both. Their spaces are continuous for images and text alike and carry visual and linguistic knowledge learned at scale. Although they were never built for generation, recent studies find them to be good generative targets for vision and for language.</p>
     <p>In these spaces, one flow matching process generates both modalities with the same objective, the same features serve as targets and as context, and a model of the joint distribution also contains its conditionals. Giving each modality its own noise level turns this into one square of tasks (<a href="#square">§02</a>).</p>
   </div>
 
@@ -338,7 +332,7 @@
       </table>
     </div>
   </div>
-  <p class="bridge">The table sums up the difference. <a href="#method">§02</a> builds the model on frozen encoder spaces; it leaves four design questions open, which <a href="#pretraining">§03</a> settles.</p>
+  <p class="bridge">The table sums up the contrast. <a href="#method">§02</a> builds the model on frozen encoder spaces, leaving four open design questions that <a href="#pretraining">§03</a> settles.</p>
 </section>
 
 <!-- ============================================================ 5. §02 joint modeling (square + backbone) -->
@@ -354,8 +348,8 @@
 
   <div class="prose">
     <p>JUICE learns the joint distribution of an image representation and a text representation, both read from frozen encoders. One network takes the pair of noisy states and predicts both clean ones. Each modality keeps its own clock: an image time <i>t</i><sub>i</sub> and a text time <i>t</i><sub>t</sub>, each running from 0 (pure noise) to 1 (clean).</p>
-    <p>The two clocks span a unit square, and a task is a path through it. Text-to-image generation holds the text clean (<i>t</i><sub>t</sub>&nbsp;=&nbsp;1) and runs along the top edge. Captioning and VQA hold the image clean (<i>t</i><sub>i</sub>&nbsp;=&nbsp;1) and climb the right edge; for VQA the question also stays at <i>t</i>&nbsp;=&nbsp;1 while only the answer is generated. Joint generation starts in the corner where both streams are noise and crosses the interior to the corner where both are clean.</p>
-    <p>The joint path hugs the left side because the image schedule keeps the image noisier for longer. Training covers the same ground that sampling uses: conditional denoising on the edges, joint denoising in the interior. The samplers compared in <a href="#agreement">§05</a> are paths as well: generating one modality first runs along the edges, finishing one stream before conditioning the other on it, while coupled sampling crosses the interior and advances both streams in every backbone call. Separate timesteps per modality follow UniDiffuser; JUICE applies them to frozen encoder states for both modalities, with a backbone trained from scratch.</p>
+    <p>The two clocks span a unit square, and every task is a path through it. Text-to-image generation holds the text clean (<i>t</i><sub>t</sub>&nbsp;=&nbsp;1) and runs along the top edge. Captioning and VQA hold the image clean (<i>t</i><sub>i</sub>&nbsp;=&nbsp;1) and climb the right edge; for VQA, the question also stays at <i>t</i>&nbsp;=&nbsp;1 while only the answer is generated. Joint generation starts in the corner where both streams are noise and crosses the interior to the corner where both are clean.</p>
+    <p>The joint path hugs the left side because the image schedule keeps the image noisier for longer. Training covers the same regions that sampling visits: conditional denoising on the edges and joint denoising in the interior. The samplers compared in <a href="#agreement">§05</a> are paths as well. Generating one modality first runs along the edges, finishing one stream before conditioning the other on it; coupled sampling crosses the interior and advances both streams in every backbone call. Separate timesteps per modality follow UniDiffuser; JUICE applies them to frozen encoder states for both modalities, with a backbone trained from scratch.</p>
   </div>
 
   <div class="widget" data-widget="time-square" data-src="static/data/time_square.json">
@@ -412,7 +406,7 @@
   </figure><div class="split__text">
       <div class="facet">
         <h3><span class="facet__idx">2B</span> The frozen encoders</h3>
-        <p>MM-RiT reads and writes the states of pretrained encoders: one image encoder per model and the Flan-T5 encoder for text (<a href="#why">§01</a> explains why these spaces). The encoders are never finetuned, so the same features serve as targets to generate and as context to condition on. Each modality gets its own noise scale and schedule.</p>
+        <p>MM-RiT reads and writes the states of pretrained encoders: one image encoder per model and the Flan-T5 encoder for text (<a href="#why">§01</a> explains why). Because the encoders are never finetuned, the same features serve both as targets to generate and as context to condition on. Each modality gets its own noise scale and schedule.</p>
         <ul class="facts">
           <li><span>Image</span><span>SigLIP2-SO400M (256&nbsp;×&nbsp;1152) or WebSSL-DINO300M (256&nbsp;×&nbsp;1024)</span></li>
           <li><span>Text</span><span>Flan-T5-Small encoder (128&nbsp;×&nbsp;512)</span></li>
@@ -425,11 +419,11 @@
       </div>
       <div class="facet">
         <h3><span class="facet__idx">2D</span> Decoders</h3>
-        <p>Generated image states go through the Scale-RAE decoder that matches the encoder. Text states go through a lightweight parallel decoder that maps all 128 positions to tokens in one forward pass. On short VQA answers it is <span class="nobr">3.9–6.4×</span> faster than an autoregressive readout of the same states (bf16, one A100), and <span class="nobr">54–163×</span> faster on captions of about 85 tokens, while open-answer VQA accuracy stays within 1.5 points.</p>
+        <p>Generated image states go through the Scale-RAE decoder that matches the encoder. Text states go through a lightweight parallel decoder that maps all 128 positions to tokens in one forward pass. On short VQA answers, this readout is <span class="nobr">3.9–6.4×</span> faster than an autoregressive readout of the same states (bf16, one A100), and <span class="nobr">54–163×</span> faster on captions of about 85 tokens, while keeping open-answer VQA accuracy within 1.5 points.</p>
       </div>
       <div class="facet">
         <h3><span class="facet__idx">2E</span> Training and sampling</h3>
-        <p>MM-RiT is trained on a mixture of three denoising tasks. Joint denoising draws a noise level for each modality and corrupts both streams, which covers the interior of the square and teaches the joint distribution; conditional text-to-image and image-to-text keep one modality clean at <i>t</i>&nbsp;=&nbsp;1, which covers the edges. At inference, conditions stay at <i>t</i>&nbsp;=&nbsp;1 and targets are integrated from noise. Classifier-free guidance needs no learned null token: the reference replaces the condition with an input the model already handles (the image at its noise end, or the caption “a photo.”), with <i>w</i>&nbsp;=&nbsp;5 for text-to-image and <i>w</i>&nbsp;=&nbsp;3 for captioning and VQA. In joint generation, coupled sampling computes both velocity fields from the current joint state before either stream moves (<a href="#agreement">§05</a>).</p>
+        <p>MM-RiT is trained on a mixture of three denoising tasks. Joint denoising draws a noise level for each modality and corrupts both streams, covering the interior of the square to learn the joint distribution. Conditional text-to-image and image-to-text keep one modality clean at <i>t</i>&nbsp;=&nbsp;1, covering the edges. At inference, conditions stay at <i>t</i>&nbsp;=&nbsp;1 and targets are integrated from noise. Classifier-free guidance needs no learned null token: the unconditional reference replaces the condition with an input the model already handles (the image at its noise end, or the caption “a photo.”), with <i>w</i>&nbsp;=&nbsp;5 for text-to-image and <i>w</i>&nbsp;=&nbsp;3 for captioning and VQA. In joint generation, coupled sampling computes both velocity fields from the current joint state before either stream moves (<a href="#agreement">§05</a>).</p>
       </div>
       <p class="note">“2.1B” counts the trainable MM-RiT backbone only. With the frozen encoders and decoders loaded, the SigLIP2 model has about 3.03B parameters (DINO: 2.91B).</p>
     </div>
@@ -437,7 +431,7 @@
 
 
 
-  <p class="bridge">Four choices in this design are not settled by earlier unified models: how text is generated, which tasks are trained, which encoder spaces are read and written, and whether the answers hold as the model grows. <a href="#pretraining">§03</a> settles them with controlled runs.</p>
+  <p class="bridge">Earlier unified models leave four choices in this design open: how text is generated, which tasks are trained, which encoder spaces are read and written, and whether the answers hold as the model grows. <a href="#pretraining">§03</a> settles them with controlled runs.</p>
 </section>
 
 <!-- ============================================================ 6. §03 systematic design studies -->
@@ -445,7 +439,7 @@
   <header class="section__head">
     <p class="eyebrow">03</p>
     <h2 id="pretraining-h">Systematic design studies</h2>
-    <p class="section__lead">Building JUICE meant answering four questions that existing unified models leave open: whether text should be generated as continuous states or kept as tokens, which denoising tasks to train on, which encoder spaces to read and write, and whether these answers still hold as the model grows. Each is settled with controlled pretraining runs: a 668M reference backbone (179M to 2.1B in the scaling study), 50k updates, one choice changed at a time, each configuration run once.</p>
+    <p class="section__lead">Building JUICE meant answering four questions that existing unified models leave open: whether text should be generated as continuous states or kept as tokens, which denoising tasks to train on, which encoder spaces to read and write, and whether these answers still hold as the model grows. Each question is settled with controlled pretraining runs on a 668M reference backbone (179M to 2.1B in the scaling study) for 50k updates, changing one choice at a time, with each configuration run once.</p>
   </header>
 
   <!-- T1 -->
@@ -461,7 +455,7 @@
       <span class="study__hint" aria-hidden="true"><span class="when-closed">Show details</span><span class="when-open">Hide</span></span>
     </summary>
     <div class="study__body">
-      <p>The pretraining study compares JUICE with three frameworks that keep text discrete, all on the same 668M trunk with two streams, the same data, task ratios and schedule: Transfusion-style (autoregressive text, flow matching images), D-DiT-style (masked text diffusion, flow matching images) and MMaDA-style (masked diffusion for both, over vector-quantized image codes). Takeaway 1 below reports what happened.</p>
+      <p>The pretraining study compares JUICE with three frameworks that keep text discrete, all using the same 668M two-stream trunk, data, task ratios, and schedule: Transfusion-style (autoregressive text, flow matching images), D-DiT-style (masked text diffusion, flow matching images), and MMaDA-style (masked diffusion for both, over vector-quantized image codes). Takeaway 1 below summarizes the results.</p>
       <figure class="fig fig--compact">
     <div class="plate">
       <img src="static/img/fig/fig_four_architectures.webp"
@@ -485,8 +479,8 @@
     <figcaption><strong>Four frameworks over training (668M).</strong> JUICE leads GenEval and DPG-Bench at every checkpoint and ends lowest on CIDEr, far behind autoregressive text.</figcaption>
   </figure>
     <div class="prose">
-      <p>Of four generative frameworks, only the one that writes text as continuous states keeps GenEval level with a model trained only for text-to-image generation (48.41 vs 47.86 at the same guidance scale). The three frameworks that write text as tokens all fall below it, even with the same frozen T5 condition. The price is exact wording: CIDEr is 88.80 against 160.52 for autoregressive text, while CLIPScore is on par (80.20 vs 80.37).</p>
-      <p>So the captions describe the image as well as autoregressive ones but word it differently from the references, which is what you would expect when errors in a continuous state drift toward nearby states with a similar meaning. With guidance tuned per model, the text-to-image-only model peaks at 51.23 and leads by 2.8 points.</p>
+      <p>Among the four generative frameworks, only continuous text keeps GenEval level with a text-to-image-only model (48.41 vs 47.86 at the same guidance scale). The three discrete-token frameworks all fall short, even when given the same frozen T5 condition. The trade-off is exact wording: CIDEr is 88.80 against 160.52 for autoregressive text, whereas CLIPScore stays on par (80.20 vs 80.37).</p>
+      <p>The generated captions thus describe the image about as well as autoregressive ones, but phrase it differently from the references. This is expected when small errors in a continuous state drift toward nearby states with similar meaning. With guidance tuned per model, the text-to-image-only baseline peaks at 51.23, leading by 2.8 points.</p>
     </div>
     <div class="tbox tbox--end">
       <p class="tbox__label">Takeaway 1 <span aria-hidden="true">·</span> Generative frameworks</p>
@@ -509,11 +503,11 @@
                width="1800" height="598" loading="lazy" decoding="async" data-zoom="static/img/fig/fig_taskmix_training@2x.webp"
                alt="Training curves over 50k updates for Mixing and Multi-task on GenEval, DPG-Bench, CIDEr and CLIPScore. Mixing stays above Multi-task on all four.">
         </div>
-        <figcaption><strong>Joint plus conditional training leads conditional training alone throughout pretraining.</strong> Mixing combines joint, text-to-image and image-to-text denoising; Multi-task uses the two conditional tasks only. Curves at guidance 5.</figcaption>
+        <figcaption><strong>Joint plus conditional training leads conditional training alone throughout pretraining.</strong> Mixing combines joint, text-to-image, and image-to-text denoising; Multi-task uses the two conditional tasks only. Curves at guidance 5.</figcaption>
       </figure>
     </div>
     <div class="prose">
-      <p>Sampling uses both the edges of the square and its interior, so training has to cover both. With each recipe at its best guidance scale, Mixing (55.6% joint, 22.2% text-to-image, 22.2% image-to-text) reaches 48.41 GenEval, Multi-task (edges only) 44.29, and Joint only (interior only) 31.33. Joint only never sees the exactly clean condition that conditional inference hands it; Multi-task never trains on the interior that joint sampling crosses.</p>
+      <p>Sampling uses both the edges of the square and its interior, so training must cover both. At each recipe's best guidance scale, Mixing (55.6% joint, 22.2% text-to-image, 22.2% image-to-text) reaches 48.41 GenEval, compared with 44.29 for Multi-task (edges only) and 31.33 for Joint only (interior only). Joint only never sees the exactly clean conditions used at conditional inference, while Multi-task never trains on the interior states crossed during joint sampling.</p>
       <p>Mixing also supervises each modality more often (77.8% of examples vs 50%), so the study controls for that. Replacing joint examples with matched conditional ones, or blocking cross-modal attention on them, falls 2.51 and 2.92 GenEval short of Mixing. The joint examples give more than extra supervision.</p>
     </div>
     <div class="tbox tbox--end">
@@ -539,7 +533,7 @@
     <figcaption><strong>Representation spaces at 668M.</strong> Top: image spaces with T5 text. Bottom: text spaces with SigLIP2 images.</figcaption>
   </figure>
     <div class="prose">
-      <p>Good reconstruction does not make a good generation space. The FLUX VAE has the best rFID among the learned spaces (0.288 vs 0.435 for SigLIP2), yet GenEval in it drops to 35.42, from 48.41 with SigLIP2; raw pixels reach 24.48. SigLIP2 and DINO are close on generation (48.41 vs 49.07), and SigLIP2's alignment with language shows in captioning, 20.0 CIDEr ahead.</p>
+      <p>Better reconstruction does not mean better generation. The FLUX VAE has the lowest rFID among learned spaces (0.288 vs 0.435 for SigLIP2), yet its GenEval drops to 35.42 against 48.41 for SigLIP2; raw pixels reach 24.48. SigLIP2 and DINO are close on generation (48.41 vs 49.07), while SigLIP2's language alignment pays off in captioning (20.0 CIDEr ahead).</p>
       <p>The text side tells a similar story. Flan-T5 states beat larger embedding models (Qwen3-Embedding trails by 5.3 GenEval) and SigLIP2's own text features (33.08 GenEval), even though every one of these spaces lets a decoder recover <span class="nobr">97.5–99.2%</span> of the tokens.</p>
     </div>
     <div class="tbox tbox--end">
@@ -565,7 +559,7 @@
     <figcaption><strong>Scaling the backbone from 179M to 2.1B</strong> (pretraining, 50k updates). DPG-Bench in this figure uses the time-swap text reference.</figcaption>
   </figure>
     <div class="prose">
-      <p>At 179M, DINO is far ahead on GenEval (32.90 vs 18.99 for SigLIP2). The gap closes as the backbone grows, the two tie at 1.33B, and at 2.1B the order has flipped (SigLIP2 56.81 vs DINO 52.78). Captioning never flips: SigLIP2 leads CLIPScore at every size and ends at 86.64 against 72.32.</p>
+      <p>At 179M, DINO leads SigLIP2 by a wide margin on GenEval (32.90 vs 18.99). As the backbone grows, the gap narrows, the two tie at 1.33B, and by 2.1B the order flips (SigLIP2 56.81 vs DINO 52.78). Captioning never flips: SigLIP2 leads on CLIPScore at every scale, ending at 86.64 against 72.32.</p>
       <p>After finetuning, the two 2.1B models differ by less than 0.02 GenEval (DINO 0.88, SigLIP2 0.87), so neither image space keeps a clear generation advantage, while SigLIP2 leads on almost every understanding benchmark.</p>
     </div>
     <div class="tbox tbox--end">
@@ -573,7 +567,7 @@
       <p class="tbox__text">Scale reorders image spaces for generation, not captioning.</p>
     </div>
   </article>
-  <p class="bridge">With these four answers the recipe is fixed: text as continuous states, joint plus conditional training, and semantic encoder spaces (SigLIP2 or DINO for images, Flan-T5 for text). <a href="#results">§04</a> scales it to 2.1B.</p>
+  <p class="bridge">These four findings fix the recipe: continuous text states, joint plus conditional training, and semantic encoder spaces (SigLIP2 or DINO for images, Flan-T5 for text). <a href="#results">§04</a> scales this recipe to 2.1B.</p>
 </section>
 
 <!-- ============================================================ 7. §04 scaling -->
@@ -581,7 +575,7 @@
   <header class="section__head">
     <p class="eyebrow">04</p>
     <h2 id="results-h">Scaling: one set of weights at 2.1B</h2>
-    <p class="section__lead">With these answers in hand, two 2.1B models are trained, one per image space. At 224×224 and with no LLM initialization, each uses one set of weights for compositional image generation, generation that needs world knowledge, and visual question answering.</p>
+    <p class="section__lead">Using this recipe, two 2.1B models are trained from scratch, one per image space. At 224×224 and with no LLM initialization, each model uses one set of weights for compositional image generation, generation that needs world knowledge, and visual question answering.</p>
   </header>
 
   <div class="prose">
@@ -616,7 +610,7 @@
     </div>
     <ul class="table-notes">
       <li>GenEval: the DINO variant ties TUNA at 0.88; TUNA still leads on counting and attribute binding. Both JUICE variants have the highest position score (0.85). Overall GenEval moves by at most 0.003 between 25 and 100 sampling steps.</li>
-      <li>DPG-Bench: 85.27 is above Show-o2 (85.02) and below TUNA (86.03).</li>
+      <li>DPG-Bench: 85.27 (SigLIP2 variant) is above Show-o2 (85.02) and below TUNA (86.03).</li>
       <li>WISE: 0.45 is the highest overall score among <span class="nobr">1–3B</span> unified models that report one. Two larger references score higher, FLUX.1-dev (12B, text-to-image only) 0.50 and BAGEL 0.52, while Janus-Pro-7B scores 0.35. GPT-4o judge; the 95% CI on JUICE's score is about ±0.02. <sup>a</sup>Show-o at 512².</li>
     </ul>
   </div>
@@ -649,7 +643,7 @@
     </div>
     <ul class="table-notes">
       <li>The SigLIP2 variant is competitive on several perception benchmarks (VQAv2 73.1, GQA 58.6, MMBench 66.0) and weak where domain knowledge matters (AI2D 34.4, MMMU 29.6). Every other model here starts from a pretrained language or text-to-image model.</li>
-      <li>Sizes for JUICE count the trainable backbone; fully loaded with frozen encoders and decoders it is about 3.03B (SigLIP2) or 2.91B (DINO). Baseline sizes as reported.</li>
+      <li>Sizes for JUICE count the trainable backbone; fully loaded with frozen encoders and decoders, it is about 3.03B (SigLIP2) or 2.91B (DINO). Baseline sizes are as reported.</li>
     </ul>
   </div>
 
@@ -878,7 +872,7 @@
   </dl>
 </article>
   </div>
-  <p class="gcap"><strong>Selected samples.</strong> Real photos, seen at 224×224, with the instruction “Describe the image concisely.” Short captions are fluent; long, detailed descriptions are less reliable and contain grammatical errors and the occasional invented word.</p>
+  <p class="gcap"><strong>Selected samples.</strong> Real photos, seen at 224×224, with the instruction “Describe the image concisely.” Short captions are fluent; longer, detailed descriptions are less reliable, with grammatical errors and the occasional invented word.</p>
 </section>
 </div>
 <!-- GALLERY:END -->
@@ -890,12 +884,12 @@
   <header class="section__head">
     <p class="eyebrow">05</p>
     <h2 id="agreement-h">Joint reasoning</h2>
-    <p class="section__lead">Because JUICE models the joint distribution, it can generate an image and a text together. Some tasks need the two outputs to be correct and to agree, such as a route drawn on a map and the moves that describe it. With several valid routes, agreement is not automatic.</p>
+    <p class="section__lead">Because JUICE models the joint distribution, it can generate an image and text together. Some tasks require both outputs to be valid and to agree, such as a route drawn on a map and the moves describing it. When several routes are valid, agreement is not automatic.</p>
   </header>
 
   <div class="prose">
     <h3 class="sub" id="joint-generation"><span class="facet__idx">5A</span>Joint generation</h3>
-    <p>Without any condition, both streams start from noise and the model generates an image and a caption together. The text clock runs ahead, so the caption takes shape before the image does, and each stream conditions on the other at every step. In the selected samples below, the caption describes the image it is generated with, so the two streams agree even though neither is given. Step through a sample to watch both form.</p>
+    <p>Without any condition, both streams start from noise and the model generates an image and a caption together. Because the text clock runs ahead, the caption takes shape before the image does, while each stream conditions on the other at every step. In the selected samples below, each caption describes the image generated alongside it, even though neither is given. Step through a sample to watch both form.</p>
   </div>
 
   <div class="widget" data-widget="joint-player" data-src="static/data/joint.json">
@@ -937,7 +931,7 @@
   <div class="prose">
     <p>Planning tasks test the harder case, in which the outputs must also be correct.</p>
     <h3 class="sub" id="mazes"><span class="facet__idx">5B</span>Mazes with multiple solutions</h3>
-    <p>The mazes here have two to sixteen shortest routes each, so both outputs can be valid and still disagree. Sampling each modality from its own marginal often picks a different valid route in each, a cross-modal mode mismatch, and joint success is only 54.6% for the maze-adapted SigLIP2 model. Generating one modality first avoids it, but the result then depends on the order, because mistakes in the first modality are passed on to the second (95.2% with the image first, 85.3% with the text first). The better order starts with the more reliable modality, here the image, but for a new task, which modality is more reliable is not known in advance. Generating one modality first is the fixed order of <a href="#why">§01</a>, here in a task where agreement can be checked.</p>
+    <p>Each maze here has two to sixteen shortest routes, so both outputs can be valid yet still disagree. Sampling each modality independently from its marginal often picks a different valid route in each (a cross-modal mode mismatch), giving only 54.6% joint success for the maze-adapted SigLIP2 model. Generating one modality first avoids this, but the result then depends on the order, because mistakes in the first modality pass to the second (95.2% with the image first, 85.3% with the text first). Starting with the more reliable modality (here, the image) works better, but for a new task, which modality is more reliable is unknown in advance. Generating one modality first is the fixed order of <a href="#why">§01</a>, here in a task where agreement can be checked.</p>
     <p>Coupled sampling computes both velocity fields from the current joint state before either stream moves, so each stream conditions on the other as it forms. Two selected mazes, traced step by step, show it at work.</p>
   </div>
 
@@ -956,7 +950,7 @@
 
   <div class="prose">
     <h4 class="sub4">Who gives way</h4>
-    <p>In both traced mazes, whichever output settles later changes to match the other. In Maze A the drawn route switches to the route of the moves at step 3. In Maze B the moves change from <code class="moves">RURRD</code> to <code class="moves">RUR<u>DR</u></code> at step 7 to follow the drawing. Because either modality can be the one that yields, coupled sampling is not simply copying one into the other. It does not collapse onto one canonical route either: on solved mazes it returns the stored reference route 43.5% of the time for SigLIP2, close to the 44.1% expected from a uniform pick among shortest routes (DINO: 47.0% vs 44.4%).</p>
+    <p>In both traced mazes, whichever output settles later adapts to match the other. In Maze A, the drawn route switches at step 3 to match the text moves. In Maze B, the moves change from <code class="moves">RURRD</code> to <code class="moves">RUR<u>DR</u></code> at step 7 to follow the drawing. Because either modality can yield, coupled sampling is not merely copying one stream into the other. Nor does it collapse onto a single canonical route: on solved mazes, it returns the stored reference route 43.5% of the time for SigLIP2, close to the 44.1% expected from a uniform choice among shortest routes (DINO: 47.0% vs 44.4%).</p>
   </div>
 
   <div class="table-block table-block--narrow">
@@ -973,7 +967,7 @@
       </table>
     </div>
     <ul class="table-notes">
-      <li>Coupled sampling lands 1.5 / 1.0 points below the better order and 8.4 / 21.8 above the worse one, without choosing either. Image first is significantly better than coupled for SigLIP2 (paired test, p&nbsp;=&nbsp;0.017; DINO p&nbsp;=&nbsp;0.19). Coupled loses at most 0.3 points when the budget is halved to 8 calls.</li>
+      <li>Coupled sampling lands 1.5 / 1.0 points (SigLIP2 / DINO) below the better fixed order and 8.4 / 21.8 above the worse one, without choosing either. Image first is significantly higher than coupled for SigLIP2 (paired test, p&nbsp;=&nbsp;0.017; DINO p&nbsp;=&nbsp;0.19). Halving the budget to 8 calls costs coupled sampling at most 0.3 points.</li>
       <li>The maze models are the finetuned 2.1B models adapted for 5k updates on 200k mazes (5×5 to 7×7); a linear head trained for the task reads the moves.</li>
     </ul>
   </div>
@@ -981,7 +975,7 @@
   <div class="prose">
     <h3 class="sub" id="vsp"><span class="facet__idx">5C</span>Visual spatial planning</h3>
     <p>VSP asks for a path through a FrozenLake grid from start to goal without stepping into a hole. The SigLIP2 model, adapted for 5k updates on 55.9k maps of sizes 3×3 to 6×6, solves 99.8% of the official maps at those sizes, on par with the fine variant of LatentUM (99%), which plans visually step by step. On larger maps it never saw in adaptation, it solves 94% at 7×7 and 69% at 8×8.</p>
-    <p>On those unseen sizes the drawn path is right more often than the moves. Of the 37 failures, 29 drop exactly one move while the drawn path is the reference route, and drops grow more frequent with the length of a run of repeated moves. As on mazes, the image is the more reliable modality here, and these dropped moves match the cost in exact wording from <a href="#t1">Takeaway 1</a>. Coupled sampling can still repair a move string: on nine of all 600 benchmark maps (levels 3 to 8), the moves fail at the first of 16 steps and solve the map by the last.</p>
+    <p>On those unseen sizes, the drawn path is right more often than the moves. In 29 of the 37 failures, the move string drops a single move while the drawn path follows the reference route, and drops grow more frequent as runs of repeated moves get longer. As on mazes, the image is the more reliable modality, and these dropped moves match the cost in exact wording from <a href="#t1">Takeaway 1</a>. Even so, coupled sampling can repair a move string: on nine of all 600 benchmark maps (levels 3 to 8), the moves fail at the first of 16 steps and solve the map by the last.</p>
   </div>
 
   <div class="table-block table-block--narrow">
@@ -1020,7 +1014,7 @@
 
   <div class="prose">
     <h3 class="sub" id="order"><span class="facet__idx">5D</span>Order at sampling time</h3>
-    <p>In a model of the joint distribution, the order in which modalities are generated is no longer fixed by the architecture: it becomes a choice at sampling time, and coupled sampling can leave it open. Coupled sampling does not beat the better order, but it comes close (93.7% against 95.2% with the image first on mazes, SigLIP2) without having to know which order that is. On visual spatial planning, JUICE solves nearly all maps of the training sizes (99.8%). Together with the generation and understanding results of <a href="#results">§04</a>, pretrained continuous spaces thus let one model understand, generate, and coordinate images and text without putting either one first.</p>
+    <p>In a model of the joint distribution, generation order is no longer hardwired into the architecture: it becomes a sampling-time choice, and coupled sampling can leave it open. Coupled sampling does not beat the better fixed order, but it comes close (93.7% vs 95.2% with the image first on mazes, SigLIP2) without needing to know which modality should go first. On visual spatial planning, JUICE solves 99.8% of maps at the training sizes. Together with the generation and understanding results in <a href="#results">§04</a>, modeling in pretrained continuous spaces lets one model understand, generate, and coordinate images and text without putting either one first.</p>
   </div>
 </section>
 
@@ -1032,7 +1026,7 @@
   <div class="prose">
     <ul class="limits">
       <li>The models run at a native 224×224 resolution, which limits fine visual detail.</li>
-      <li>Exact wording lags behind autoregressive text. Long, detailed descriptions get the main objects, colors and layout right but contain grammatical errors and the occasional invented word.</li>
+      <li>Exact wording lags behind autoregressive text. Long, detailed descriptions capture the main objects, colors, and layout, but contain grammatical errors and the occasional invented word.</li>
       <li>Without a language model backbone, JUICE trails models initialized from LLMs on benchmarks that need domain knowledge, such as AI2D and MMMU.</li>
       <li>Each pretraining configuration was run once.</li>
       <li>The joint reasoning tasks are synthetic planning problems, and each uses its own task-adapted model.</li>
