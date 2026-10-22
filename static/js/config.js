@@ -9,7 +9,7 @@
    site    – deployed URL of this page; also update the og:/twitter: tags in index.html */
 window.JUICE_LINKS = {
   paper: 'static/paper/JUICE.pdf',
-  arxiv: null,
+  arxiv: 'https://arxiv.org/abs/2610.28801',
   code: 'https://github.com/Ced3-han/JUICE-Code',
   weights: 'https://huggingface.co/collections/CedLJH/juice',
   hf: null,
