@@ -13,6 +13,6 @@ window.JUICE_LINKS = {
   code: 'https://github.com/Ced3-han/JUICE-Code',
   weights: 'https://huggingface.co/collections/CedLJH/juice',
   hf: 'https://huggingface.co/papers/2610.28801',
-  thread: null,
+  thread: 'https://x.com/JiahanCed/status/2113428288693547055',
   site: 'https://ced3-han.github.io/JUICE-Website/'
 };
